@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-
    
+
+
  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6469478872018956"
-     crossorigin="anonymous"></script> 
+     crossorigin="anonymous"></script>
+
     <meta property="og:title" content="お笑い16タイプ診断">
     <meta property="og:description" content="16問の質問であなたの「笑いのタイプ」を精密診断します。">
     <meta property="og:url" content="https://dim7.jp/owarai/">
     <meta property="og:image" content="https://dim7.jp/owarai/ogp_image.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>お笑い16タイプ診断</title>
@@ -26,6 +29,7 @@
             --text-main: #1e293b;
             --text-sub: #64748b;
             --bar-bg: #e2e8f0;
+            --passive-color: #94a3b8; /* Gray for passive labels */
         }
 
         body {
@@ -87,7 +91,7 @@
             justify-content: center; 
         }
 
-        /* Options Layout - Center Aligned */
+        /* Options Layout */
         .options-container { margin-bottom: 20px; }
         .option-text { font-size: 0.9rem; font-weight: bold; margin-bottom: 5px; display: block; }
         .option-left { color: var(--primary); }
@@ -113,7 +117,6 @@
         .scale-btn[data-val="-3"] { width: 44px; height: 44px; border-color: var(--primary); border-width: 2px; }
         .scale-btn[data-val="-2"] { width: 38px; height: 38px; border-color: #60a5fa; }
         .scale-btn[data-val="-1"] { width: 32px; height: 32px; border-color: #93c5fd; }
-        
         .scale-btn[data-val="1"] { width: 32px; height: 32px; border-color: #fca5a5; }
         .scale-btn[data-val="2"] { width: 38px; height: 38px; border-color: #f87171; }
         .scale-btn[data-val="3"] { width: 44px; height: 44px; border-color: var(--accent); border-width: 2px; }
@@ -150,25 +153,28 @@
 
         .result-content { background: var(--card-bg); border-radius: 20px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
         
-        /* NEW CHART STYLES (MBTI Style Bars) */
+        /* MBTI Chart Styles */
         .mbti-chart-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
             margin-bottom: 30px;
         }
-        .chart-row {
-            width: 100%;
-        }
+        .chart-row { width: 100%; }
         .chart-labels {
             display: flex;
             justify-content: space-between;
             font-size: 0.85rem;
-            font-weight: bold;
             margin-bottom: 6px;
+            align-items: flex-end;
         }
-        .lbl-left { color: var(--primary); }
-        .lbl-right { color: var(--accent); }
+        .lbl-active { font-weight: bold; opacity: 1; }
+        .lbl-passive { font-weight: normal; opacity: 0.6; color: var(--passive-color) !important; font-size: 0.8rem; }
+        
+        /* Dynamic colors for active labels */
+        .lbl-left.lbl-active { color: var(--primary); }
+        .lbl-right.lbl-active { color: var(--accent); }
+
         .chart-bar-bg {
             position: relative;
             height: 12px;
@@ -312,8 +318,8 @@
         <div class="mbti-chart-container" id="mbti-chart">
             <div class="chart-row">
                 <div class="chart-labels">
-                    <span class="lbl-left" id="lbl-L">Logic (理) 0%</span>
-                    <span class="lbl-right" id="lbl-A">0% Absurd (乱)</span>
+                    <span class="lbl-left" id="lbl-L">Logic (理)</span>
+                    <span class="lbl-right" id="lbl-A">Absurd (乱)</span>
                 </div>
                 <div class="chart-bar-bg">
                     <div class="chart-center-line"></div>
@@ -322,8 +328,8 @@
             </div>
             <div class="chart-row">
                 <div class="chart-labels">
-                    <span class="lbl-left" id="lbl-H">Harmony (和) 0%</span>
-                    <span class="lbl-right" id="lbl-P">0% Poison (毒)</span>
+                    <span class="lbl-left" id="lbl-H">Harmony (和)</span>
+                    <span class="lbl-right" id="lbl-P">Poison (毒)</span>
                 </div>
                 <div class="chart-bar-bg">
                     <div class="chart-center-line"></div>
@@ -332,8 +338,8 @@
             </div>
             <div class="chart-row">
                 <div class="chart-labels">
-                    <span class="lbl-left" id="lbl-D">Dynamic (動) 0%</span>
-                    <span class="lbl-right" id="lbl-S">0% Static (静)</span>
+                    <span class="lbl-left" id="lbl-D">Dynamic (動)</span>
+                    <span class="lbl-right" id="lbl-S">Static (静)</span>
                 </div>
                 <div class="chart-bar-bg">
                     <div class="chart-center-line"></div>
@@ -342,8 +348,8 @@
             </div>
             <div class="chart-row">
                 <div class="chart-labels">
-                    <span class="lbl-left" id="lbl-M">Mass (衆) 0%</span>
-                    <span class="lbl-right" id="lbl-C">0% Core (深)</span>
+                    <span class="lbl-left" id="lbl-M">Mass (衆)</span>
+                    <span class="lbl-right" id="lbl-C">Core (深)</span>
                 </div>
                 <div class="chart-bar-bg">
                     <div class="chart-center-line"></div>
@@ -409,7 +415,7 @@
         "C": { label: "Core (深)", desc: "文脈、マニアック" }
     };
 
-    // 16 Questions (Interleaved Order: LA, HP, DS, MC, LA, HP...)
+    // 16 Questions
     const questions = [
         // 1. LA
         { axis: "LA", text: "最高に面白いコント、どちらかといえば？", left: "伏線回収が見事な構成美", right: "意味不明なカオス展開" },
@@ -487,26 +493,21 @@
         document.getElementById('opt-left').innerText = q.left;
         document.getElementById('opt-right').innerText = q.right;
 
-        // Reset Buttons visual state
         document.querySelectorAll('.scale-btn').forEach(btn => {
-            btn.className = 'scale-btn'; // reset classes
-            // If already answered, select it
+            btn.className = 'scale-btn'; 
             if (userAnswers[currentIdx] !== null && parseInt(btn.dataset.val) === userAnswers[currentIdx]) {
                 const val = userAnswers[currentIdx];
                 btn.classList.add(val < 0 ? 'selected-left' : 'selected-right');
             }
         });
 
-        // Button States
         document.getElementById('btn-back').style.visibility = currentIdx === 0 ? 'hidden' : 'visible';
         document.getElementById('btn-next').disabled = userAnswers[currentIdx] === null;
     }
 
     function select(btn, val) {
-        // Visual selection logic
-        document.querySelectorAll('.scale-btn').forEach(b => b.className = 'scale-btn'); // clear all
-        btn.classList.add(val < 0 ? 'selected-left' : 'selected-right'); // add appropriate color
-        
+        document.querySelectorAll('.scale-btn').forEach(b => b.className = 'scale-btn'); 
+        btn.classList.add(val < 0 ? 'selected-left' : 'selected-right'); 
         userAnswers[currentIdx] = val;
         document.getElementById('btn-next').disabled = false;
     }
@@ -540,17 +541,17 @@
         const t4 = scores.MC <= 0 ? "M" : "C";
         const typeKey = t1 + t2 + t3 + t4;
         
-        renderResults(typeKey, scores);
+        renderResults(typeKey, scores, false);
     }
 
-    function renderResults(typeKey, scores) {
+    // Updated renderResults to handle Library Mode (isLibrary = true)
+    function renderResults(typeKey, scores, isLibrary) {
         const data = typesDB[typeKey];
 
         document.getElementById('quiz-area').classList.add('hidden');
         document.getElementById('result-area').style.display = 'block';
         window.scrollTo(0,0);
 
-        // Render Kanji
         const kanjiBox = document.getElementById('res-kanji');
         kanjiBox.innerHTML = '';
         typeKey.split('').forEach(char => {
@@ -565,7 +566,6 @@
         document.getElementById('res-ref').innerText = data.ref;
         document.getElementById('res-tags').innerHTML = data.tags.map(t => `<span class="tag">#${t}</span>`).join('');
 
-        // Render Code Breakdown
         const breakdownHTML = typeKey.split('').map(char => {
             const info = breakdownInfo[char];
             const colorClass = (char === 'L' || char === 'H' || char === 'D' || char === 'M') ? 'is-primary' : 'is-accent';
@@ -581,44 +581,71 @@
         }).join('');
         document.getElementById('code-breakdown').innerHTML = breakdownHTML;
 
-        // Render MBTI Style Bars
-        updateBar('LA', scores.LA, 'Logic (理)', 'Absurd (乱)');
-        updateBar('HP', scores.HP, 'Harmony (和)', 'Poison (毒)');
-        updateBar('DS', scores.DS, 'Dynamic (動)', 'Static (静)');
-        updateBar('MC', scores.MC, 'Mass (衆)', 'Core (深)');
+        // Pass type chars to determine dominant sides for Library Mode
+        updateBar('LA', scores ? scores.LA : 0, 'Logic (理)', 'Absurd (乱)', typeKey[0], isLibrary);
+        updateBar('HP', scores ? scores.HP : 0, 'Harmony (和)', 'Poison (毒)', typeKey[1], isLibrary);
+        updateBar('DS', scores ? scores.DS : 0, 'Dynamic (動)', 'Static (静)', typeKey[2], isLibrary);
+        updateBar('MC', scores ? scores.MC : 0, 'Mass (衆)', 'Core (深)', typeKey[3], isLibrary);
     }
 
-    function updateBar(axis, score, labelLeft, labelRight) {
-        const maxScore = 12; // 4 questions * 3
-        const percentage = Math.round((Math.abs(score) / maxScore) * 100);
-        
+    function updateBar(axis, score, labelLeft, labelRight, typeChar, isLibrary) {
+        const maxScore = 12; 
+        let percentage = Math.round((Math.abs(score) / maxScore) * 100);
+        if (percentage > 100) percentage = 100;
+
         const lblL = document.getElementById(`lbl-${axis[0]}`);
         const lblR = document.getElementById(`lbl-${axis[1]}`);
         const fill = document.getElementById(`fill-${axis}`);
-        
-        // Reset classes
+
+        // Reset
         fill.className = 'chart-fill';
-        fill.style.width = '0%';
+        lblL.className = 'lbl-left';
+        lblR.className = 'lbl-right';
+
+        let isLeftDominant = false;
         
-        if (score <= 0) {
-            // Left Side Dominant
-            lblL.innerText = `${labelLeft} ${percentage}%`;
-            lblR.innerText = ``;
-            fill.classList.add('fill-left');
-            // From center (50%) to left. 
-            // Width is half of total percentage relative to container width?
-            // No, the fill is absolute.
-            // If percentage is 100%, it covers the whole left side (50% of container).
-            // So width = percentage / 2 + '%'
-            // Wait, simpler: Logic is 100% means width is 50% of container.
-            // Logic is 50% means width is 25% of container.
-            fill.style.width = (percentage / 2) + '%';
+        if (isLibrary) {
+            // In library mode, rely on typeChar ('L', 'A', etc.)
+            isLeftDominant = (typeChar === axis[0]);
         } else {
-            // Right Side Dominant
-            lblL.innerText = ``;
-            lblR.innerText = `${percentage}% ${labelRight}`;
-            fill.classList.add('fill-right');
-            fill.style.width = (percentage / 2) + '%';
+            // In result mode, rely on score
+            isLeftDominant = (score <= 0);
+        }
+
+        if (isLeftDominant) {
+            // Left Dominant
+            lblL.classList.add('lbl-active');
+            lblR.classList.add('lbl-passive');
+
+            if (isLibrary) {
+                // Library Mode: No percentage, fixed bar indication
+                lblL.innerText = labelLeft.split(' ')[0] + ' ' + labelLeft.split(' ')[1]; // Just Text
+                lblR.innerText = labelRight.split(' ')[0] + ' ' + labelRight.split(' ')[1];
+                fill.classList.add('fill-left');
+                fill.style.width = '70%'; // Visual Indicator
+            } else {
+                // Result Mode
+                lblL.innerText = `${labelLeft} ${percentage}%`;
+                lblR.innerText = labelRight;
+                fill.classList.add('fill-left');
+                fill.style.width = (percentage / 2) + '%';
+            }
+        } else {
+            // Right Dominant
+            lblL.classList.add('lbl-passive');
+            lblR.classList.add('lbl-active');
+
+            if (isLibrary) {
+                lblL.innerText = labelLeft.split(' ')[0] + ' ' + labelLeft.split(' ')[1];
+                lblR.innerText = labelRight.split(' ')[0] + ' ' + labelRight.split(' ')[1];
+                fill.classList.add('fill-right');
+                fill.style.width = '70%'; 
+            } else {
+                lblL.innerText = labelLeft;
+                lblR.innerText = `${percentage}% ${labelRight}`;
+                fill.classList.add('fill-right');
+                fill.style.width = (percentage / 2) + '%';
+            }
         }
     }
 
@@ -634,10 +661,8 @@
                 <span class="lib-name">${item.title}</span>
             `;
             div.onclick = () => {
-                // Show this type detail (Simulate result with 0 scores just for view)
-                renderResults(key, {LA:0, HP:0, DS:0, MC:0}); 
-                // Hide bars for library view or set to 0? 
-                // Setting to 0 effectively hides bars which is fine for "reading mode"
+                // Library Mode = true
+                renderResults(key, null, true); 
             };
             grid.appendChild(div);
         });
