@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>お笑いMBTI - Ver 4.0</title>
+    <title>お笑いMBTI - Ver 5.0</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
             --primary: #3b82f6; /* Blue: Logic */
+            --primary-light: #dbeafe;
             --accent: #ef4444;  /* Red: Absurd */
+            --accent-light: #fee2e2;
             --text-main: #1e293b;
             --text-sub: #64748b;
-            --selected-ring: #22c55e; /* Green for selection */
         }
 
         body {
@@ -47,7 +48,6 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center vertically on mobile */
         }
 
         /* Question Card */
@@ -66,85 +66,64 @@
         .q-meta { font-size: 0.8rem; color: var(--text-sub); margin-bottom: 10px; display: block; font-weight: bold; letter-spacing: 1px;}
         
         .q-text { 
-            font-size: 1.2rem; 
+            font-size: 1.15rem; 
             font-weight: bold; 
             margin: 10px 0 30px; 
             line-height: 1.5; 
-            min-height: 3em; 
+            min-height: 3.5em; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
         }
 
         /* Options Layout - Center Aligned */
-        .options-container {
-            margin-bottom: 20px;
-        }
-        
-        .option-text {
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
+        .options-container { margin-bottom: 20px; }
+        .option-text { font-size: 0.9rem; font-weight: bold; margin-bottom: 5px; display: block; }
         .option-left { color: var(--primary); }
         .option-right { color: var(--accent); margin-top: 15px; }
+        .vs-label { font-size: 0.7rem; color: #cbd5e1; margin: 5px 0; display: block; }
 
-        .vs-label {
-            font-size: 0.7rem; color: #cbd5e1; margin: 5px 0; display: block;
-        }
-
-        /* Scale Buttons (Smaller for Mobile) */
+        /* Scale Buttons */
         .gradient-track {
             display: flex; justify-content: space-between; align-items: center;
-            position: relative; height: 50px; margin: 20px 0;
-            padding: 0 10px;
+            position: relative; height: 50px; margin: 20px 0; padding: 0 5px;
         }
         .center-mark {
             position: absolute; left: 50%; top: 20%; bottom: 20%; width: 1px;
             background: #cbd5e1; transform: translateX(-50%); z-index: 0;
         }
-        
         .scale-btn {
             width: 32px; height: 32px; border-radius: 50%;
             border: 2px solid #cbd5e1; background: #fff; cursor: pointer;
-            z-index: 1; transition: all 0.2s;
-            position: relative;
+            z-index: 1; transition: all 0.2s; position: relative;
         }
         
         /* Sizes */
-        .scale-btn[data-val="-3"] { width: 42px; height: 42px; border-color: var(--primary); border-width: 2px; }
-        .scale-btn[data-val="-2"] { width: 36px; height: 36px; border-color: #60a5fa; }
-        .scale-btn[data-val="-1"] { width: 30px; height: 30px; border-color: #93c5fd; }
+        .scale-btn[data-val="-3"] { width: 44px; height: 44px; border-color: var(--primary); border-width: 2px; }
+        .scale-btn[data-val="-2"] { width: 38px; height: 38px; border-color: #60a5fa; }
+        .scale-btn[data-val="-1"] { width: 32px; height: 32px; border-color: #93c5fd; }
         
-        .scale-btn[data-val="1"] { width: 30px; height: 30px; border-color: #fca5a5; }
-        .scale-btn[data-val="2"] { width: 36px; height: 36px; border-color: #f87171; }
-        .scale-btn[data-val="3"] { width: 42px; height: 42px; border-color: var(--accent); border-width: 2px; }
+        .scale-btn[data-val="1"] { width: 32px; height: 32px; border-color: #fca5a5; }
+        .scale-btn[data-val="2"] { width: 38px; height: 38px; border-color: #f87171; }
+        .scale-btn[data-val="3"] { width: 44px; height: 44px; border-color: var(--accent); border-width: 2px; }
 
-        /* Selected State */
-        .scale-btn.selected {
-            background-color: var(--selected-ring);
-            border-color: var(--selected-ring);
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+        /* Selected State Colors */
+        .scale-btn.selected-left {
+            background-color: var(--primary-light);
+            border-color: var(--primary) !important;
+            transform: scale(1.1);
+        }
+        .scale-btn.selected-right {
+            background-color: var(--accent-light);
+            border-color: var(--accent) !important;
             transform: scale(1.1);
         }
 
         /* Navigation Buttons */
-        .nav-area {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            gap: 10px;
-        }
+        .nav-area { display: flex; justify-content: space-between; margin-top: 20px; gap: 10px; }
         .nav-btn {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1rem;
-            border: none;
-            transition: opacity 0.2s;
+            flex: 1; padding: 12px; border-radius: 8px; font-weight: bold;
+            cursor: pointer; font-size: 1rem; border: none; transition: opacity 0.2s;
         }
         .btn-back { background: #f1f5f9; color: var(--text-sub); }
         .btn-next { background: var(--text-main); color: #fff; }
@@ -153,76 +132,62 @@
         /* Result Area */
         #result-area { display: none; padding-bottom: 50px; }
         
-        .result-kanji-box {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            margin: 20px 0 10px;
-        }
-        .kanji-char {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--text-main);
-            line-height: 1;
-        }
-        .result-code-sub {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--text-sub);
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        .type-title { 
-            text-align: center;
-            font-size: 1.3rem; 
-            color: var(--primary); 
-            font-weight: bold; 
-            margin-bottom: 30px;
-        }
+        .result-kanji-box { display: flex; justify-content: center; gap: 5px; margin: 20px 0 10px; }
+        .kanji-char { font-size: 2.5rem; font-weight: 900; color: var(--text-main); line-height: 1; }
+        .result-code-sub { text-align: center; font-size: 1.2rem; color: var(--text-sub); letter-spacing: 2px; margin-bottom: 10px; font-weight: bold; }
+        .type-title { text-align: center; font-size: 1.3rem; color: var(--primary); font-weight: bold; margin-bottom: 30px; }
 
         .result-content { background: var(--card-bg); border-radius: 20px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
         .chart-container { max-width: 280px; margin: 0 auto 30px; }
         
         .desc-section { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f1f5f9; }
+        .desc-section:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
         .desc-label { font-size: 0.8rem; color: var(--text-sub); font-weight: bold; display: block; margin-bottom: 5px; }
         .desc-text { font-size: 0.95rem; line-height: 1.7; }
         .tag { display: inline-block; background: #f1f5f9; padding: 4px 10px; border-radius: 15px; font-size: 0.8rem; margin: 0 5px 5px 0; color: #475569; }
 
-        /* Share Buttons */
-        .share-area {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 30px;
+        /* Code Breakdown Section */
+        .code-breakdown {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+            margin-bottom: 30px;
         }
+        .code-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px; border-radius: 10px; background: #fff; border: 1px solid #f1f5f9;
+        }
+        .code-char { font-weight: 800; font-size: 1.2rem; width: 30px; }
+        .code-desc { font-size: 0.75rem; color: var(--text-sub); text-align: right; line-height: 1.3;}
+        .is-primary { color: var(--primary); }
+        .is-accent { color: var(--accent); }
+
+        /* Library Section */
+        .library-section { margin-top: 40px; }
+        .lib-title { text-align: center; font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: var(--text-main); }
+        .lib-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .lib-card {
+            background: #fff; padding: 12px; border-radius: 12px; cursor: pointer;
+            text-align: center; border: 1px solid transparent; box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .lib-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .lib-code { font-size: 0.8rem; font-weight: bold; color: var(--text-sub); display: block; margin-bottom: 2px; }
+        .lib-name { font-size: 0.85rem; font-weight: bold; color: var(--text-main); }
+
+        /* Share Buttons */
+        .share-area { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px; }
         .btn-share {
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            color: white;
-            font-weight: bold;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            padding: 12px; border-radius: 8px; border: none; color: white; font-weight: bold;
+            font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
         .btn-x { background: #000; }
-        .btn-insta { 
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
-        }
+        .btn-insta { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 
         .btn-restart {
-            display: block; width: 100%; margin: 30px auto; padding: 15px;
+            display: block; width: 100%; margin: 40px auto; padding: 15px;
             background: transparent; color: var(--text-sub); border: 2px solid #e2e8f0; border-radius: 50px;
             font-size: 0.9rem; font-weight: bold; cursor: pointer;
         }
 
         .hidden { display: none !important; }
-        
-        /* Helper colors for kanji */
         .k-blue { color: var(--primary); }
         .k-red { color: var(--accent); }
     </style>
@@ -240,9 +205,9 @@
             <div class="q-text" id="q-text">質問文</div>
 
             <div class="options-container">
-                <span class="option-text option-left" id="opt-left">左の選択肢</span>
+                <span class="option-text option-left" id="opt-left">左</span>
                 <span class="vs-label">vs</span>
-                <span class="option-text option-right" id="opt-right">右の選択肢</span>
+                <span class="option-text option-right" id="opt-right">右</span>
             </div>
             
             <div class="gradient-track">
@@ -269,14 +234,14 @@
     <div style="text-align: center;">
         <div style="font-size: 0.8rem; color:#888; margin-top:20px;">あなたのユーモアタイプ</div>
         <div class="result-kanji-box" id="res-kanji">
-            <span class="kanji-char">理</span>
-            <span class="kanji-char">和</span>
-            <span class="kanji-char">動</span>
-            <span class="kanji-char">衆</span>
+            <span class="kanji-char">理</span><span class="kanji-char">和</span><span class="kanji-char">動</span><span class="kanji-char">衆</span>
         </div>
         <div class="result-code-sub" id="res-code">LHDM</div>
-        <div class="type-title" id="res-title">王道エンターテイナー</div>
+        <div class="type-title" id="res-title">「王道エンターテイナー」</div>
     </div>
+
+    <div class="code-breakdown" id="code-breakdown">
+        </div>
 
     <div class="result-content">
         <div class="chart-container">
@@ -295,10 +260,16 @@
             <span class="desc-label">キーワード</span>
             <div id="res-tags"></div>
         </div>
-        <div class="desc-section" style="border:none">
+        <div class="desc-section">
             <span class="desc-label">類似するスタイル</span>
             <div class="desc-text" id="res-ref" style="font-style: italic; color:#666;"></div>
         </div>
+    </div>
+
+    <div class="library-section">
+        <div class="lib-title">タイプ図鑑（全16種）</div>
+        <div class="lib-grid" id="lib-grid">
+            </div>
     </div>
 
     <div class="share-area">
@@ -323,67 +294,90 @@
         "M": { char: "衆", color: "k-blue" }, "C": { char: "深", color: "k-red" }
     };
 
-    // 16 Questions (Selected & Refined)
+    const breakdownInfo = {
+        "L": { label: "Logic (理)", desc: "構成、整合性、伏線" },
+        "A": { label: "Absurd (乱)", desc: "カオス、ナンセンス" },
+        "H": { label: "Harmony (和)", desc: "共感、平和、安全" },
+        "P": { label: "Poison (毒)", desc: "批評、皮肉、攻撃" },
+        "D": { label: "Dynamic (動)", desc: "勢い、大声、身体性" },
+        "S": { label: "Static (静)", desc: "間、沈黙、無表情" },
+        "M": { label: "Mass (衆)", desc: "王道、分かりやすさ" },
+        "C": { label: "Core (深)", desc: "文脈、マニアック" }
+    };
+
+    // 16 Questions (Interleaved Order: LA, HP, DS, MC, LA, HP...)
     const questions = [
-        // LA: Logic vs Absurd (乱)
+        // 1. LA
         { axis: "LA", text: "最高に面白いコント、どちらかといえば？", left: "伏線回収が見事な構成美", right: "意味不明なカオス展開" },
-        { axis: "LA", text: "話の「オチ」について", left: "納得感のある結末が好き", right: "投げっぱなしの結末が好き" },
-        { axis: "LA", text: "言葉遊びの好み", left: "巧みなダジャレ・うまいこと", right: "謎の造語・リズム・勢い" },
-        { axis: "LA", text: "不可解な現象（ゴリラが爆発など）への反応", left: "「なんでだよ！」と理由をツッコむ", right: "理由など求めずただ受け入れる" },
-        
-        // HP: Harmony (和) vs Poison (毒)
+        // 2. HP
         { axis: "HP", text: "友人との会話で盛り上がるのは？", left: "「あるある！」と共感できる話", right: "偏見に満ちた毒舌・悪口" },
+        // 3. DS (Modified)
+        { axis: "DS", text: "顔芸や身体を張ったリアクションについて", left: "理屈抜きで笑えるので好き", right: "幼稚で冷めてしまうことがある" },
+        // 4. MC (Modified)
+        { axis: "MC", text: "ネタのターゲット層", left: "老若男女だれでも笑える", right: "分かる奴だけ笑えばいい" },
+
+        // 5. LA
+        { axis: "LA", text: "話の「オチ」について", left: "納得感のある結末が好き", right: "投げっぱなしの結末が好き" },
+        // 6. HP
         { axis: "HP", text: "ブラックジョークや不謹慎ネタ", left: "人が傷つくなら笑えない", right: "不謹慎であればあるほど興奮する" },
-        { axis: "HP", text: "自虐ネタを言うなら", left: "「ドジな自分」で場を和ませる", right: "「社会への怨念」を笑い飛ばす" },
-        { axis: "HP", text: "仲の良い相手へのいじり", left: "愛があっても慎重になる", right: "信頼があれば何を言ってもOK" },
-
-        // DS: Dynamic (動) vs Static (静)
-        { axis: "DS", text: "面白い人のスタイルといえば", left: "動きと顔芸で圧倒する", right: "言葉と間（ま）で魅せる" },
+        // 7. DS
         { axis: "DS", text: "気まずい沈黙が流れたとき", left: "喋り倒して埋めようとする", right: "沈黙すら武器にして楽しむ" },
-        { axis: "DS", text: "好きなトークのリズム", left: "畳み掛けるマシンガントーク", right: "忘れた頃にボソッと言う一言" },
-        { axis: "DS", text: "感情の表現", left: "全身全霊のオーバーリアクション", right: "何を考えているか読めない無表情" },
-
-        // MC: Mass (衆) vs Core (深)
-        { axis: "MC", text: "ネタのターゲット", left: "おばあちゃんでも笑える", right: "分かる奴だけ笑えばいい" },
+        // 8. MC
         { axis: "MC", text: "コンテンツの選び方", left: "流行りの話題を共有したい", right: "知る人ぞ知る深淵を覗きたい" },
+
+        // 9. LA
+        { axis: "LA", text: "言葉遊びの好み", left: "巧みなダジャレ・うまいこと", right: "謎の造語・リズム・勢い" },
+        // 10. HP
+        { axis: "HP", text: "自虐ネタを言うなら", left: "「ドジな自分」で場を和ませる", right: "「社会への怨念」を笑い飛ばす" },
+        // 11. DS
+        { axis: "DS", text: "好きなトークのリズム", left: "畳み掛けるマシンガントーク", right: "忘れた頃にボソッと言う一言" },
+        // 12. MC
         { axis: "MC", text: "王道やベタな展開", left: "安心感があってやっぱり最高", right: "予測できて退屈。裏切ってほしい" },
+
+        // 13. LA
+        { axis: "LA", text: "不可解な現象（ゴリラが爆発など）への反応", left: "「なんでだよ！」と理由をツッコむ", right: "理由など求めずただ受け入れる" },
+        // 14. HP
+        { axis: "HP", text: "仲の良い相手へのいじり", left: "愛があっても慎重になる", right: "信頼があれば何を言ってもOK" },
+        // 15. DS
+        { axis: "DS", text: "感情の表現", left: "全身全霊のオーバーリアクション", right: "何を考えているか読めない無表情" },
+        // 16. MC
         { axis: "MC", text: "メディアの好み", left: "ゴールデンタイムのテレビ番組", right: "深夜ラジオやアングラな配信" }
     ];
 
-    // DB Definition (Same structure, ensuring keys match)
+    // DB Definition
     const typesDB = {
-        "LHDM": { title: "王道エンターテイナー", overview: "「理・和・動・衆」。あなたは明快さ、優しさ、勢いを兼ね備えた、テレビのゴールデンタイムのような存在です。誰も傷つけず、誰にでも伝わるネタを、圧倒的な熱量で提供します。", role: "場のMC、盛り上げ役", tags: ["MC気質", "リアクション芸", "人気者"], ref: "明石家さんま" },
-        "LHDC": { title: "熱血オタク解説者", overview: "「理・和・動・深」。特定ジャンルへの深い愛を、論理的かつハイテンションに語り尽くすプレゼンの天才。興味のない人さえもその熱量で笑わせてしまいます。", role: "愛すべきマニア、伝道師", tags: ["早口", "推し語り", "知識量"], ref: "さかなクン" },
-        "LHSM": { title: "癒やしの観察者", overview: "「理・和・静・衆」。日常の「あるある」を穏やかなトーンで丁寧に切り取るスタイル。爆笑よりも「共感」と「安心」を生み出すバランサーです。", role: "ニコニコ見守る保護者", tags: ["エッセイスト", "平和主義", "共感"], ref: "博多華丸・大吉" },
-        "LHSC": { title: "書斎の賢者", overview: "「理・和・静・深」。豊富な知識と教養を背景に、静かにウィットに富んだジョークを飛ばすタイプ。大声ではなく、知的な「気づき」でニヤリとさせます。", role: "一瞬で場をさらうスナイパー", tags: ["言葉遊び", "教養", "含蓄"], ref: "市川萬葉" },
-        "LPDM": { title: "マシンガン毒舌", overview: "「理・毒・動・衆」。正論を武器に、世の中の不満を大声で代弁するタイプ。その攻撃性は、大衆が言いたくても言えないことを言うカタルシスとして機能します。", role: "会議の切り込み隊長", tags: ["論破", "ツッコミ", "代弁者"], ref: "上田晋也" },
-        "LPDC": { title: "反骨の扇動者", overview: "「理・毒・動・深」。マニアックな敵や社会構造を、激しい勢いで批判するカリスマ。一般人には理解不能な文脈で怒りを表現するため、信者から熱狂的に支持されます。", role: "革命家のようなリーダー", tags: ["教祖", "反骨精神", "ラジオ"], ref: "太田光" },
-        "LPSM": { title: "冷徹なご意見番", overview: "「理・毒・静・衆」。一歩引いた視点から、世間の浮かれ気分をボソッと論理的に刺すスタイル。無表情で放たれる毒は切れ味が鋭く、周囲を凍りつかせつつ笑わせます。", role: "冷静にさせるお目付け役", tags: ["皮肉屋", "デッドパン", "スカした態度"], ref: "マツコ・デラックス" },
-        "LPSC": { title: "地下の批評家", overview: "「理・毒・静・深」。深すぎる知識と冷笑的な視点で、サブカルチャーや社会の暗部を解剖する孤高の存在。分かりやすさを拒絶するスタンスを貫きます。", role: "裏のご意見番", tags: ["批評家", "ひねくれ者", "サブカル"], ref: "ナンシー関" },
-        "AHDM": { title: "天真爛漫な天然", overview: "「乱・和・動・衆」。計算のない予測不能な行動が、万人の笑顔を誘うタイプ。論理を超えた純粋なエネルギー体で、本人は真面目なのに周囲が勝手に笑ってしまいます。", role: "愛されるマスコット", tags: ["天然ボケ", "愛嬌", "奇跡"], ref: "ジミー大西" },
-        "AHDC": { title: "カオスな配信者", overview: "「乱・和・動・深」。ネットミームや内輪ネタを乱用し、意味不明なハイテンションで暴れ回るお祭り人間。文脈を知る仲間内では爆発的な盛り上がりを見せます。", role: "飲み会のトリックスター", tags: ["悪ノリ", "奇行", "ミーム"], ref: "粗品(YouTube)" },
-        "AHSM": { title: "不思議な隣人", overview: "「乱・和・静・衆」。独特の間と、意味のつながらない会話。「意味はわからないけど、なんか悪い人じゃない」という、無害でシュールな空気感を作り出します。", role: "緊張を解除する緩衝材", tags: ["脱力系", "宇宙人", "マイペース"], ref: "飯尾和樹" },
-        "AHSC": { title: "前衛的な詩人", overview: "「乱・和・静・深」。難解で静かな不条理劇。分かる人だけが分かる「空気感」や「間」のアートを追求する孤高の存在です。", role: "孤高のクリエイター", tags: ["シュルレアリスム", "世界観"], ref: "板尾創路" },
-        "APDM": { title: "暴走リアクション", overview: "「乱・毒・動・衆」。叫び、暴れ、常識を破壊する。その過激なエネルギー自体が、意味を超えて大衆の感情を揺さぶる「インパクト重視」のスタイルです。", role: "停滞を打破する特攻隊長", tags: ["裸芸", "放送事故", "バイタリティ"], ref: "江頭2:50" },
-        "APDC": { title: "伝説のアングラ", overview: "「乱・毒・動・深」。放送禁止レベルの毒と不条理を撒き散らす、制御不能のモンスター。人間の本性を暴き出すジョーカーのような存在です。", role: "人間の本性を暴くジョーカー", tags: ["狂気", "タブー", "カルト"], ref: "野性爆弾くっきー！" },
-        "APSM": { title: "不気味なコント師", overview: "「乱・毒・静・衆」。静かに、しかし確実に狂っている。日常設定の中に潜むサイコパス的な違和感を演出し、恐怖と笑いの狭間に落とします。", role: "心地よい不安を与える", tags: ["サイコホラー", "演技派"], ref: "シソンヌ" },
-        "APSC": { title: "深淵を覗く者", overview: "「乱・毒・静・深」。完全に文脈を無視したアンチ・ユーモア。笑いという概念そのものを解体するような、極北のスタイルです。", role: "価値観の破壊神", tags: ["虚無", "アンチユーモア", "哲学"], ref: "ランジャタイ" }
+        "LHDM": { title: "「王道エンターテイナー」", overview: "「理・和・動・衆」。あなたは明快さ、優しさ、勢いを兼ね備えた、テレビのゴールデンタイムのような存在です。誰も傷つけず、誰にでも伝わるネタを、圧倒的な熱量で提供します。", role: "場のMC、盛り上げ役", tags: ["MC気質", "リアクション芸", "人気者"], ref: "明石家さんま、ザキヤマ、サンドウィッチマン" },
+        "LHDC": { title: "「熱血オタク解説者」", overview: "「理・和・動・深」。特定ジャンルへの深い愛を、論理的かつハイテンションに語り尽くすプレゼンの天才。興味のない人さえもその熱量で笑わせてしまいます。", role: "愛すべきマニア、伝道師", tags: ["早口", "推し語り", "知識量"], ref: "さかなクン、岡田斗司夫、高岸（ティモンディ）" },
+        "LHSM": { title: "「癒やしの観察者」", overview: "「理・和・静・衆」。日常の「あるある」を穏やかなトーンで丁寧に切り取るスタイル。爆笑よりも「共感」と「安心」を生み出すバランサーです。", role: "ニコニコ見守る保護者", tags: ["エッセイスト", "平和主義", "共感"], ref: "博多華丸・大吉、タモリ（昼の顔）、阿佐ヶ谷姉妹" },
+        "LHSC": { title: "「書斎の賢者」", overview: "「理・和・静・深」。豊富な知識と教養を背景に、静かにウィットに富んだジョークを飛ばすタイプ。大声ではなく、知的な「気づき」でニヤリとさせます。", role: "一瞬で場をさらうスナイパー", tags: ["言葉遊び", "教養", "含蓄"], ref: "市川萬葉、小林賢太郎（知性派コント）、バカリズム（静モード）" },
+        "LPDM": { title: "「マシンガン毒舌」", overview: "「理・毒・動・衆」。正論を武器に、世の中の不満を大声で代弁するタイプ。その攻撃性は、大衆が言いたくても言えないことを言うカタルシスとして機能します。", role: "会議の切り込み隊長", tags: ["論破", "ツッコミ", "代弁者"], ref: "上田晋也、坂上忍、カンニング竹山" },
+        "LPDC": { title: "「反骨の扇動者」", overview: "「理・毒・動・深」。マニアックな敵や社会構造を、激しい勢いで批判するカリスマ。一般人には理解不能な文脈で怒りを表現するため、信者から熱狂的に支持されます。", role: "革命家のようなリーダー", tags: ["教祖", "反骨精神", "ラジオ"], ref: "太田光、爆笑問題の漫才、ウエストランド井口" },
+        "LPSM": { title: "「冷徹なご意見番」", overview: "「理・毒・静・衆」。一歩引いた視点から、世間の浮かれ気分をボソッと論理的に刺すスタイル。無表情で放たれる毒は切れ味が鋭く、周囲を凍りつかせつつ笑わせます。", role: "冷静にさせるお目付け役", tags: ["皮肉屋", "デッドパン", "スカした態度"], ref: "マツコ・デラックス、おぎやはぎ、有吉弘行" },
+        "LPSC": { title: "「地下の批評家」", overview: "「理・毒・静・深」。深すぎる知識と冷笑的な視点で、サブカルチャーや社会の暗部を解剖する孤高の存在。分かりやすさを拒絶するスタンスを貫きます。", role: "裏のご意見番", tags: ["批評家", "ひねくれ者", "サブカル"], ref: "ナンシー関、町山智浩、一部のハガキ職人" },
+        "AHDM": { title: "「天真爛漫な天然」", overview: "「乱・和・動・衆」。計算のない予測不能な行動が、万人の笑顔を誘うタイプ。論理を超えた純粋なエネルギー体で、本人は真面目なのに周囲が勝手に笑ってしまいます。", role: "愛されるマスコット", tags: ["天然ボケ", "愛嬌", "奇跡"], ref: "ジミー大西、出川哲朗、狩野英孝" },
+        "AHDC": { title: "「カオスな配信者」", overview: "「乱・和・動・深」。ネットミームや内輪ネタを乱用し、意味不明なハイテンションで暴れ回るお祭り人間。文脈を知る仲間内では爆発的な盛り上がりを見せます。", role: "飲み会のトリックスター", tags: ["悪ノリ", "奇行", "ミーム"], ref: "粗品(YouTube)、ガーシー、サンシャイン池崎（深モード）" },
+        "AHSM": { title: "「不思議な隣人」", overview: "「乱・和・静・衆」。独特の間と、意味のつながらない会話。「意味はわからないけど、なんか悪い人じゃない」という、無害でシュールな空気感を作り出します。", role: "緊張を解除する緩衝材", tags: ["脱力系", "宇宙人", "マイペース"], ref: "飯尾和樹、もう中学生、研ナオコ" },
+        "AHSC": { title: "「前衛的な詩人」", overview: "「乱・和・静・深」。難解で静かな不条理劇。分かる人だけが分かる「空気感」や「間」のアートを追求する孤高の存在です。", role: "孤高のクリエイター", tags: ["シュルレアリスム", "世界観"], ref: "板尾創路、ジャルジャル（一部のコント）、ヨネダ2000" },
+        "APDM": { title: "「暴走リアクション」", overview: "「乱・毒・動・衆」。叫び、暴れ、常識を破壊する。その過激なエネルギー自体が、意味を超えて大衆の感情を揺さぶる「インパクト重視」のスタイルです。", role: "停滞を打破する特攻隊長", tags: ["裸芸", "放送事故", "バイタリティ"], ref: "江頭2:50、ハリウッドザコシショウ、ダチョウ倶楽部" },
+        "APDC": { title: "「伝説のアングラ」", overview: "「乱・毒・動・深」。放送禁止レベルの毒と不条理を撒き散らす、制御不能のモンスター。人間の本性を暴き出すジョーカーのような存在です。", role: "人間の本性を暴くジョーカー", tags: ["狂気", "タブー", "カルト"], ref: "野性爆弾くっきー！、金属バット、鳥居みゆき（全盛期）" },
+        "APSM": { title: "「不気味なコント師」", overview: "「乱・毒・静・衆」。静かに、しかし確実に狂っている。日常設定の中に潜むサイコパス的な違和感を演出し、恐怖と笑いの狭間に落とします。", role: "心地よい不安を与える", tags: ["サイコホラー", "演技派"], ref: "シソンヌ、チョコレートプラネット（一部）、蛙亭" },
+        "APSC": { title: "「深淵を覗く者」", overview: "「乱・毒・静・深」。完全に文脈を無視したアンチ・ユーモア。笑いという概念そのものを解体するような、極北のスタイルです。", role: "価値観の破壊神", tags: ["虚無", "アンチユーモア", "哲学"], ref: "ランジャタイ、コウメ太夫（哲学的解釈）、キュウ" }
     };
 
     // State
     let currentIdx = 0;
-    let userAnswers = Array(16).fill(null); // Store values -3 to 3
+    let userAnswers = Array(16).fill(null);
 
     function init() {
         currentIdx = 0;
         userAnswers = Array(16).fill(null);
         renderQuestion();
+        generateLibrary();
     }
 
     function renderQuestion() {
         const q = questions[currentIdx];
         
-        // Update Text
         document.getElementById('q-progress').innerText = `Q${currentIdx + 1} / ${questions.length}`;
         document.getElementById('q-text').innerText = q.text;
         document.getElementById('opt-left').innerText = q.left;
@@ -391,10 +385,11 @@
 
         // Reset Buttons visual state
         document.querySelectorAll('.scale-btn').forEach(btn => {
-            btn.classList.remove('selected');
+            btn.className = 'scale-btn'; // reset classes
             // If already answered, select it
             if (userAnswers[currentIdx] !== null && parseInt(btn.dataset.val) === userAnswers[currentIdx]) {
-                btn.classList.add('selected');
+                const val = userAnswers[currentIdx];
+                btn.classList.add(val < 0 ? 'selected-left' : 'selected-right');
             }
         });
 
@@ -403,16 +398,12 @@
         document.getElementById('btn-next').disabled = userAnswers[currentIdx] === null;
     }
 
-    // Called when a circle is clicked
     function select(btn, val) {
-        // Visual selection
-        document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
+        // Visual selection logic
+        document.querySelectorAll('.scale-btn').forEach(b => b.className = 'scale-btn'); // clear all
+        btn.classList.add(val < 0 ? 'selected-left' : 'selected-right'); // add appropriate color
         
-        // Save answer
         userAnswers[currentIdx] = val;
-        
-        // Enable Next
         document.getElementById('btn-next').disabled = false;
     }
 
@@ -433,22 +424,24 @@
     }
 
     function calcAndShowResults() {
-        // Calculate Scores
         let scores = { LA: 0, HP: 0, DS: 0, MC: 0 };
         questions.forEach((q, i) => {
             const val = userAnswers[i];
             if (val !== null) scores[q.axis] += val;
         });
 
-        // Determine Type
         const t1 = scores.LA <= 0 ? "L" : "A";
         const t2 = scores.HP <= 0 ? "H" : "P";
         const t3 = scores.DS <= 0 ? "D" : "S";
         const t4 = scores.MC <= 0 ? "M" : "C";
         const typeKey = t1 + t2 + t3 + t4;
+        
+        renderResults(typeKey, scores);
+    }
+
+    function renderResults(typeKey, scores) {
         const data = typesDB[typeKey];
 
-        // UI Updates
         document.getElementById('quiz-area').classList.add('hidden');
         document.getElementById('result-area').style.display = 'block';
         window.scrollTo(0,0);
@@ -456,7 +449,7 @@
         // Render Kanji
         const kanjiBox = document.getElementById('res-kanji');
         kanjiBox.innerHTML = '';
-        [t1, t2, t3, t4].forEach(char => {
+        typeKey.split('').forEach(char => {
             const k = kanjiMap[char];
             kanjiBox.innerHTML += `<span class="kanji-char ${k.color}">${k.char}</span>`;
         });
@@ -468,14 +461,33 @@
         document.getElementById('res-ref').innerText = data.ref;
         document.getElementById('res-tags').innerHTML = data.tags.map(t => `<span class="tag">#${t}</span>`).join('');
 
+        // Render Code Breakdown
+        const breakdownHTML = typeKey.split('').map(char => {
+            const info = breakdownInfo[char];
+            const colorClass = (char === 'L' || char === 'H' || char === 'D' || char === 'M') ? 'is-primary' : 'is-accent';
+            return `
+                <div class="code-item">
+                    <span class="code-char ${colorClass}">${char}</span>
+                    <div class="code-desc">
+                        <div style="font-weight:bold">${info.label}</div>
+                        <div>${info.desc}</div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        document.getElementById('code-breakdown').innerHTML = breakdownHTML;
+
         renderChart(scores);
     }
 
     function renderChart(scores) {
         const ctx = document.getElementById('radarChart').getContext('2d');
-        const normalize = (val) => ((val + 12) / 24) * 100; // 4 questions * 3 = max 12
+        const normalize = (val) => ((val + 12) / 24) * 100;
 
-        new Chart(ctx, {
+        // Destroy old chart if exists (simple hack for this prototype)
+        if(window.myRadar) window.myRadar.destroy();
+
+        window.myRadar = new Chart(ctx, {
             type: 'radar',
             data: {
                 labels: ['乱 (Absurd)', '毒 (Poison)', '静 (Static)', '深 (Core)'],
@@ -507,7 +519,25 @@
         });
     }
 
-    // --- Share Functions ---
+    function generateLibrary() {
+        const grid = document.getElementById('lib-grid');
+        grid.innerHTML = '';
+        Object.keys(typesDB).forEach(key => {
+            const item = typesDB[key];
+            const div = document.createElement('div');
+            div.className = 'lib-card';
+            div.innerHTML = `
+                <span class="lib-code">${key}</span>
+                <span class="lib-name">${item.title}</span>
+            `;
+            div.onclick = () => {
+                // Show this type detail (Simulate result)
+                renderResults(key, {LA:0, HP:0, DS:0, MC:0}); // Dummy scores
+            };
+            grid.appendChild(div);
+        });
+    }
+
     function shareX() {
         const title = document.getElementById('res-title').innerText;
         const kanji = document.getElementById('res-kanji').innerText.replace(/\n/g, "");
@@ -520,18 +550,12 @@
         const title = document.getElementById('res-title').innerText;
         const kanji = document.getElementById('res-kanji').innerText.replace(/\n/g, "");
         const text = `私のお笑いMBTIタイプは【${title}】（${kanji}）でした！`;
-        
-        // Copy to clipboard
         navigator.clipboard.writeText(text).then(() => {
-            alert("結果のテキストをコピーしました！\nInstagramを開いてストーリーズに貼り付けてください。スクリーンショットを撮って背景にするのもおすすめです！");
-            // Optionally try to open instagram
+            alert("テキストをコピーしました！Instaを開きます...");
             window.location.href = "instagram://story-camera"; 
-        }).catch(err => {
-            alert("コピーに失敗しました。スクリーンショットを撮ってシェアしてください！");
         });
     }
 
-    // Start
     init();
 
 </script>
