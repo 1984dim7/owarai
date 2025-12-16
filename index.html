@@ -2,18 +2,19 @@
 <html lang="ja">
 <head>
 
-<meta property="og:title" content="お笑い16タイプ診断">
-<meta property="og:description" content="論理か不条理か、毒か親和か。16問の質問であなたの「笑いのタイプ」を精密診断します。">
-<meta property="og:url" content="https://dim7.jp/owarai/">
-<meta property="og:image" content="https://dim7.jp/owarai/ogp_image.png"> <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@あなたのアカウント"> ```
-
-    
+   
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6469478872018956"
+     crossorigin="anonymous"></script> 
+    <meta property="og:title" content="お笑い16タイプ診断">
+    <meta property="og:description" content="16問の質問であなたの「笑いのタイプ」を精密診断します。">
+    <meta property="og:url" content="https://dim7.jp/owarai/">
+    <meta property="og:image" content="https://dim7.jp/owarai/ogp_image.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>お笑い16タイプ診断</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <style>
         :root {
             --bg-color: #f8fafc;
@@ -24,6 +25,7 @@
             --accent-light: #fee2e2;
             --text-main: #1e293b;
             --text-sub: #64748b;
+            --bar-bg: #e2e8f0;
         }
 
         body {
@@ -147,7 +149,61 @@
         .type-title { text-align: center; font-size: 1.3rem; color: var(--primary); font-weight: bold; margin-bottom: 30px; }
 
         .result-content { background: var(--card-bg); border-radius: 20px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 30px; }
-        .chart-container { max-width: 280px; margin: 0 auto 30px; }
+        
+        /* NEW CHART STYLES (MBTI Style Bars) */
+        .mbti-chart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .chart-row {
+            width: 100%;
+        }
+        .chart-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .lbl-left { color: var(--primary); }
+        .lbl-right { color: var(--accent); }
+        .chart-bar-bg {
+            position: relative;
+            height: 12px;
+            background-color: var(--bar-bg);
+            border-radius: 6px;
+            overflow: hidden;
+            width: 100%;
+        }
+        .chart-center-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #fff;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        .chart-fill {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            transition: width 1s ease-out;
+        }
+        .fill-left {
+            right: 50%;
+            background-color: var(--primary);
+            border-radius: 6px 0 0 6px;
+        }
+        .fill-right {
+            left: 50%;
+            background-color: var(--accent);
+            border-radius: 0 6px 6px 0;
+        }
         
         .desc-section { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f1f5f9; }
         .desc-section:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
@@ -250,11 +306,50 @@
     </div>
 
     <div class="code-breakdown" id="code-breakdown">
-        </div>
+    </div>
 
     <div class="result-content">
-        <div class="chart-container">
-            <canvas id="radarChart"></canvas>
+        <div class="mbti-chart-container" id="mbti-chart">
+            <div class="chart-row">
+                <div class="chart-labels">
+                    <span class="lbl-left" id="lbl-L">Logic (理) 0%</span>
+                    <span class="lbl-right" id="lbl-A">0% Absurd (乱)</span>
+                </div>
+                <div class="chart-bar-bg">
+                    <div class="chart-center-line"></div>
+                    <div class="chart-fill" id="fill-LA"></div>
+                </div>
+            </div>
+            <div class="chart-row">
+                <div class="chart-labels">
+                    <span class="lbl-left" id="lbl-H">Harmony (和) 0%</span>
+                    <span class="lbl-right" id="lbl-P">0% Poison (毒)</span>
+                </div>
+                <div class="chart-bar-bg">
+                    <div class="chart-center-line"></div>
+                    <div class="chart-fill" id="fill-HP"></div>
+                </div>
+            </div>
+            <div class="chart-row">
+                <div class="chart-labels">
+                    <span class="lbl-left" id="lbl-D">Dynamic (動) 0%</span>
+                    <span class="lbl-right" id="lbl-S">0% Static (静)</span>
+                </div>
+                <div class="chart-bar-bg">
+                    <div class="chart-center-line"></div>
+                    <div class="chart-fill" id="fill-DS"></div>
+                </div>
+            </div>
+            <div class="chart-row">
+                <div class="chart-labels">
+                    <span class="lbl-left" id="lbl-M">Mass (衆) 0%</span>
+                    <span class="lbl-right" id="lbl-C">0% Core (深)</span>
+                </div>
+                <div class="chart-bar-bg">
+                    <div class="chart-center-line"></div>
+                    <div class="chart-fill" id="fill-MC"></div>
+                </div>
+            </div>
         </div>
 
         <div class="desc-section">
@@ -278,7 +373,7 @@
     <div class="library-section">
         <div class="lib-title">タイプ図鑑（全16種）</div>
         <div class="lib-grid" id="lib-grid">
-            </div>
+        </div>
     </div>
 
     <div class="share-area">
@@ -320,9 +415,9 @@
         { axis: "LA", text: "最高に面白いコント、どちらかといえば？", left: "伏線回収が見事な構成美", right: "意味不明なカオス展開" },
         // 2. HP
         { axis: "HP", text: "友人との会話で盛り上がるのは？", left: "「あるある！」と共感できる話", right: "偏見に満ちた毒舌・悪口" },
-        // 3. DS (Modified)
+        // 3. DS
         { axis: "DS", text: "顔芸や身体を張ったリアクションについて", left: "理屈抜きで笑えるので好き", right: "幼稚に感じてしまうこともある" },
-        // 4. MC (Modified)
+        // 4. MC
         { axis: "MC", text: "好きなネタのターゲット層", left: "老若男女だれでも笑える", right: "分かる奴だけ笑えばいい" },
 
         // 5. LA
@@ -486,46 +581,45 @@
         }).join('');
         document.getElementById('code-breakdown').innerHTML = breakdownHTML;
 
-        renderChart(scores);
+        // Render MBTI Style Bars
+        updateBar('LA', scores.LA, 'Logic (理)', 'Absurd (乱)');
+        updateBar('HP', scores.HP, 'Harmony (和)', 'Poison (毒)');
+        updateBar('DS', scores.DS, 'Dynamic (動)', 'Static (静)');
+        updateBar('MC', scores.MC, 'Mass (衆)', 'Core (深)');
     }
 
-    function renderChart(scores) {
-        const ctx = document.getElementById('radarChart').getContext('2d');
-        const normalize = (val) => ((val + 12) / 24) * 100;
-
-        // Destroy old chart if exists (simple hack for this prototype)
-        if(window.myRadar) window.myRadar.destroy();
-
-        window.myRadar = new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ['乱 (Absurd)', '毒 (Poison)', '静 (Static)', '深 (Core)'],
-                datasets: [{
-                    label: 'Score',
-                    data: [
-                        normalize(scores.LA), 
-                        normalize(scores.HP), 
-                        normalize(scores.DS), 
-                        normalize(scores.MC)
-                    ],
-                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                    borderColor: '#3b82f6',
-                    borderWidth: 2,
-                    pointBackgroundColor: '#ef4444'
-                }]
-            },
-            options: {
-                scales: {
-                    r: {
-                        angleLines: { display: true },
-                        suggestedMin: 0, suggestedMax: 100,
-                        ticks: { display: false },
-                        pointLabels: { font: { size: 12, weight: 'bold' } }
-                    }
-                },
-                plugins: { legend: { display: false } }
-            }
-        });
+    function updateBar(axis, score, labelLeft, labelRight) {
+        const maxScore = 12; // 4 questions * 3
+        const percentage = Math.round((Math.abs(score) / maxScore) * 100);
+        
+        const lblL = document.getElementById(`lbl-${axis[0]}`);
+        const lblR = document.getElementById(`lbl-${axis[1]}`);
+        const fill = document.getElementById(`fill-${axis}`);
+        
+        // Reset classes
+        fill.className = 'chart-fill';
+        fill.style.width = '0%';
+        
+        if (score <= 0) {
+            // Left Side Dominant
+            lblL.innerText = `${labelLeft} ${percentage}%`;
+            lblR.innerText = ``;
+            fill.classList.add('fill-left');
+            // From center (50%) to left. 
+            // Width is half of total percentage relative to container width?
+            // No, the fill is absolute.
+            // If percentage is 100%, it covers the whole left side (50% of container).
+            // So width = percentage / 2 + '%'
+            // Wait, simpler: Logic is 100% means width is 50% of container.
+            // Logic is 50% means width is 25% of container.
+            fill.style.width = (percentage / 2) + '%';
+        } else {
+            // Right Side Dominant
+            lblL.innerText = ``;
+            lblR.innerText = `${percentage}% ${labelRight}`;
+            fill.classList.add('fill-right');
+            fill.style.width = (percentage / 2) + '%';
+        }
     }
 
     function generateLibrary() {
@@ -540,8 +634,10 @@
                 <span class="lib-name">${item.title}</span>
             `;
             div.onclick = () => {
-                // Show this type detail (Simulate result)
-                renderResults(key, {LA:0, HP:0, DS:0, MC:0}); // Dummy scores
+                // Show this type detail (Simulate result with 0 scores just for view)
+                renderResults(key, {LA:0, HP:0, DS:0, MC:0}); 
+                // Hide bars for library view or set to 0? 
+                // Setting to 0 effectively hides bars which is fine for "reading mode"
             };
             grid.appendChild(div);
         });
@@ -569,7 +665,7 @@
 
 </script>
 
-    <footer style="margin-top: 50px; padding: 30px 20px; background: #f1f5f9; text-align: center; color: #64748b; font-size: 0.8rem;">
+<footer style="margin-top: 50px; padding: 30px 20px; background: #f1f5f9; text-align: center; color: #64748b; font-size: 0.8rem;">
     <div style="max-width: 600px; margin: 0 auto;">
         <p style="margin-bottom: 10px;">
             <strong>免責事項：</strong><br>
