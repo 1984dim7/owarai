@@ -529,6 +529,16 @@
         const typeKey = t1 + t2 + t3 + t4;
         
         myResultData = { typeKey: typeKey, scores: scores };
+
+// Google Analyticsに結果を送信
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'diagnosis_complete', {
+                'event_category': 'humor_type',
+                'event_label': typeKey, // "LHDM" などの結果コードが送られます
+                'value': 1
+            });
+        }
+
         
         renderResults(typeKey, scores, false);
     }
