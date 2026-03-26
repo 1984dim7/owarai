@@ -21,9 +21,10 @@
     <meta property="og:image" content="https://dim7.jp/owarai/ogp_image.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="16問の質問であなたの笑いのタイプを診断。結果をSNSでシェアできます。">
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お笑い16タイプ診断</title>
     
     <style>
@@ -323,14 +324,6 @@
                 </div>
             </div>
         </div>
-
-
-       
-
-<div class="mbti-chart-container" id="mbti-chart">
-            <div class="chart-row">
-                </div>
-        </div>
         
         <p style="text-align: center; font-size: 0.7rem; color: #94a3b8; margin-top: -15px; margin-bottom: 25px;">
             ※スコアが拮抗（Balance）した場合は、左側（青）の属性として判定されます。
@@ -578,7 +571,7 @@
     }
 
     function updateBar(axis, score, labelLeft, labelRight, typeChar, isLibrary) {
-        const maxScore = 12; 
+        const maxScore = questions.filter(q => q.axis === axis).length * 3;
         let percentage = Math.round((Math.abs(score) / maxScore) * 100);
         if (percentage > 100) percentage = 100;
 
@@ -590,15 +583,11 @@
         lblL.className = 'lbl-left';
         lblR.className = 'lbl-right';
 
-// --- 修正点ここから: 0% (Balance) のハンドリング ---
         let displayPercentage = percentage + "%";
         if (percentage === 0) {
-            displayPercentage = "Balance"; // 0%の代わりにBalanceと表示
+            displayPercentage = "Balance";
         }
-        // --- 修正点ここまで ---
 
-       
-       
         let isLeftDominant = false;
         
         if (isLibrary) {
@@ -617,7 +606,7 @@
                 lblR.innerText = labelRight;
                 fill.style.width = '70%'; 
             } else {
-                lblL.innerText = `${labelLeft} ${percentage}%`;
+                lblL.innerText = `${labelLeft} ${displayPercentage}`;
                 lblR.innerText = labelRight;
                 fill.style.width = (percentage / 2) + '%';
             }
@@ -632,7 +621,7 @@
                 fill.style.width = '70%'; 
             } else {
                 lblL.innerText = labelLeft;
-                lblR.innerText = `${percentage}% ${labelRight}`;
+                lblR.innerText = `${displayPercentage} ${labelRight}`;
                 fill.style.width = (percentage / 2) + '%';
             }
         }
@@ -698,15 +687,30 @@
         const title = document.getElementById('res-title').innerText;
         const kanji = document.getElementById('res-kanji').innerText.replace(/\n/g, "");
         const text = `私のお笑い16タイプは【${title}】（${kanji}）でした！\n#お笑い16タイプ診断  https://dim7.jp/owarai/`;
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
     }
 
     function shareInsta() {
         const url = "https://dim7.jp/owarai/";
-        navigator.clipboard.writeText(url).then(() => {
-            alert("リンクをコピーしました！\n結果画面のスクショと同時に貼り付けてください！");
-            window.location.href = "instagram://story-camera"; 
-        });
+        const openInstagram = () => {
+            window.location.href = "instagram://story-camera";
+        };
+
+        if (!navigator.clipboard || !navigator.clipboard.writeText) {
+            prompt("このURLをコピーしてInstagramで共有してください", url);
+            openInstagram();
+            return;
+        }
+
+        navigator.clipboard.writeText(url)
+            .then(() => {
+                alert("リンクをコピーしました！\n結果画面のスクショと同時に貼り付けてください！");
+                openInstagram();
+            })
+            .catch(() => {
+                prompt("コピーに失敗しました。URLを手動でコピーしてください", url);
+                openInstagram();
+            });
     }
 
     init();
