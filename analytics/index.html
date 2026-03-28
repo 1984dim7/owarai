@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,22 +15,32 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@700&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
-            --bg: #f7f5ef;
-            --paper: #fffdf6;
-            --ink: #1f2937;
-            --sub: #6b7280;
-            --line: #ded9ca;
-            --left: #2563eb;
-            --left-soft: #dbeafe;
-            --right: #dc2626;
-            --right-soft: #fee2e2;
-            --gold: #ca8a04;
-            --gold-soft: #fef3c7;
-            --shadow: 0 10px 24px rgba(31, 41, 55, 0.08);
+            --bg-color: #fcfcfc;
+            --text-main: #2c3138;
+            --text-muted: #6b7280;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --primary: #4f46e5;
+            --primary-soft: #e0e7ff;
+            --secondary: #ec4899;
+            --secondary-soft: #fce7f3;
+            --bar-bg: #f3f4f6;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.05);
+            --gradient-blue: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            --gradient-bar: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+            --axis-left: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+            --axis-right: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
         }
 
         * {
@@ -39,39 +50,47 @@
         body {
             margin: 0;
             font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-            color: var(--ink);
-            background:
-                radial-gradient(circle at 8% 12%, #fff6dc 0%, transparent 35%),
-                radial-gradient(circle at 90% 85%, #e0edff 0%, transparent 32%),
-                var(--bg);
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 0.03) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.03) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.03) 0, transparent 50%);
+            background-attachment: fixed;
             min-height: 100vh;
-            line-height: 1.55;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
         header {
             position: sticky;
             top: 0;
-            z-index: 10;
-            backdrop-filter: blur(8px);
-            background: rgba(255, 253, 246, 0.88);
-            border-bottom: 1px solid var(--line);
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
         }
 
         .header-inner {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 14px 20px;
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
         }
 
         .header-title {
             margin: 0;
-            font-size: 1.02rem;
+            font-size: 1.1rem;
             font-weight: 800;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.03em;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .header-links {
@@ -81,32 +100,34 @@
         }
 
         .header-links a {
-            color: var(--ink);
+            color: var(--text-muted);
             text-decoration: none;
             font-size: 0.85rem;
-            border: 1px solid var(--line);
-            border-radius: 999px;
+            font-weight: 500;
+            transition: color 0.2s, background 0.2s;
             padding: 6px 12px;
-            background: #fff;
+            border-radius: 999px;
+            background: rgba(243, 244, 246, 0.6);
         }
 
         .header-links a:hover {
-            border-color: var(--gold);
-            color: #7c5300;
+            color: var(--primary);
+            background: var(--primary-soft);
         }
 
         main {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 28px 20px 56px;
-            animation: fadeUp 0.7s ease;
+            padding: 40px 20px 80px;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        @keyframes fadeUp {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(8px);
+                transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -114,489 +135,600 @@
         }
 
         .hero {
-            background: linear-gradient(125deg, #fffdf6 0%, #fff7e2 54%, #edf3ff 100%);
-            border: 1px solid #efe6d3;
-            border-radius: 18px;
-            box-shadow: var(--shadow);
-            padding: 26px;
-            margin-bottom: 24px;
+            background: var(--gradient-blue);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .hero-kicker {
-            margin: 0;
-            color: #92400e;
+            display: inline-block;
+            margin: 0 0 12px;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 999px;
+            color: var(--primary);
             font-weight: 700;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .hero h1 {
-            margin: 10px 0 8px;
-            font-size: clamp(1.5rem, 2.6vw, 2.1rem);
-            line-height: 1.25;
+            margin: 0 0 12px;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            line-height: 1.3;
             font-family: "Shippori Mincho", serif;
+            color: #1e1b4b;
         }
 
         .hero p {
             margin: 0;
-            color: #374151;
+            color: #4b5563;
             font-size: 0.95rem;
+            max-width: 600px;
         }
 
         .stats {
-            margin-top: 18px;
+            margin-top: 24px;
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
         }
 
         .stat {
-            background: rgba(255, 255, 255, 0.82);
-            border: 1px solid #e9e4d7;
-            border-radius: 12px;
-            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
         }
 
         .stat .label {
-            color: var(--sub);
-            font-size: 0.72rem;
-            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
+            margin-bottom: 4px;
         }
 
         .stat .value {
-            font-size: 1.18rem;
+            font-size: 1.25rem;
             font-weight: 900;
-            margin-top: 2px;
+            color: var(--text-main);
         }
 
         .section {
-            background: var(--paper);
-            border: 1px solid #eee6d4;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: var(--shadow);
-            margin-bottom: 18px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
         }
 
         .section h2 {
-            margin: 0 0 12px;
-            font-size: 1.08rem;
+            margin: 0 0 8px;
+            font-size: 1.25rem;
+            font-weight: 800;
         }
 
         .section-note {
-            margin: -3px 0 14px;
-            color: var(--sub);
-            font-size: 0.84rem;
+            margin: 0 0 24px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
         }
 
+        /* Distribution Ranking */
         .dist-list {
-            display: grid;
-            gap: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .dist-item {
             display: grid;
-            grid-template-columns: 232px 1fr 90px;
-            gap: 10px;
+            grid-template-columns: 240px 1fr 100px;
+            gap: 16px;
             align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .dist-item:last-child {
+            border-bottom: none;
         }
 
         .type-main {
             display: flex;
-            align-items: baseline;
-            gap: 8px;
+            align-items: center;
+            gap: 10px;
             min-width: 0;
         }
 
         .code {
-            font-size: 0.82rem;
-            color: #111827;
-            background: #f4f1e8;
-            border: 1px solid #e8e0cd;
+            font-size: 0.75rem;
+            color: var(--primary);
+            background: var(--primary-soft);
             border-radius: 6px;
-            padding: 2px 6px;
-            font-weight: 700;
-            letter-spacing: 0.03em;
+            padding: 4px 8px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
         }
 
         .kanji {
             font-weight: 900;
-            letter-spacing: 0.08em;
-            min-width: 4.7em;
+            letter-spacing: 0.05em;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            min-width: 4rem;
         }
 
         .title {
-            color: #374151;
-            font-size: 0.86rem;
+            color: #4b5563;
+            font-size: 0.85rem;
+            font-weight: 500;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
 
-        .bar {
+        .bar-wrap {
             position: relative;
-            height: 14px;
+            height: 12px;
             border-radius: 999px;
-            background: #ece6d8;
+            background: var(--bar-bg);
             overflow: hidden;
         }
 
-        .fill {
+        .bar-fill {
             height: 100%;
             border-radius: 999px;
-            background: linear-gradient(90deg, #f59e0b 0%, #d97706 45%, #b91c1c 100%);
+            background: var(--gradient-bar);
+            transform-origin: left;
+            animation: growBar 1s ease-out forwards;
         }
 
-        .value {
+        @keyframes growBar {
+            from {
+                transform: scaleX(0);
+            }
+
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .dist-value {
             text-align: right;
-            font-weight: 800;
-            font-size: 0.86rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-main);
             white-space: nowrap;
-            color: #374151;
         }
 
+        .dist-value span {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* 4 Axis Grid */
         .axis-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
         }
 
         .axis-card {
-            border: 1px solid #e6ddc7;
-            border-radius: 12px;
-            padding: 12px;
-            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            background: #fafafa;
         }
 
         .axis-head {
-            font-size: 0.82rem;
-            color: #4b5563;
-            margin-bottom: 8px;
-            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            font-weight: 800;
         }
 
         .axis-bar {
-            height: 16px;
+            height: 12px;
             display: flex;
             border-radius: 999px;
             overflow: hidden;
-            border: 1px solid #e5e7eb;
+            background: var(--bar-bg);
         }
 
         .left-seg,
         .right-seg {
             height: 100%;
+            transition: width 1s ease-out;
         }
 
         .left-seg {
-            background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+            background: var(--axis-left);
         }
 
         .right-seg {
-            background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+            background: var(--axis-right);
         }
 
         .axis-meta {
-            margin-top: 7px;
+            margin-top: 10px;
             display: flex;
             justify-content: space-between;
-            font-size: 0.79rem;
-            color: #4b5563;
-            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         .axis-meta strong {
-            color: #111827;
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-left: 4px;
         }
 
+        /* Heatmap */
         .heat-wrap {
             overflow-x: auto;
+            margin: 0 -28px;
+            padding: 0 28px;
+            -webkit-overflow-scrolling: touch;
         }
 
         .heat-grid {
-            min-width: 700px;
+            min-width: 680px;
             display: grid;
-            grid-template-columns: 130px repeat(4, 1fr);
-            grid-template-rows: 44px repeat(4, 1fr);
-            border: 1px solid #e5dfce;
-            border-radius: 12px;
-            overflow: hidden;
+            grid-template-columns: 100px repeat(4, 1fr);
+            grid-template-rows: 40px repeat(4, 1fr);
+            gap: 4px;
         }
 
         .cell,
         .head-cell {
-            border-right: 1px solid #e8e3d5;
-            border-bottom: 1px solid #e8e3d5;
-            padding: 8px;
-            background: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            background: #f9fafb;
         }
 
         .head-cell {
-            background: #f9f5ea;
-            font-size: 0.76rem;
-            font-weight: 700;
-            color: #4b5563;
+            background: transparent;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--text-muted);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            line-height: 1.3;
         }
 
         .head-cell.side {
-            justify-content: flex-start;
-            padding-left: 12px;
+            justify-content: flex-end;
+            padding-right: 16px;
         }
 
         .cell {
-            min-height: 108px;
+            min-height: 90px;
             position: relative;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03);
         }
 
         .cell:hover {
-            transform: translateY(-1px);
+            transform: scale(1.02);
+            z-index: 2;
+            box-shadow: var(--shadow-md);
         }
 
         .cell .code-mini {
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 6px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 2px;
         }
 
         .cell .name-mini {
-            font-size: 0.76rem;
-            color: #4b5563;
-            line-height: 1.35;
-            min-height: 2.5em;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.8);
+            line-height: 1.3;
+            margin-bottom: 12px;
         }
 
         .cell .count-mini {
             position: absolute;
-            right: 8px;
+            right: 10px;
             bottom: 8px;
-            font-size: 0.82rem;
-            font-weight: 800;
-            color: #111827;
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.9);
         }
 
         .legend {
-            margin-top: 10px;
+            margin-top: 16px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.78rem;
-            color: #4b5563;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            justify-content: flex-end;
         }
 
         .legend-bar {
             width: 140px;
-            height: 10px;
+            height: 8px;
             border-radius: 999px;
-            background: linear-gradient(90deg, #fff 0%, #fee2e2 38%, #fecaca 70%, #ef4444 100%);
-            border: 1px solid #e5e7eb;
+            background: linear-gradient(90deg, #f9fafb 0%, #fbcfe8 40%, #f472b6 70%, #be185d 100%);
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
         }
 
+        /* Footer */
         footer {
-            margin-top: 32px;
+            margin-top: 40px;
             text-align: center;
-            color: #6b7280;
-            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
         }
 
-        @media (max-width: 860px) {
+        .ad-container {
+            margin: 32px auto;
+            text-align: center;
+            max-width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            main {
+                padding: 24px 16px 60px;
+            }
+
+            .hero {
+                padding: 24px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.15rem;
+            }
+
             .dist-item {
                 grid-template-columns: 1fr;
-                gap: 5px;
-                border-bottom: 1px dashed #ede7d8;
-                padding-bottom: 8px;
+                gap: 8px;
+                padding: 12px 0;
+            }
+
+            .type-main {
+                flex-wrap: wrap;
             }
 
             .title {
                 white-space: normal;
             }
 
-            .axis-grid,
-            .stats {
-                grid-template-columns: 1fr;
+            .dist-value {
+                text-align: left;
             }
 
-            .header-inner {
-                flex-wrap: wrap;
+            .axis-meta {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .heat-wrap {
+                margin: 0 -20px;
+                padding: 0 20px;
             }
         }
     </style>
 </head>
+
 <body>
-<header>
-    <div class="header-inner">
-        <h1 class="header-title">お笑い16タイプ 分布分析</h1>
-        <div class="header-links">
-            <a href="/owarai/">診断トップへ</a>
-            <a href="/owarai/privacy.html">プライバシーポリシー</a>
+    <header>
+        <div class="header-inner">
+            <h1 class="header-title">お笑い16タイプ 分布分析</h1>
+            <div class="header-links">
+                <a href="/owarai/">診断トップへ</a>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
-<main>
-    <section class="hero">
-        <p class="hero-kicker">ANALYTICS SNAPSHOT</p>
-        <h1>2026/03/28 時点の 2,484件を可視化</h1>
-        <p>タイプ分布をランキングで確認しながら、4つのパラメーター（理/乱・和/毒・静/動・衆/深）の全体傾向を1ページで見渡せます。</p>
+    <main>
+        <section class="hero">
+            <span class="hero-kicker">Analytics Snapshot</span>
+            <h1>2026/03/28 時点の 2,484件を可視化</h1>
+            <p>タイプ分布をランキングで確認しながら、4つのパラメーター（理/乱・和/毒・静/動・衆/深）の全体傾向を1ページで見渡せます。</p>
 
-        <div class="stats" id="stats"></div>
-    </section>
+            <div class="stats" id="stats"></div>
+        </section>
 
-    <section class="section">
-        <h2>タイプ分布ランキング（全16種）</h2>
-        <p class="section-note">棒の長さは全体に占める比率です。コード・漢字・タイプ名を併記しています。</p>
-        <div class="dist-list" id="dist-list"></div>
-    </section>
-
-    <section class="section">
-        <h2>4軸の全体傾向</h2>
-        <p class="section-note">各軸で左右どちらの性質が多いかを集計しています。</p>
-        <div class="axis-grid" id="axis-grid"></div>
-    </section>
-
-    <section class="section">
-        <h2>16タイプ マッピング（軸別ヒートマップ）</h2>
-        <p class="section-note">横軸は先頭2文字（理/乱 × 和/毒）、縦軸は後半2文字（静/動 × 衆/深）です。濃いほど人数が多いセルです。</p>
-        <div class="heat-wrap">
-            <div class="heat-grid" id="heat-grid"></div>
+        <!-- admax -->
+        <div class="ad-container">
+            <script src="https://adm.shinobi.jp/s/8da9b8c90bf52c9e08f4b42e649ef196"></script>
         </div>
-        <div class="legend">
-            <span>少</span>
-            <span class="legend-bar"></span>
-            <span>多</span>
+        <!-- admax -->
+
+        <section class="section">
+            <h2>タイプ分布ランキング（全16種）</h2>
+            <p class="section-note">棒の長さは全体に占める比率です。コード・漢字・タイプ名を併記しています。</p>
+            <div class="dist-list" id="dist-list"></div>
+        </section>
+
+        <section class="section">
+            <h2>4軸の全体傾向</h2>
+            <p class="section-note">各軸で左右どちらの性質が多いかを集計しています。</p>
+            <div class="axis-grid" id="axis-grid"></div>
+        </section>
+
+        <section class="section">
+            <h2>16タイプ マッピング（軸別ヒートマップ）</h2>
+            <p class="section-note">横軸は先頭2文字（理/乱 × 和/毒）、縦軸は後半2文字（静/動 × 衆/深）です。色が濃いほど人数が多いタイプです。</p>
+            <div class="heat-wrap">
+                <div class="heat-grid" id="heat-grid"></div>
+            </div>
+            <div class="legend">
+                <span>少</span>
+                <span class="legend-bar"></span>
+                <span>多</span>
+            </div>
+        </section>
+
+        <!-- admax -->
+        <div class="ad-container">
+            <script src="https://adm.shinobi.jp/s/8da9b8c90bf52c9e08f4b42e649ef196"></script>
         </div>
-    </section>
+        <!-- admax -->
 
-    <footer>
-        <p>集計対象: 2,484件 / 更新日: 2026-03-28 / dim7.jp</p>
-    </footer>
-</main>
+        <footer>
+            <p>集計対象: 2,484件 / 更新日: 2026-03-28 / dim7.jp</p>
+        </footer>
+    </main>
 
-<script>
-    const total = 2484;
+    <script>
+        const total = 2484;
 
-    const kanjiMap = {
-        L: "理", A: "乱",
-        H: "和", P: "毒",
-        S: "静", D: "動",
-        M: "衆", C: "深"
-    };
+        const kanjiMap = {
+            L: "理", A: "乱",
+            H: "和", P: "毒",
+            S: "静", D: "動",
+            M: "衆", C: "深"
+        };
 
-    const typeNames = {
-        LHDM: "王道エンターテイナー",
-        LHDC: "熱血オタク解説者",
-        LHSM: "癒やしの観察者",
-        LHSC: "書斎の賢者",
-        LPDM: "マシンガン毒舌",
-        LPDC: "反骨の扇動者",
-        LPSM: "冷徹なご意見番",
-        LPSC: "地下の批評家",
-        AHDM: "天真爛漫な天然",
-        AHDC: "カオスな配信者",
-        AHSM: "不思議な隣人",
-        AHSC: "前衛的な詩人",
-        APDM: "暴走リアクション",
-        APDC: "伝説のアングラ",
-        APSM: "不気味なコント師",
-        APSC: "深淵を覗く者"
-    };
+        const typeNames = {
+            LHDM: "王道エンターテイナー",
+            LHDC: "熱血オタク解説者",
+            LHSM: "癒やしの観察者",
+            LHSC: "書斎の賢者",
+            LPDM: "マシンガン毒舌",
+            LPDC: "反骨の扇動者",
+            LPSM: "冷徹なご意見番",
+            LPSC: "地下の批評家",
+            AHDM: "天真爛漫な天然",
+            AHDC: "カオスな配信者",
+            AHSM: "不思議な隣人",
+            AHSC: "前衛的な詩人",
+            APDM: "暴走リアクション",
+            APDC: "伝説のアングラ",
+            APSM: "不気味なコント師",
+            APSC: "深淵を覗く者"
+        };
 
-    const dist = [
-        { code: "LHSM", count: 569 },
-        { code: "LHSC", count: 497 },
-        { code: "LPSC", count: 363 },
-        { code: "AHSC", count: 231 },
-        { code: "APSC", count: 229 },
-        { code: "LPSM", count: 206 },
-        { code: "LHDM", count: 179 },
-        { code: "AHSM", count: 141 },
-        { code: "APDC", count: 113 },
-        { code: "AHDC", count: 110 },
-        { code: "LHDC", count: 108 },
-        { code: "LPDC", count: 98 },
-        { code: "AHDM", count: 89 },
-        { code: "LPDM", count: 83 },
-        { code: "APSM", count: 68 },
-        { code: "APDM", count: 46 }
-    ].sort((a, b) => b.count - a.count);
+        const dist = [
+            { code: "LHSM", count: 569 },
+            { code: "LHSC", count: 497 },
+            { code: "LPSC", count: 363 },
+            { code: "AHSC", count: 231 },
+            { code: "APSC", count: 229 },
+            { code: "LPSM", count: 206 },
+            { code: "LHDM", count: 179 },
+            { code: "AHSM", count: 141 },
+            { code: "APDC", count: 113 },
+            { code: "AHDC", count: 110 },
+            { code: "LHDC", count: 108 },
+            { code: "LPDC", count: 98 },
+            { code: "AHDM", count: 89 },
+            { code: "LPDM", count: 83 },
+            { code: "APSM", count: 68 },
+            { code: "APDM", count: 46 }
+        ].sort((a, b) => b.count - a.count);
 
-    const axisConfig = [
-        { key: "LA", left: "L", right: "A", leftLabel: "理", rightLabel: "乱", title: "LA軸: 論理性 vs カオス" },
-        { key: "HP", left: "H", right: "P", leftLabel: "和", rightLabel: "毒", title: "HP軸: 共感性 vs 毒性" },
-        { key: "SD", left: "S", right: "D", leftLabel: "静", rightLabel: "動", title: "SD軸: 静的スタイル vs 動的スタイル" },
-        { key: "MC", left: "M", right: "C", leftLabel: "衆", rightLabel: "深", title: "MC軸: 大衆志向 vs コア志向" }
-    ];
-
-    const pct = (value) => ((value / total) * 100).toFixed(1);
-    const kanjiOf = (code) => code.split("").map((c) => kanjiMap[c]).join("");
-
-    function renderStats() {
-        const top = dist[0];
-        const low = dist[dist.length - 1];
-        const stats = [
-            { label: "総件数", value: `${total.toLocaleString()} 件` },
-            { label: "最多タイプ", value: `${top.code} (${pct(top.count)}%)` },
-            { label: "最少タイプ", value: `${low.code} (${pct(low.count)}%)` }
+        const axisConfig = [
+            { key: "LA", left: "L", right: "A", leftLabel: "理", rightLabel: "乱", title: "LA軸: 論理性 vs カオス" },
+            { key: "HP", left: "H", right: "P", leftLabel: "和", rightLabel: "毒", title: "HP軸: 共感性 vs 毒性" },
+            { key: "SD", left: "S", right: "D", leftLabel: "静", rightLabel: "動", title: "SD軸: 静的スタイル vs 動的スタイル" },
+            { key: "MC", left: "M", right: "C", leftLabel: "衆", rightLabel: "深", title: "MC軸: 大衆志向 vs コア志向" }
         ];
 
-        document.getElementById("stats").innerHTML = stats
-            .map((s) => `<div class="stat"><div class="label">${s.label}</div><div class="value">${s.value}</div></div>`)
-            .join("");
-    }
+        const pct = (value) => ((value / total) * 100).toFixed(1);
+        const kanjiOf = (code) => code.split("").map((c) => kanjiMap[c]).join("");
 
-    function renderDistribution() {
-        const max = dist[0].count;
-        document.getElementById("dist-list").innerHTML = dist
-            .map((t) => {
-                const width = (t.count / max) * 100;
-                return `
+        function renderStats() {
+            const top = dist[0];
+            const low = dist[dist.length - 1];
+            const stats = [
+                { label: "総件数", value: `${total.toLocaleString()} 件` },
+                { label: "最多タイプ", value: `${top.code} <span style="font-size:0.8em;font-weight:600;color:#6b7280;">(${pct(top.count)}%)</span>` },
+                { label: "最少タイプ", value: `${low.code} <span style="font-size:0.8em;font-weight:600;color:#6b7280;">(${pct(low.count)}%)</span>` }
+            ];
+
+            document.getElementById("stats").innerHTML = stats
+                .map((s) => `<div class="stat"><div class="label">${s.label}</div><div class="value">${s.value}</div></div>`)
+                .join("");
+        }
+
+        function renderDistribution() {
+            const max = dist[0].count;
+            document.getElementById("dist-list").innerHTML = dist
+                .map((t) => {
+                    const width = (t.count / max) * 100;
+                    return `
                 <div class="dist-item">
                     <div class="type-main">
                         <span class="code">${t.code}</span>
                         <span class="kanji">${kanjiOf(t.code)}</span>
                         <span class="title">${typeNames[t.code]}</span>
                     </div>
-                    <div class="bar"><div class="fill" style="width:${width}%"></div></div>
-                    <div class="value">${t.count}件 (${pct(t.count)}%)</div>
+                    <div class="bar-wrap"><div class="bar-fill" style="width:${width}%"></div></div>
+                    <div class="dist-value">${t.count.toLocaleString()}<span>件 (${pct(t.count)}%)</span></div>
                 </div>`;
-            })
-            .join("");
-    }
+                })
+                .join("");
+        }
 
-    function calcAxis() {
-        const acc = {
-            L: 0, A: 0,
-            H: 0, P: 0,
-            S: 0, D: 0,
-            M: 0, C: 0
-        };
+        function calcAxis() {
+            const acc = { L: 0, A: 0, H: 0, P: 0, S: 0, D: 0, M: 0, C: 0 };
+            dist.forEach((row) => {
+                const [c1, c2, c3, c4] = row.code.split("");
+                acc[c1] += row.count; acc[c2] += row.count; acc[c3] += row.count; acc[c4] += row.count;
+            });
+            return acc;
+        }
 
-        dist.forEach((row) => {
-            const [c1, c2, c3, c4] = row.code.split("");
-            acc[c1] += row.count;
-            acc[c2] += row.count;
-            acc[c3] += row.count;
-            acc[c4] += row.count;
-        });
+        function renderAxis() {
+            const axis = calcAxis();
+            document.getElementById("axis-grid").innerHTML = axisConfig
+                .map((a) => {
+                    const leftV = axis[a.left];
+                    const rightV = axis[a.right];
+                    const leftRatio = (leftV / total) * 100;
+                    const rightRatio = (rightV / total) * 100;
 
-        return acc;
-    }
-
-    function renderAxis() {
-        const axis = calcAxis();
-        document.getElementById("axis-grid").innerHTML = axisConfig
-            .map((a) => {
-                const leftV = axis[a.left];
-                const rightV = axis[a.right];
-                const leftRatio = (leftV / total) * 100;
-                const rightRatio = (rightV / total) * 100;
-
-                return `
+                    return `
                 <article class="axis-card">
                     <div class="axis-head">${a.title}</div>
                     <div class="axis-bar">
@@ -604,52 +736,54 @@
                         <div class="right-seg" style="width:${rightRatio}%"></div>
                     </div>
                     <div class="axis-meta">
-                        <span>${a.leftLabel}: <strong>${leftV.toLocaleString()}件 (${leftRatio.toFixed(1)}%)</strong></span>
-                        <span>${a.rightLabel}: <strong>${rightV.toLocaleString()}件 (${rightRatio.toFixed(1)}%)</strong></span>
+                        <span>${a.leftLabel}<strong>${leftV.toLocaleString()}件 (${leftRatio.toFixed(1)}%)</strong></span>
+                        <span>${a.rightLabel}<strong>${rightV.toLocaleString()}件 (${rightRatio.toFixed(1)}%)</strong></span>
                     </div>
                 </article>`;
-            })
-            .join("");
-    }
+                })
+                .join("");
+        }
 
-    function renderHeatmap() {
-        const cols = ["LH", "LP", "AH", "AP"];
-        const rows = ["SM", "SC", "DM", "DC"];
-        const countMap = Object.fromEntries(dist.map((d) => [d.code, d.count]));
-        const max = dist[0].count;
+        function renderHeatmap() {
+            const cols = ["LH", "LP", "AH", "AP"];
+            const rows = ["SM", "SC", "DM", "DC"];
+            const countMap = Object.fromEntries(dist.map((d) => [d.code, d.count]));
+            const max = dist[0].count;
 
-        const headerRow = [
-            '<div class="head-cell"></div>',
-            ...cols.map((c) => `<div class="head-cell">${c}<br>${kanjiOf(c)}</div>`)
-        ].join("");
+            const headerRow = [
+                '<div class="head-cell"></div>',
+                ...cols.map((c) => `<div class="head-cell">${c}<br>${kanjiOf(c)}</div>`)
+            ].join("");
 
-        const body = rows
-            .map((r) => {
-                const rowHead = `<div class="head-cell side">${r} (${kanjiOf(r)})</div>`;
-                const rowCells = cols
-                    .map((c) => {
-                        const code = c + r;
-                        const count = countMap[code] || 0;
-                        const alpha = count === 0 ? 0 : Math.max(0.14, count / max);
-                        return `
-                        <div class="cell" style="background: rgba(220, 38, 38, ${alpha.toFixed(3)})">
-                            <div class="code-mini">${code} / ${kanjiOf(code)}</div>
+            const body = rows
+                .map((r) => {
+                    const rowHead = `<div class="head-cell side">${r} (${kanjiOf(r)})</div>`;
+                    const rowCells = cols
+                        .map((c) => {
+                            const code = c + r;
+                            const count = countMap[code] || 0;
+                            const alpha = count === 0 ? 0 : Math.max(0.05, count / max);
+                            // Pink/Magenta theme for heatmap
+                            return `
+                        <div class="cell" style="background-color: rgba(190, 24, 93, ${alpha.toFixed(3)})">
+                            <div class="code-mini">${kanjiOf(code)}</div>
                             <div class="name-mini">${typeNames[code]}</div>
-                            <div class="count-mini">${count.toLocaleString()}件</div>
+                            <div class="count-mini">${count.toLocaleString()}</div>
                         </div>`;
-                    })
-                    .join("");
-                return rowHead + rowCells;
-            })
-            .join("");
+                        })
+                        .join("");
+                    return rowHead + rowCells;
+                })
+                .join("");
 
-        document.getElementById("heat-grid").innerHTML = headerRow + body;
-    }
+            document.getElementById("heat-grid").innerHTML = headerRow + body;
+        }
 
-    renderStats();
-    renderDistribution();
-    renderAxis();
-    renderHeatmap();
-</script>
+        renderStats();
+        renderDistribution();
+        renderAxis();
+        renderHeatmap();
+    </script>
 </body>
+
 </html>
