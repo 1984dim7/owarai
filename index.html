@@ -962,15 +962,18 @@
             </div>
 
             <div class="survey-group">
-                <span class="survey-group-label">お笑いの情報源</span>
-                <div class="survey-options" id="survey-source">
-                    <button class="survey-opt" data-val="tv" onclick="surveySelect(this, 'source')">テレビ</button>
-                    <button class="survey-opt" data-val="youtube"
-                        onclick="surveySelect(this, 'source')">YouTube</button>
-                    <button class="survey-opt" data-val="live" onclick="surveySelect(this, 'source')">劇場・ライブ</button>
-                    <button class="survey-opt" data-val="radio"
-                        onclick="surveySelect(this, 'source')">ラジオ・ポッドキャスト</button>
-                    <button class="survey-opt" data-val="sns" onclick="surveySelect(this, 'source')">SNS・ショート動画</button>
+                <span class="survey-group-label">住んでいる地域</span>
+                <div class="survey-options" id="survey-region">
+                    <button class="survey-opt" data-val="hokkaido" onclick="surveySelect(this, 'region')">北海道</button>
+                    <button class="survey-opt" data-val="tohoku" onclick="surveySelect(this, 'region')">東北</button>
+                    <button class="survey-opt" data-val="kanto" onclick="surveySelect(this, 'region')">関東</button>
+                    <button class="survey-opt" data-val="chubu" onclick="surveySelect(this, 'region')">中部</button>
+                    <button class="survey-opt" data-val="kinki" onclick="surveySelect(this, 'region')">近畿</button>
+                    <button class="survey-opt" data-val="chugoku" onclick="surveySelect(this, 'region')">中国</button>
+                    <button class="survey-opt" data-val="shikoku" onclick="surveySelect(this, 'region')">四国</button>
+                    <button class="survey-opt" data-val="kyushu" onclick="surveySelect(this, 'region')">九州</button>
+                    <button class="survey-opt" data-val="overseas" onclick="surveySelect(this, 'region')">日本国外</button>
+                    <button class="survey-opt" data-val="noanswer" onclick="surveySelect(this, 'region')">未回答</button>
                 </div>
             </div>
 
@@ -1193,7 +1196,7 @@
             "APDM": "LPSM", "APDC": "LPSC", "APSM": "LPDM", "APSC": "LPDC"
         };
 
-        let surveyData = { gender: null, age: null, source: null };
+        let surveyData = { gender: null, age: null, region: null };
         let pendingTypeKey = null;
         let pendingScores = null;
 
@@ -1401,7 +1404,7 @@
             if (!skipped && typeof gtag !== 'undefined') {
                 gtag('event', 'survey_response', {
                     'event_category': 'demographics',
-                    'event_label': `gender:${surveyData.gender || 'none'}_age:${surveyData.age || 'none'}_source:${surveyData.source || 'none'}_type:${pendingTypeKey}`,
+                    'event_label': `gender:${surveyData.gender || 'none'}_age:${surveyData.age || 'none'}_region:${surveyData.region || 'none'}_type:${pendingTypeKey}`,
                     'value': 1
                 });
                 if (surveyData.gender) {
@@ -1410,8 +1413,8 @@
                 if (surveyData.age) {
                     gtag('event', 'survey_age', { 'event_category': 'demographics', 'event_label': surveyData.age });
                 }
-                if (surveyData.source) {
-                    gtag('event', 'survey_source', { 'event_category': 'demographics', 'event_label': surveyData.source });
+                if (surveyData.region) {
+                    gtag('event', 'survey_region', { 'event_category': 'demographics', 'event_label': surveyData.region });
                 }
             } else if (skipped && typeof gtag !== 'undefined') {
                 gtag('event', 'survey_skipped', { 'event_category': 'demographics', 'event_label': pendingTypeKey });
