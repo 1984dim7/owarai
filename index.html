@@ -643,7 +643,7 @@
 
         .share-area {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 10px;
             margin-top: 30px;
         }
@@ -668,6 +668,10 @@
 
         .btn-insta {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .btn-line {
+            background: #06C755;
         }
 
         /* Floating Return Button */
@@ -1179,10 +1183,13 @@
 
         <div class="share-area">
             <button class="btn-share btn-x" onclick="shareX()">
-                <span style="font-size:1.2rem">𝕏</span> 結果をポスト
+                <span style="font-size:1.2rem">𝕏</span> ポスト
+            </button>
+            <button class="btn-share btn-line" onclick="shareLine()">
+                <span style="font-size:1.2rem">💬</span> LINE
             </button>
             <button class="btn-share btn-insta" onclick="shareInsta()">
-                <span style="font-size:1.2rem">📸</span> ストーリーズで共有
+                <span style="font-size:1.2rem">📸</span> ストーリー
             </button>
         </div>
         <div id="share-toast" class="share-toast">
@@ -1672,6 +1679,14 @@
             const shareUrl = `https://dim7.jp/owarai/share/${typeKey}.html`;
             const text = `私のお笑い16タイプは${title}でした！\n#お笑い16タイプ診断`;
             window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`, '_blank', 'noopener,noreferrer');
+        }
+
+        function shareLine() {
+            const title = document.getElementById('res-title').innerText;
+            const typeKey = document.getElementById('res-code').innerText;
+            const shareUrl = `https://dim7.jp/owarai/share/${typeKey}.html`;
+            const text = `私のお笑い16タイプは${title}でした！\nあなたも診断してみよう👇`;
+            window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
         }
 
         async function shareInsta() {
