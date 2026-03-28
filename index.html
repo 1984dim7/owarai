@@ -848,6 +848,12 @@
                 <span style="font-size:1.2rem">📸</span> ストーリーズで共有
             </button>
         </div>
+        <div id="share-toast"
+            style="display:none; color: #15803d; background: #dcfce7; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; text-align: center; margin-top: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            クリップボードにリンクをコピー完了！<br>
+            <span
+                style="font-size: 0.75rem; color: #166534; font-weight: normal;">Instagramストーリーの「リンク」ステッカーでこのリンクを貼り付けてください！</span>
+        </div>
 
         <div class="library-section">
             <div class="lib-title">タイプ図鑑（全16種）</div>
@@ -1236,6 +1242,17 @@
             const imageUrl = `/owarai/ogp_images/${typeKey}.png`;
             const shareUrl = `https://dim7.jp/owarai/share/${typeKey}.html`;
             const shareTitle = document.getElementById('res-title').innerText;
+            const toast = document.getElementById('share-toast');
+
+            let linkCopied = false;
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(shareUrl);
+                    linkCopied = true;
+                }
+            } catch (e) {
+                console.warn('Clipboard explicit copy failed', e);
+            }
 
             try {
                 if (navigator.share) {
@@ -1244,6 +1261,10 @@
                     const file = new File([blob], `${typeKey}.png`, { type: 'image/png' });
 
                     if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        if (linkCopied && toast) {
+                            toast.style.display = 'block';
+                            setTimeout(() => toast.style.display = 'none', 8000);
+                        }
                         await navigator.share({
                             files: [file],
                             title: `私のお笑い16タイプは${shareTitle}でした！\n#お笑い16タイプ診断`,
@@ -1262,6 +1283,7 @@
                     btn.innerHTML = originalContent;
                     btn.style.opacity = '1';
                     btn.style.pointerEvents = 'auto';
+                    if (toast) toast.style.display = 'none';
                     return;
                 }
             }
@@ -1274,19 +1296,24 @@
             const openInstagram = () => { window.location.href = "instagram://story-camera"; };
 
             if (!navigator.clipboard || !navigator.clipboard.writeText) {
-                prompt("このURLをコピーしてInstagramストーリーズで共有してください", shareUrl);
+                prompt("この専用URLをコピーし、Instagram内の「リンク」ステッカーで共有してください", shareUrl);
                 openInstagram();
                 return;
             }
-            navigator.clipboard.writeText(shareUrl)
-                .then(() => {
-                    alert("リンクをコピーしました！\n結果の画像を保存するか、スクショを撮ってストーリーズに貼り付けてください！");
-                    openInstagram();
-                })
-                .catch(() => {
-                    prompt("コピーに失敗しました。URLを手動でコピーしてください", shareUrl);
-                    openInstagram();
-                });
+            if (!linkCopied) {
+                navigator.clipboard.writeText(shareUrl)
+                    .then(() => {
+                        alert("専用リンクをコピーしました！\nInstagramストーリーが開いたら、「リンク」ステッカーを使ってペーストしてください！");
+                        openInstagram();
+                    })
+                    .catch(() => {
+                        prompt("コピーに失敗しました。下の専用URLを手動でコピーして「リンク」ステッカーに貼ってください", shareUrl);
+                        openInstagram();
+                    });
+            } else {
+                alert("専用リンクをコピーしました！\nInstagramストーリーが開いたら、「リンク」ステッカーを使ってペーストしてください！");
+                openInstagram();
+            }
         }
 
         init();
