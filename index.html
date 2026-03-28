@@ -1225,22 +1225,66 @@
             window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`, '_blank', 'noopener,noreferrer');
         }
 
-        function shareInsta() {
-            const url = "https://dim7.jp/owarai/";
+        async function shareInsta() {
+            const btn = document.querySelector('.btn-insta');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<span style="font-size:1.2rem">⏳</span> 準備中...';
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
+
+            const typeKey = document.getElementById('res-code').innerText;
+            const imageUrl = `/owarai/ogp_images/${typeKey}.png`;
+            const shareUrl = `https://dim7.jp/owarai/share/${typeKey}.html`;
+            const shareTitle = document.getElementById('res-title').innerText;
+
+            try {
+                if (navigator.share) {
+                    const response = await fetch(imageUrl);
+                    const blob = await response.blob();
+                    const file = new File([blob], `${typeKey}.png`, { type: 'image/png' });
+
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            files: [file],
+                            title: `私のお笑い16タイプは${shareTitle}でした！\n#お笑い16タイプ診断`,
+                            url: shareUrl
+                        });
+                        btn.innerHTML = originalContent;
+                        btn.style.opacity = '1';
+                        btn.style.pointerEvents = 'auto';
+                        return; // Web Share API 成功
+                    }
+                }
+            } catch (err) {
+                console.warn('Share API failed or user cancelled:', err);
+                if (err.name === 'AbortError') {
+                    // ユーザーキャンセル時はフォールバックしない
+                    btn.innerHTML = originalContent;
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                    return;
+                }
+            }
+
+            // フォールバック：クリップボードへコピーしてinstagram起動
+            btn.innerHTML = originalContent;
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
+
             const openInstagram = () => { window.location.href = "instagram://story-camera"; };
 
             if (!navigator.clipboard || !navigator.clipboard.writeText) {
-                prompt("このURLをコピーしてInstagramで共有してください", url);
+                prompt("このURLをコピーしてInstagramストーリーズで共有してください", shareUrl);
                 openInstagram();
                 return;
             }
-            navigator.clipboard.writeText(url)
+            navigator.clipboard.writeText(shareUrl)
                 .then(() => {
-                    alert("リンクをコピーしました！\n結果画面のスクショと同時に貼り付けてください！");
+                    alert("リンクをコピーしました！\n結果の画像を保存するか、スクショを撮ってストーリーズに貼り付けてください！");
                     openInstagram();
                 })
                 .catch(() => {
-                    prompt("コピーに失敗しました。URLを手動でコピーしてください", url);
+                    prompt("コピーに失敗しました。URLを手動でコピーしてください", shareUrl);
                     openInstagram();
                 });
         }
