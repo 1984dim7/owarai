@@ -707,6 +707,45 @@
                 opacity: 1;
             }
         }
+
+        /* 100% Glow Effects */
+        .glow-100-primary {
+            box-shadow: 0 0 12px 2px var(--primary);
+            animation: pulse-primary 1.5s infinite;
+        }
+
+        .glow-100-accent {
+            box-shadow: 0 0 12px 2px var(--accent);
+            animation: pulse-accent 1.5s infinite;
+        }
+
+        @keyframes pulse-primary {
+            0% {
+                box-shadow: 0 0 4px 0px var(--primary);
+            }
+
+            50% {
+                box-shadow: 0 0 14px 4px var(--primary);
+            }
+
+            100% {
+                box-shadow: 0 0 4px 0px var(--primary);
+            }
+        }
+
+        @keyframes pulse-accent {
+            0% {
+                box-shadow: 0 0 4px 0px var(--accent);
+            }
+
+            50% {
+                box-shadow: 0 0 14px 4px var(--accent);
+            }
+
+            100% {
+                box-shadow: 0 0 4px 0px var(--accent);
+            }
+        }
     </style>
 </head>
 
@@ -771,6 +810,9 @@
             </div>
             <div class="result-code-sub" id="res-code">LHDM</div>
             <div class="type-title" id="res-title">「王道エンターテイナー」</div>
+            <div id="res-rarity"
+                style="text-align: center; font-size: 0.95rem; color: #64748b; font-weight: bold; margin-bottom: 25px; margin-top: -10px;">
+            </div>
         </div>
 
         <div class="result-content">
@@ -950,6 +992,13 @@
             "APSM": { title: "「不気味なコント師」", overview: "「乱・毒・静・衆」。静かに、しかし確実に狂っている。日常設定の中に潜むサイコパス的な違和感を演出し、恐怖と笑いの狭間に落とします。", role: "心地よい不安を与える", tags: ["サイコホラー", "演技派"], ref: "シソンヌ、空気階段、かが屋" },
             "APSC": { title: "「深淵を覗く者」", overview: "「乱・毒・静・深」。文脈を意図的に外すアンチ・ユーモア。笑いという概念そのものを解体するような、極北のスタイルです。", role: "価値観の破壊神", tags: ["虚無", "アンチユーモア", "哲学"], ref: "ランジャタイ、コウメ太夫、チャンス大城" }
         };
+
+        const distributionData = {
+            "LHSM": 569, "LHSC": 497, "LPSC": 363, "AHSC": 231, "APSC": 229,
+            "LPSM": 206, "LHDM": 179, "AHSM": 141, "APDC": 113, "AHDC": 110,
+            "LHDC": 108, "LPDC": 98, "AHDM": 89, "LPDM": 83, "APSM": 68, "APDM": 46
+        };
+        const totalUsers = 3130;
 
         const STORAGE_KEY = "owarai_diagnosis_v1";
         const STORAGE_VERSION = 1;
@@ -1145,6 +1194,16 @@
             document.getElementById('res-ref').innerText = data.ref;
             document.getElementById('res-tags').innerHTML = data.tags.map(t => `<span class="tag">#${t}</span>`).join('');
 
+            const rarityPct = ((distributionData[typeKey] / totalUsers) * 100).toFixed(1);
+            const rarityEl = document.getElementById('res-rarity');
+            if (rarityEl) {
+                if (isLibrary) {
+                    rarityEl.innerHTML = `全体の <span style="color:var(--text-main); font-size:1.15rem;">${rarityPct}%</span> に該当`;
+                } else {
+                    rarityEl.innerHTML = `あなたは全体の <span style="color:var(--text-main); font-size:1.15rem;">${rarityPct}%</span> に該当するタイプです！`;
+                }
+            }
+
             updateBar('LA', scores ? scores.LA : 0, 'Logic (理)', 'Absurd (乱)', typeKey[0], isLibrary);
             updateBar('HP', scores ? scores.HP : 0, 'Harmony (和)', 'Poison (毒)', typeKey[1], isLibrary);
             updateBar('SD', scores ? scores.SD : 0, 'Static (静)', 'Dynamic (動)', typeKey[2], isLibrary);
@@ -1181,6 +1240,9 @@
                 lblL.classList.add('lbl-active');
                 lblR.classList.add('lbl-passive');
                 fill.classList.add('fill-left');
+                fill.classList.remove('glow-100-primary', 'glow-100-accent');
+                if (percentage === 100 && !isLibrary) fill.classList.add('glow-100-primary');
+
                 if (isLibrary) {
                     lblL.innerText = labelLeft;
                     lblR.innerText = labelRight;
@@ -1194,6 +1256,8 @@
                 lblL.classList.add('lbl-passive');
                 lblR.classList.add('lbl-active');
                 fill.classList.add('fill-right');
+                fill.classList.remove('glow-100-primary', 'glow-100-accent');
+                if (percentage === 100 && !isLibrary) fill.classList.add('glow-100-accent');
                 if (isLibrary) {
                     lblL.innerText = labelLeft;
                     lblR.innerText = labelRight;
