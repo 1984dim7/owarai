@@ -1,378 +1,386 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<link rel="icon" href="/owarai/favicon.png" type="image/png">
+    <link rel="icon" href="/owarai/favicon.png" type="image/png">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LHGSRCJ4YG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LHGSRCJ4YG');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHGSRCJ4YG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-LHGSRCJ4YG');
+    </script>
 
-<meta property="og:title" content="お笑い16タイプ(MBTI)診断">
-<meta property="og:description" content="あなたの笑いのスタイルを16タイプで診断。前回の続きから再開できます。">
-<meta property="og:url" content="https://dim7.jp/owarai/">
-<meta property="og:image" content="https://dim7.jp/owarai/ogp_image.png">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="お笑い16タイプ診断の開始ページ。新規診断、続きから再開、前回結果の確認に対応。">
+    <meta property="og:title" content="お笑い16タイプ(MBTI)診断">
+    <meta property="og:description" content="あなたの笑いのスタイルを16タイプで診断。前回の続きから再開できます。">
+    <meta property="og:url" content="https://dim7.jp/owarai/">
+    <meta property="og:image" content="https://dim7.jp/owarai/ogp_image.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="お笑い16タイプ診断の開始ページ。新規診断、続きから再開、前回結果の確認に対応。">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>お笑い16タイプ診断 | スタート</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お笑い16タイプ診断 | スタート</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Shippori+Mincho:wght@700&display=swap"
+        rel="stylesheet">
 
-<style>
-    :root {
-        --paper: #f8fafc;
-        --ink: #1e293b;
-        --sub: #64748b;
-        --line: #d8e2ef;
-        --blue: #2563eb;
-        --blue-soft: #dbeafe;
-        --red: #dc2626;
-        --red-soft: #fee2e2;
-        --card: #ffffff;
-    }
+    <style>
+        :root {
+            --text-main: #333333;
+            --text-muted: #777777;
+            --bg-body: #faf9f6;
+            --bg-card: #ffffff;
+            --border-color: #eae8e1;
+            --btn-primary: #333333;
+            --btn-primary-text: #ffffff;
+            --btn-secondary: #f4f3ef;
+            --btn-secondary-text: #333333;
+            --btn-border: #dcdacb;
+        }
 
-    * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-        margin: 0;
-        color: var(--ink);
-        font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-        background:
-            radial-gradient(circle at 85% 10%, #fee2e2 0%, transparent 35%),
-            radial-gradient(circle at 10% 85%, #dbeafe 0%, transparent 32%),
-            var(--paper);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
+        body {
+            margin: 0;
+            color: var(--text-main);
+            font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            background-color: var(--bg-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
 
-    header {
-        padding: 14px 18px;
-        border-bottom: 1px solid var(--line);
-        background: rgba(255,255,255,0.85);
-        backdrop-filter: blur(6px);
-        position: sticky;
-        top: 0;
-    }
+        header {
+            padding: 20px 24px;
+            background: var(--bg-body);
+        }
 
-    .head-inner {
-        max-width: 980px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-    }
+        .head-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
 
-    .head-title {
-        margin: 0;
-        font-size: 1rem;
-        font-weight: 900;
-    }
+        .head-title {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
 
-    .head-links {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-    }
+        .head-links {
+            display: flex;
+            gap: 16px;
+        }
 
-    .head-links a {
-        color: var(--ink);
-        text-decoration: none;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 6px 10px;
-        font-size: 0.8rem;
-        background: #fff;
-    }
+        .head-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
 
-    main {
-        width: 100%;
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 30px 20px 40px;
-        flex: 1;
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 18px;
-        align-items: stretch;
-    }
+        .head-links a:hover {
+            color: var(--text-main);
+        }
 
-    .hero,
-    .panel {
-        background: var(--card);
-        border: 1px solid #e7edf6;
-        border-radius: 18px;
-        padding: 24px;
-        box-shadow: 0 10px 24px rgba(30, 41, 59, 0.06);
-    }
-
-    .kicker {
-        margin: 0;
-        color: var(--sub);
-        font-size: 0.76rem;
-        letter-spacing: 0.08em;
-        font-weight: 700;
-    }
-
-    h1 {
-        margin: 8px 0 10px;
-        font-family: "Shippori Mincho", serif;
-        font-size: clamp(1.45rem, 2.5vw, 2rem);
-        line-height: 1.35;
-    }
-
-    .hero p {
-        margin: 0;
-        color: #334155;
-        line-height: 1.7;
-        font-size: 0.93rem;
-    }
-
-    .features {
-        margin-top: 16px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-    }
-
-    .feature {
-        border: 1px solid #e9eff8;
-        background: #fbfdff;
-        border-radius: 10px;
-        padding: 10px;
-        font-size: 0.8rem;
-        color: #475569;
-    }
-
-    .panel h2 {
-        margin: 0 0 10px;
-        font-size: 1.02rem;
-    }
-
-    .status-box {
-        border: 1px dashed #c7d7eb;
-        background: #f8fbff;
-        border-radius: 12px;
-        padding: 10px 12px;
-        font-size: 0.82rem;
-        color: #334155;
-        margin-bottom: 12px;
-    }
-
-    .status-box strong {
-        color: #0f172a;
-    }
-
-    .actions {
-        display: grid;
-        gap: 10px;
-    }
-
-    .btn {
-        border: none;
-        border-radius: 12px;
-        padding: 13px 14px;
-        font-weight: 800;
-        cursor: pointer;
-        text-align: left;
-        font-size: 0.92rem;
-    }
-
-    .btn small {
-        display: block;
-        margin-top: 3px;
-        opacity: 0.85;
-        font-size: 0.73rem;
-        font-weight: 500;
-    }
-
-    .btn-primary {
-        color: #fff;
-        background: linear-gradient(120deg, #1d4ed8 0%, #2563eb 60%, #3b82f6 100%);
-    }
-
-    .btn-resume {
-        color: #1d4ed8;
-        background: var(--blue-soft);
-        border: 1px solid #bfdbfe;
-    }
-
-    .btn-result {
-        color: #991b1b;
-        background: var(--red-soft);
-        border: 1px solid #fecaca;
-    }
-
-    .btn-sub {
-        color: #334155;
-        background: #f1f5f9;
-        border: 1px solid #e2e8f0;
-    }
-
-    .muted {
-        margin-top: 10px;
-        color: var(--sub);
-        font-size: 0.74rem;
-        line-height: 1.5;
-    }
-
-    footer {
-        margin-top: auto;
-        padding: 24px 16px 30px;
-        text-align: center;
-        color: var(--sub);
-        font-size: 0.76rem;
-    }
-
-    footer a {
-        color: #2563eb;
-        text-decoration: none;
-    }
-
-    @media (max-width: 860px) {
         main {
-            grid-template-columns: 1fr;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
         }
 
-        .features {
-            grid-template-columns: 1fr;
+        .hero h1 {
+            margin: 0 0 24px;
+            font-family: "Shippori Mincho", serif;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            line-height: 1.4;
+            font-weight: 700;
+            color: var(--text-main);
         }
-    }
-</style>
+
+        .hero p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 36px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .panel h2 {
+            margin: 0 0 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .status-box {
+            background: var(--bg-body);
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .status-box strong {
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        .actions {
+            display: grid;
+            gap: 12px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 16px 20px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn small {
+            display: block;
+            margin-top: 6px;
+            font-weight: 400;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .btn-primary {
+            background-color: var(--btn-primary);
+            color: var(--btn-primary-text);
+        }
+
+        .btn-primary:hover {
+            background-color: #1a1a1a;
+        }
+
+        .btn-resume {
+            background-color: var(--btn-secondary);
+            color: var(--btn-secondary-text);
+            border: 1px solid var(--btn-border);
+        }
+
+        .btn-resume:hover {
+            background-color: #ebeae1;
+        }
+
+        .btn-result {
+            background-color: #fffaf0;
+            color: #b75e00;
+            border: 1px solid #f0e6d2;
+        }
+
+        .btn-result:hover {
+            background-color: #fdf5e6;
+        }
+
+        .btn-sub {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+        }
+
+        .btn-sub:hover {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+        }
+
+        .muted {
+            margin-top: 24px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 30px 24px 60px;
+            }
+
+            .panel {
+                padding: 24px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<header>
-    <div class="head-inner">
-        <p class="head-title">お笑い16タイプ診断(お笑いMBTI)</p>
-        <nav class="head-links">
-            <a href="/owarai/analytics/">分布分析</a>
-            <a href="/owarai/privacy.html">プライバシーポリシー</a>
-        </nav>
-    </div>
-</header>
+    <header>
+        <div class="head-inner">
+            <p class="head-title">お笑い16タイプ診断(お笑いMBTI)</p>
+            <nav class="head-links">
+                <a href="/owarai/analytics/">分布分析</a>
+                <a href="/owarai/privacy.html">プライバシーポリシー</a>
+            </nav>
+        </div>
+    </header>
 
-<main>
-    <section class="hero">
-        <p class="kicker">WELCOME</p>
-        <h1>あなたの笑いは、<br>16タイプのどこにいる？</h1>
+    <main>
+        <section class="hero">
+            <h1>あなたの笑いは、<br>16タイプのどこにいる？</h1>
+            <p>
+                16問の質問から、笑いのスタイルを4軸で分析。
+                「理/乱」「和/毒」「静/動」「衆/深」の組み合わせで、あなたのユーモアタイプを診断します。
+            </p>
+        </section>
+
+        <section class="panel">
+            <h2>はじめる</h2>
+            <div class="status-box" id="save-status">保存データを確認中...</div>
+
+            <div class="actions">
+                <button class="btn btn-primary" id="btn-start">新しく診断をはじめる
+                    <small>保存データをリセットしてQ1から開始</small>
+                </button>
+                <button class="btn btn-resume" id="btn-resume" style="display:none;">途中から再開する
+                    <small id="resume-detail">前回の続きから再開</small>
+                </button>
+                <button class="btn btn-result" id="btn-result" style="display:none;">前回の結果を見る
+                    <small>診断済みの結果画面を表示</small>
+                </button>
+                <button class="btn btn-sub" id="btn-analytics" type="button">タイプ分布分析を開く
+                    <small>3/28時点 2,484件の分布と軸傾向</small>
+                </button>
+            </div>
+
+            <p class="muted">診断状態はこの端末のブラウザにのみ保存されます。サーバーには保存されません。</p>
+        </section>
+    </main>
+
+    <footer>
         <p>
-            16問の質問から、笑いのスタイルを4軸で分析。
-            「理/乱」「和/毒」「静/動」「衆/深」の組み合わせで、あなたのユーモアタイプを診断します。
+            <a href="https://dim7.jp">運営者情報 (dim7.jp)</a>
         </p>
-        <div class="features">
-            <div class="feature">質問数: 16問</div>
-            <div class="feature">所要時間: 約2-3分</div>
-            <div class="feature">前回データ: 自動保存対応</div>
-        </div>
-    </section>
+        <p>&copy; 2026 1984dim7 dim7.jp</p>
+    </footer>
 
-    <section class="panel">
-        <h2>はじめる</h2>
-        <div class="status-box" id="save-status">保存データを確認中...</div>
+    <script>
+        const STORAGE_KEY = "owarai_diagnosis_v1";
+        const QUIZ_URL = "/owarai/quiz.html";
 
-        <div class="actions">
-            <button class="btn btn-primary" id="btn-start">新しく診断をはじめる
-                <small>保存データをリセットしてQ1から開始</small>
-            </button>
-            <button class="btn btn-resume" id="btn-resume" style="display:none;">途中から再開する
-                <small id="resume-detail">前回の続きから再開</small>
-            </button>
-            <button class="btn btn-result" id="btn-result" style="display:none;">前回の結果を見る
-                <small>診断済みの結果画面を表示</small>
-            </button>
-            <button class="btn btn-sub" id="btn-analytics" type="button">タイプ分布分析を開く
-                <small>3/28時点 2,484件の分布と軸傾向</small>
-            </button>
-        </div>
+        function loadState() {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return null;
 
-        <p class="muted">診断状態はこの端末のブラウザにのみ保存されます。サーバーには保存されません。</p>
-    </section>
-</main>
-
-<footer>
-    <p>
-        <a href="https://dim7.jp">運営者情報 (dim7.jp)</a>
-    </p>
-    <p>&copy; 2026 1984dim7 dim7.jp</p>
-</footer>
-
-<script>
-    const STORAGE_KEY = "owarai_diagnosis_v1";
-    const QUIZ_URL = "/owarai/quiz.html";
-
-    function loadState() {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return null;
-
-        try {
-            const parsed = JSON.parse(raw);
-            if (!parsed || parsed.version !== 1) return null;
-            return parsed;
-        } catch (_e) {
-            return null;
-        }
-    }
-
-    function formatDate(ts) {
-        if (!ts) return "不明";
-        const d = new Date(ts);
-        const yy = d.getFullYear();
-        const mm = String(d.getMonth() + 1).padStart(2, "0");
-        const dd = String(d.getDate()).padStart(2, "0");
-        const hh = String(d.getHours()).padStart(2, "0");
-        const mi = String(d.getMinutes()).padStart(2, "0");
-        return `${yy}/${mm}/${dd} ${hh}:${mi}`;
-    }
-
-    function jumpToQuiz() {
-        window.location.href = QUIZ_URL;
-    }
-
-    function init() {
-        const statusEl = document.getElementById("save-status");
-        const resumeBtn = document.getElementById("btn-resume");
-        const resultBtn = document.getElementById("btn-result");
-        const resumeDetail = document.getElementById("resume-detail");
-
-        const saved = loadState();
-
-        if (!saved) {
-            statusEl.innerHTML = "<strong>保存データなし</strong><br>新規診断を開始できます。";
-        } else if (saved.status === "completed" && saved.myResultData && saved.myResultData.typeKey) {
-            statusEl.innerHTML = `<strong>前回の結果が保存されています</strong><br>タイプ: ${saved.myResultData.typeKey} / 更新: ${formatDate(saved.updatedAt)}`;
-            resultBtn.style.display = "block";
-        } else {
-            const qNum = Number.isInteger(saved.currentIdx) ? saved.currentIdx + 1 : 1;
-            statusEl.innerHTML = `<strong>途中データが保存されています</strong><br>Q${qNum} から再開できます（更新: ${formatDate(saved.updatedAt)}）`;
-            resumeBtn.style.display = "block";
-            resumeDetail.textContent = `前回は Q${qNum} まで回答済み`;
+            try {
+                const parsed = JSON.parse(raw);
+                if (!parsed || parsed.version !== 1) return null;
+                return parsed;
+            } catch (_e) {
+                return null;
+            }
         }
 
-        document.getElementById("btn-start").addEventListener("click", () => {
-            localStorage.removeItem(STORAGE_KEY);
-            jumpToQuiz();
-        });
+        function formatDate(ts) {
+            if (!ts) return "不明";
+            const d = new Date(ts);
+            const yy = d.getFullYear();
+            const mm = String(d.getMonth() + 1).padStart(2, "0");
+            const dd = String(d.getDate()).padStart(2, "0");
+            const hh = String(d.getHours()).padStart(2, "0");
+            const mi = String(d.getMinutes()).padStart(2, "0");
+            return `${yy}/${mm}/${dd} ${hh}:${mi}`;
+        }
 
-        resumeBtn.addEventListener("click", jumpToQuiz);
-        resultBtn.addEventListener("click", jumpToQuiz);
+        function jumpToQuiz() {
+            window.location.href = QUIZ_URL;
+        }
 
-        document.getElementById("btn-analytics").addEventListener("click", () => {
-            window.location.href = "/owarai/analytics/";
-        });
-    }
+        function init() {
+            const statusEl = document.getElementById("save-status");
+            const resumeBtn = document.getElementById("btn-resume");
+            const resultBtn = document.getElementById("btn-result");
+            const resumeDetail = document.getElementById("resume-detail");
 
-    init();
-</script>
+            const saved = loadState();
+
+            if (!saved) {
+                statusEl.innerHTML = "<strong>保存データなし</strong><br>新規診断を開始できます。";
+            } else if (saved.status === "completed" && saved.myResultData && saved.myResultData.typeKey) {
+                statusEl.innerHTML = `<strong>前回の結果が保存されています</strong><br>タイプ: ${saved.myResultData.typeKey} / 更新: ${formatDate(saved.updatedAt)}`;
+                resultBtn.style.display = "block";
+            } else {
+                const qNum = Number.isInteger(saved.currentIdx) ? saved.currentIdx + 1 : 1;
+                statusEl.innerHTML = `<strong>途中データが保存されています</strong><br>Q${qNum} から再開できます（更新: ${formatDate(saved.updatedAt)}）`;
+                resumeBtn.style.display = "block";
+                resumeDetail.textContent = `前回は Q${qNum} まで回答済み`;
+            }
+
+            document.getElementById("btn-start").addEventListener("click", () => {
+                localStorage.removeItem(STORAGE_KEY);
+                jumpToQuiz();
+            });
+
+            resumeBtn.addEventListener("click", jumpToQuiz);
+            resultBtn.addEventListener("click", jumpToQuiz);
+
+            document.getElementById("btn-analytics").addEventListener("click", () => {
+                window.location.href = "/owarai/analytics/";
+            });
+        }
+
+        init();
+    </script>
 </body>
+
 </html>
