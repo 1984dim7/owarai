@@ -48,9 +48,9 @@
             /* Pink-200 */
 
             --text-main: #1e293b;
-            --text-sub: #64748b;
+            --text-sub: #475569;
             --bar-bg: #e2e8f0;
-            --passive-color: #94a3b8;
+            --passive-color: #64748b;
         }
 
         body {
@@ -937,8 +937,8 @@
 
     <div class="container" id="survey-area">
         <div class="survey-card">
-            <div class="survey-title">📊 ユーモア研究アンケート</div>
-            <div class="survey-subtitle">統計のために簡単な質問にご協力ください（スキップすることもできます）</div>
+            <div class="survey-title">さいごに</div>
+            <div class="survey-subtitle">簡単な質問にご協力ください（スキップすることもできます！）</div>
 
             <div class="survey-group">
                 <span class="survey-group-label">性別</span>
@@ -953,11 +953,15 @@
             <div class="survey-group">
                 <span class="survey-group-label">年齢層</span>
                 <div class="survey-options" id="survey-age">
-                    <button class="survey-opt" data-val="~19" onclick="surveySelect(this, 'age')">～19歳</button>
+                    <button class="survey-opt" data-val="~12" onclick="surveySelect(this, 'age')">～12歳</button>
+                    <button class="survey-opt" data-val="13-15" onclick="surveySelect(this, 'age')">13～15歳</button>
+                    <button class="survey-opt" data-val="16-19" onclick="surveySelect(this, 'age')">16～19歳</button>
                     <button class="survey-opt" data-val="20-29" onclick="surveySelect(this, 'age')">20代</button>
                     <button class="survey-opt" data-val="30-39" onclick="surveySelect(this, 'age')">30代</button>
                     <button class="survey-opt" data-val="40-49" onclick="surveySelect(this, 'age')">40代</button>
-                    <button class="survey-opt" data-val="50~" onclick="surveySelect(this, 'age')">50歳～</button>
+                    <button class="survey-opt" data-val="50-59" onclick="surveySelect(this, 'age')">50代</button>
+                    <button class="survey-opt" data-val="60~" onclick="surveySelect(this, 'age')">60代～</button>
+                    <button class="survey-opt" data-val="noanswer" onclick="surveySelect(this, 'age')">未回答</button>
                 </div>
             </div>
 
@@ -1113,19 +1117,23 @@
         <div class="glossary-section" id="compat-logic-section">
             <div class="glossary-title">相性の考え方</div>
             <div class="glossary-item">
-                <div class="g-head"><span class="g-tag blue">Logic/Absurd</span></div>
-                <div class="g-desc">逆が良い。ロジカルな人がナンセンスな人にツッコムを入れる、漫才の黄金構造。</div>
+                <div class="g-head"><span class="g-tag"
+                        style="color:#475569; background:#f1f5f9;">Logic/Absurd（理/乱）</span></div>
+                <div class="g-desc">逆が良い。ロジカルな人がナンセンスな人にツッコミを入れる、漫才の黄金構造。</div>
             </div>
             <div class="glossary-item">
-                <div class="g-head"><span class="g-tag blue">Harmony/Poison</span></div>
+                <div class="g-head"><span class="g-tag"
+                        style="color:#475569; background:#f1f5f9;">Harmony/Poison（和/毒）</span></div>
                 <div class="g-desc">同じが良い。毒舌同士は切磋琢磨でき、平和同士は安心して笑える。逆だと空気が壊れる。</div>
             </div>
             <div class="glossary-item">
-                <div class="g-head"><span class="g-tag blue">Static/Dynamic</span></div>
+                <div class="g-head"><span class="g-tag"
+                        style="color:#475569; background:#f1f5f9;">Static/Dynamic（静/動）</span></div>
                 <div class="g-desc">逆が良い。静と動のコントラストは笑いの基本。松本（静）と浜田（動）のような補完関係。</div>
             </div>
             <div class="glossary-item">
-                <div class="g-head"><span class="g-tag blue">Mass/Core</span></div>
+                <div class="g-head"><span class="g-tag" style="color:#475569; background:#f1f5f9;">Mass/Core（衆/深）</span>
+                </div>
                 <div class="g-desc">同じが良い。笑いの「文脈」を共有できるかが重要。マニア同士・大衆同士でないと同じネタで笑えない。</div>
             </div>
             <p style="font-size:0.7rem; color:#94a3b8; text-align:center; margin-top:10px; margin-bottom:0;">
