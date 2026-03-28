@@ -708,6 +708,141 @@
             }
         }
 
+        /* Survey Overlay */
+        #survey-area {
+            display: none;
+        }
+
+        .survey-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .survey-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .survey-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            margin-bottom: 20px;
+        }
+
+        .survey-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        .survey-group-label {
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            color: var(--text-main);
+        }
+
+        .survey-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .survey-opt {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid #e2e8f0;
+            background: #fff;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-sub);
+            transition: all 0.2s;
+        }
+
+        .survey-opt.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .survey-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .survey-actions button {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-survey-skip {
+            background: #f1f5f9;
+            color: var(--text-sub);
+        }
+
+        .btn-survey-submit {
+            background: var(--text-main);
+            color: #fff;
+        }
+
+        /* Compatibility Section */
+        .compat-section {
+            background: linear-gradient(135deg, #eff6ff 0%, #fef2f2 100%);
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .compat-label {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .compat-partner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .compat-kanji {
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .compat-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .compat-arrow {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+
+        .compat-note {
+            font-size: 0.65rem;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
         /* 100% Glow Effects */
         .glow-100-primary {
             box-shadow: 0 0 12px 2px var(--primary);
@@ -800,6 +935,52 @@
         </div>
     </div>
 
+    <div class="container" id="survey-area">
+        <div class="survey-card">
+            <div class="survey-title">📊 ユーモア研究アンケート</div>
+            <div class="survey-subtitle">統計のために簡単な質問にご協力ください（スキップすることもできます）</div>
+
+            <div class="survey-group">
+                <span class="survey-group-label">性別</span>
+                <div class="survey-options" id="survey-gender">
+                    <button class="survey-opt" data-val="male" onclick="surveySelect(this, 'gender')">男性</button>
+                    <button class="survey-opt" data-val="female" onclick="surveySelect(this, 'gender')">女性</button>
+                    <button class="survey-opt" data-val="other" onclick="surveySelect(this, 'gender')">その他</button>
+                    <button class="survey-opt" data-val="noanswer" onclick="surveySelect(this, 'gender')">未回答</button>
+                </div>
+            </div>
+
+            <div class="survey-group">
+                <span class="survey-group-label">年齢層</span>
+                <div class="survey-options" id="survey-age">
+                    <button class="survey-opt" data-val="~19" onclick="surveySelect(this, 'age')">～19歳</button>
+                    <button class="survey-opt" data-val="20-29" onclick="surveySelect(this, 'age')">20代</button>
+                    <button class="survey-opt" data-val="30-39" onclick="surveySelect(this, 'age')">30代</button>
+                    <button class="survey-opt" data-val="40-49" onclick="surveySelect(this, 'age')">40代</button>
+                    <button class="survey-opt" data-val="50~" onclick="surveySelect(this, 'age')">50歳～</button>
+                </div>
+            </div>
+
+            <div class="survey-group">
+                <span class="survey-group-label">お笑いの情報源</span>
+                <div class="survey-options" id="survey-source">
+                    <button class="survey-opt" data-val="tv" onclick="surveySelect(this, 'source')">テレビ</button>
+                    <button class="survey-opt" data-val="youtube"
+                        onclick="surveySelect(this, 'source')">YouTube</button>
+                    <button class="survey-opt" data-val="live" onclick="surveySelect(this, 'source')">劇場・ライブ</button>
+                    <button class="survey-opt" data-val="radio"
+                        onclick="surveySelect(this, 'source')">ラジオ・ポッドキャスト</button>
+                    <button class="survey-opt" data-val="sns" onclick="surveySelect(this, 'source')">SNS・ショート動画</button>
+                </div>
+            </div>
+
+            <div class="survey-actions">
+                <button class="btn-survey-skip" onclick="submitSurvey(true)">スキップ</button>
+                <button class="btn-survey-submit" onclick="submitSurvey(false)">送信して結果を見る</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container" id="result-area">
 
         <div class="result-header-compact">
@@ -879,6 +1060,15 @@
                 <span class="desc-label">類似するスタイル</span>
                 <div class="desc-text" id="res-ref" style="font-style: italic; color:#666;"></div>
             </div>
+            <div class="compat-section" id="compat-section">
+                <div class="compat-label">🤝 最高の相性</div>
+                <div class="compat-partner" id="compat-partner" onclick="showCompatPartner()">
+                    <span class="compat-kanji" id="compat-kanji"></span>
+                    <span class="compat-title" id="compat-title"></span>
+                    <span class="compat-arrow">▶</span>
+                </div>
+                <div class="compat-note">※あくまで個人の感想になります</div>
+            </div>
         </div>
 
         <!-- admax -->
@@ -915,6 +1105,28 @@
                     <strong>衆：</strong>老若男女誰にでも伝わる、テレビ的で王道な分かりやすい笑い。<br><strong>深：</strong>文脈や元ネタを知らないと笑えない、アングラでマニアックな笑い。
                 </div>
             </div>
+        </div>
+
+        <div class="glossary-section" id="compat-logic-section">
+            <div class="glossary-title">相性の考え方</div>
+            <div class="glossary-item">
+                <div class="g-head"><span class="g-tag blue">Logic/Absurd</span></div>
+                <div class="g-desc">逆が良い。ロジカルな人がナンセンスな人にツッコムを入れる、漫才の黄金構造。</div>
+            </div>
+            <div class="glossary-item">
+                <div class="g-head"><span class="g-tag blue">Harmony/Poison</span></div>
+                <div class="g-desc">同じが良い。毒舌同士は切磋琢磨でき、平和同士は安心して笑える。逆だと空気が壊れる。</div>
+            </div>
+            <div class="glossary-item">
+                <div class="g-head"><span class="g-tag blue">Static/Dynamic</span></div>
+                <div class="g-desc">逆が良い。静と動のコントラストは笑いの基本。松本（静）と浜田（動）のような補完関係。</div>
+            </div>
+            <div class="glossary-item">
+                <div class="g-head"><span class="g-tag blue">Mass/Core</span></div>
+                <div class="g-desc">同じが良い。笑いの「文脈」を共有できるかが重要。マニア同士・大衆同士でないと同じネタで笑えない。</div>
+            </div>
+            <p style="font-size:0.7rem; color:#94a3b8; text-align:center; margin-top:10px; margin-bottom:0;">
+                ※あくまで個人の感想になります</p>
         </div>
 
         <div class="share-area">
@@ -973,6 +1185,17 @@
             { axis: "SD", text: "より面白い人のスタイルといえば", left: "言葉と間（ま）で魅せる", right: "動きや顔芸で圧倒する" },
             { axis: "MC", text: "メディアの好みは", left: "ゴールデンタイムのテレビ番組", right: "深夜ラジオやアングラな配信" }
         ];
+
+        const bestPartnerMap = {
+            "LHDM": "AHSM", "LHDC": "AHSC", "LHSM": "AHDM", "LHSC": "AHDC",
+            "LPDM": "APSM", "LPDC": "APSC", "LPSM": "APDM", "LPSC": "APDC",
+            "AHDM": "LHSM", "AHDC": "LHSC", "AHSM": "LHDM", "AHSC": "LHDC",
+            "APDM": "LPSM", "APDC": "LPSC", "APSM": "LPDM", "APSC": "LPDC"
+        };
+
+        let surveyData = { gender: null, age: null, source: null };
+        let pendingTypeKey = null;
+        let pendingScores = null;
 
         const typesDB = {
             "LHDM": { title: "「王道エンターテイナー」", overview: "「理・和・動・衆」。あなたは明快さ、優しさ、勢いを兼ね備えた、テレビのゴールデンタイムのような存在です。誰も傷つけず、誰にでも伝わるネタを、圧倒的な熱量で提供します。", role: "場のMC、盛り上げ役", tags: ["MC気質", "リアクション芸", "人気者"], ref: "明石家さんま、ザキヤマ、NON STYLE" },
@@ -1134,7 +1357,7 @@
                 renderQuestion();
                 saveState("in_progress");
             } else {
-                calcAndShowResults();
+                showSurvey();
             }
         }
 
@@ -1146,31 +1369,68 @@
             }
         }
 
-        function calcAndShowResults() {
+        function calcScores() {
             let scores = { LA: 0, HP: 0, SD: 0, MC: 0 };
             questions.forEach((q, i) => {
                 const val = userAnswers[i];
                 if (val !== null) scores[q.axis] += val;
             });
-
             const t1 = scores.LA <= 0 ? "L" : "A";
             const t2 = scores.HP <= 0 ? "H" : "P";
             const t3 = scores.SD <= 0 ? "S" : "D";
             const t4 = scores.MC <= 0 ? "M" : "C";
-            const typeKey = t1 + t2 + t3 + t4;
+            return { typeKey: t1 + t2 + t3 + t4, scores };
+        }
 
-            myResultData = { typeKey: typeKey, scores: scores };
+        function showSurvey() {
+            const result = calcScores();
+            pendingTypeKey = result.typeKey;
+            pendingScores = result.scores;
+            document.getElementById('quiz-area').classList.add('hidden');
+            document.getElementById('survey-area').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function surveySelect(btn, group) {
+            document.querySelectorAll(`#survey-${group} .survey-opt`).forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            surveyData[group] = btn.dataset.val;
+        }
+
+        function submitSurvey(skipped) {
+            if (!skipped && typeof gtag !== 'undefined') {
+                gtag('event', 'survey_response', {
+                    'event_category': 'demographics',
+                    'event_label': `gender:${surveyData.gender || 'none'}_age:${surveyData.age || 'none'}_source:${surveyData.source || 'none'}_type:${pendingTypeKey}`,
+                    'value': 1
+                });
+                if (surveyData.gender) {
+                    gtag('event', 'survey_gender', { 'event_category': 'demographics', 'event_label': surveyData.gender });
+                }
+                if (surveyData.age) {
+                    gtag('event', 'survey_age', { 'event_category': 'demographics', 'event_label': surveyData.age });
+                }
+                if (surveyData.source) {
+                    gtag('event', 'survey_source', { 'event_category': 'demographics', 'event_label': surveyData.source });
+                }
+            } else if (skipped && typeof gtag !== 'undefined') {
+                gtag('event', 'survey_skipped', { 'event_category': 'demographics', 'event_label': pendingTypeKey });
+            }
+
+            document.getElementById('survey-area').style.display = 'none';
+
+            myResultData = { typeKey: pendingTypeKey, scores: pendingScores };
             saveState("completed");
 
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'diagnosis_complete', {
                     'event_category': 'humor_type',
-                    'event_label': typeKey,
+                    'event_label': pendingTypeKey,
                     'value': 1
                 });
             }
 
-            renderResults(typeKey, scores, false);
+            renderResults(pendingTypeKey, pendingScores, false);
         }
 
         function renderResults(typeKey, scores, isLibrary) {
@@ -1193,6 +1453,27 @@
             document.getElementById('res-role').innerText = data.role;
             document.getElementById('res-ref').innerText = data.ref;
             document.getElementById('res-tags').innerHTML = data.tags.map(t => `<span class="tag">#${t}</span>`).join('');
+
+            // Compatibility
+            const compatSection = document.getElementById('compat-section');
+            const compatLogicSection = document.getElementById('compat-logic-section');
+            const partnerKey = bestPartnerMap[typeKey];
+            if (partnerKey && typesDB[partnerKey]) {
+                const partnerData = typesDB[partnerKey];
+                let partnerKanjiHTML = '';
+                partnerKey.split('').forEach(c => {
+                    const k = kanjiMap[c];
+                    partnerKanjiHTML += `<span style="color:var(--${k.color === 'k-blue' ? 'primary' : 'accent'})">${k.char}</span>`;
+                });
+                document.getElementById('compat-kanji').innerHTML = partnerKanjiHTML;
+                document.getElementById('compat-title').innerText = partnerData.title;
+                compatSection.style.display = 'block';
+                compatSection.dataset.partnerKey = partnerKey;
+                if (compatLogicSection) compatLogicSection.style.display = 'block';
+            } else {
+                compatSection.style.display = 'none';
+                if (compatLogicSection) compatLogicSection.style.display = 'none';
+            }
 
             const rarityPct = ((distributionData[typeKey] / totalUsers) * 100).toFixed(1);
             const rarityEl = document.getElementById('res-rarity');
@@ -1267,6 +1548,21 @@
                     lblR.innerText = `${displayPercentage} ${labelRight}`;
                     fill.style.width = (percentage / 2) + '%';
                 }
+            }
+        }
+
+        function showCompatPartner() {
+            const compatSection = document.getElementById('compat-section');
+            const partnerKey = compatSection.dataset.partnerKey;
+            if (partnerKey && typesDB[partnerKey]) {
+                renderResults(partnerKey, null, true);
+                const btnReturn = document.getElementById('btn-return');
+                btnReturn.style.display = 'block';
+                if (myResultData) {
+                    btnReturn.innerText = '自分の結果に戻る';
+                    btnReturn.onclick = returnToMyResult;
+                }
+                window.scrollTo(0, 0);
             }
         }
 
