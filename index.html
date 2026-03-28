@@ -13,370 +13,1236 @@
         gtag('config', 'G-LHGSRCJ4YG');
     </script>
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6469478872018956"
+        crossorigin="anonymous"></script>
+
     <meta property="og:title" content="お笑い16タイプ(MBTI)診断">
-    <meta property="og:description" content="あなたの笑いのスタイルを16タイプで診断。前回の続きから再開できます。">
+    <meta property="og:description" content="話題の「お笑いMBTI」を診断！16問の質問であなたの「笑いのタイプ」を精密診断します。">
     <meta property="og:url" content="https://dim7.jp/owarai/">
     <meta property="og:image" content="https://dim7.jp/owarai/ogp_image.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="description" content="お笑い16タイプ診断の開始ページ。新規診断、続きから再開、前回結果の確認に対応。">
+    <meta name="description" content="16問の質問であなたの笑いのタイプを診断。結果をSNSでシェアできます。">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お笑い16タイプ診断 | スタート</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Shippori+Mincho:wght@700&display=swap"
-        rel="stylesheet">
+    <title>お笑い16タイプ診断</title>
 
     <style>
         :root {
-            --text-main: #333333;
-            --text-muted: #777777;
-            --bg-body: #faf9f6;
-            --bg-card: #ffffff;
-            --border-color: #eae8e1;
-            --btn-primary: #333333;
-            --btn-primary-text: #ffffff;
-            --btn-secondary: #f4f3ef;
-            --btn-secondary-text: #333333;
-            --btn-border: #dcdacb;
-        }
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --primary: #3b82f6;
+            /* Blue */
+            --primary-light: #dbeafe;
+            /* Blue-100 */
+            --accent: #ef4444;
+            /* Red */
+            --accent-light: #fee2e2;
+            /* Red-100 */
+            --grad-1: #c7d2fe;
+            /* Indigo-200 */
+            --grad-2: #e9d5ff;
+            /* Purple-200 */
+            --grad-3: #fbcfe8;
+            /* Pink-200 */
 
-        * {
-            box-sizing: border-box;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+            --bar-bg: #e2e8f0;
+            --passive-color: #94a3b8;
         }
 
         body {
-            margin: 0;
+            font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-            background-color: var(--bg-body);
-            min-height: 100vh;
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            line-height: 1.6;
+            min-height: 100vh;
         }
 
         header {
-            padding: 20px 24px;
-            background: var(--bg-body);
-        }
-
-        .head-inner {
-            max-width: 900px;
-            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 16px;
         }
 
-        .head-title {
-            margin: 0;
-            font-size: 1.05rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-
-        .head-links {
+        .header-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
             display: flex;
-            gap: 16px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 800;
         }
 
         .head-links a {
-            color: var(--text-muted);
+            color: var(--text-sub);
             text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
 
-        .head-links a:hover {
-            color: var(--text-main);
-        }
-
-        main {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 24px 80px;
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: start;
-        }
-
-        .hero h1 {
-            margin: 0 0 24px;
-            font-family: "Shippori Mincho", serif;
-            font-size: clamp(1.6rem, 3vw, 2.4rem);
-            line-height: 1.4;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .hero p {
-            margin: 0;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .panel {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 36px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-        }
-
-        .panel h2 {
-            margin: 0 0 20px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 12px;
-        }
-
-        .status-box {
-            background: var(--bg-body);
-            border-radius: 8px;
-            padding: 16px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            text-align: center;
-        }
-
-        .status-box strong {
-            color: var(--text-main);
-            display: block;
-            margin-bottom: 4px;
-            font-size: 0.95rem;
-        }
-
-        .actions {
-            display: grid;
-            gap: 12px;
-        }
-
-        .btn {
-            border: none;
-            border-radius: 8px;
-            padding: 16px 20px;
-            font-weight: 700;
-            cursor: pointer;
-            text-align: center;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-            text-decoration: none;
+        .container {
+            max-width: 600px;
+            margin: 20px auto 40px;
+            padding: 0 20px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
 
-        .btn small {
+        /* Quiz Styles */
+        .q-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        /* Progress bar styling */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: var(--bar-bg);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .q-meta {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-bottom: 10px;
             display: block;
-            margin-top: 6px;
-            font-weight: 400;
-            font-size: 0.75rem;
-            opacity: 0.8;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
-        .btn-primary {
-            background-color: var(--btn-primary);
-            color: var(--btn-primary-text);
+        .q-text {
+            font-size: 1.15rem;
+            font-weight: bold;
+            margin: 10px 0 30px;
+            line-height: 1.5;
+            min-height: 3.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .btn-primary:hover {
-            background-color: #1a1a1a;
+        .options-container {
+            margin-bottom: 20px;
         }
 
-        .btn-resume {
-            background-color: var(--btn-secondary);
-            color: var(--btn-secondary-text);
-            border: 1px solid var(--btn-border);
+        .option-text {
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
         }
 
-        .btn-resume:hover {
-            background-color: #ebeae1;
+        .option-left {
+            color: var(--primary);
         }
 
-        .btn-result {
-            background-color: #fffaf0;
-            color: #b75e00;
-            border: 1px solid #f0e6d2;
+        .option-right {
+            color: var(--accent);
+            margin-top: 15px;
         }
 
-        .btn-result:hover {
-            background-color: #fdf5e6;
+        .vs-label {
+            font-size: 0.7rem;
+            color: #cbd5e1;
+            margin: 5px 0;
+            display: block;
         }
 
-        .btn-sub {
-            background-color: transparent;
-            color: var(--text-muted);
-            border: 1px solid transparent;
+        /* Track & Buttons */
+        .gradient-track {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            height: 50px;
+            margin: 20px 0;
+            padding: 0 0px;
+            gap: 6px;
         }
 
-        .btn-sub:hover {
-            background-color: var(--bg-body);
+        .center-mark {
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            bottom: 20%;
+            width: 1px;
+            background: #cbd5e1;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .scale-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #cbd5e1;
+            background: #fff;
+            cursor: pointer;
+            z-index: 1;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .scale-btn[data-val="-3"] {
+            width: 42px;
+            height: 42px;
+            border-color: var(--primary);
+            border-width: 2px;
+        }
+
+        .scale-btn[data-val="-2"] {
+            width: 36px;
+            height: 36px;
+            border-color: #60a5fa;
+        }
+
+        .scale-btn[data-val="-1"] {
+            width: 30px;
+            height: 30px;
+            border-color: #93c5fd;
+        }
+
+        .scale-btn[data-val="1"] {
+            width: 30px;
+            height: 30px;
+            border-color: #fca5a5;
+        }
+
+        .scale-btn[data-val="2"] {
+            width: 36px;
+            height: 36px;
+            border-color: #f87171;
+        }
+
+        .scale-btn[data-val="3"] {
+            width: 42px;
+            height: 42px;
+            border-color: var(--accent);
+            border-width: 2px;
+        }
+
+        .scale-btn.selected-left {
+            background-color: var(--primary-light);
+            border-color: var(--primary) !important;
+            transform: scale(1.1);
+        }
+
+        .scale-btn.selected-right {
+            background-color: var(--accent-light);
+            border-color: var(--accent) !important;
+            transform: scale(1.1);
+        }
+
+        .nav-area {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            border: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn-back {
+            background: #f1f5f9;
+            color: var(--text-sub);
+        }
+
+        .btn-next {
+            background: var(--text-main);
+            color: #fff;
+        }
+
+        .btn-next:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+
+        /* Result Area */
+        #result-area {
+            display: none;
+            padding-bottom: 80px;
+        }
+
+        .result-header-compact {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .result-sub-label {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .result-kanji-box {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 5px;
+        }
+
+        .kanji-char {
+            font-size: 2.0rem;
+            font-weight: 900;
             color: var(--text-main);
+            line-height: 1;
         }
 
-        .muted {
-            margin-top: 24px;
-            color: var(--text-muted);
+        .result-code-sub {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-sub);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .type-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .result-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+        }
+
+        /* Chart */
+        .mbti-chart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .chart-row {
+            width: 100%;
+        }
+
+        .chart-labels {
+            display: flex;
+            justify-content: space-between;
             font-size: 0.75rem;
-            text-align: center;
+            margin-bottom: 4px;
+            align-items: flex-end;
         }
 
-        footer {
-            margin-top: auto;
-            padding: 40px 20px;
-            text-align: center;
-            color: var(--text-muted);
+        .lbl-active {
+            font-weight: bold;
+            opacity: 1;
             font-size: 0.8rem;
         }
 
-        footer a {
-            color: var(--text-muted);
-            text-decoration: underline;
+        .lbl-passive {
+            font-weight: normal;
+            opacity: 0.5;
+            color: var(--passive-color) !important;
+            font-size: 0.75rem;
         }
 
-        footer a:hover {
+        .lbl-left.lbl-active {
+            color: var(--primary);
+        }
+
+        .lbl-right.lbl-active {
+            color: var(--accent);
+        }
+
+        .chart-bar-bg {
+            position: relative;
+            height: 10px;
+            background-color: var(--bar-bg);
+            border-radius: 5px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .chart-center-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #fff;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .chart-fill {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            transition: width 1s ease-out;
+        }
+
+        .fill-left {
+            right: 50%;
+            background-color: var(--primary);
+            border-radius: 5px 0 0 5px;
+        }
+
+        .fill-right {
+            left: 50%;
+            background-color: var(--accent);
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* Descriptions */
+        .desc-section {
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .desc-section:last-child {
+            border: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .desc-label {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .desc-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin: 0 4px 4px 0;
+            color: #475569;
+        }
+
+        /* Glossary Section */
+        .glossary-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .glossary-title {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
             color: var(--text-main);
         }
 
-        @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 30px 24px 60px;
-            }
+        .glossary-item {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
 
-            .panel {
-                padding: 24px;
-            }
+        .glossary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .g-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+        }
+
+        .g-tag {
+            font-weight: bold;
+            font-size: 0.8rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .g-tag.blue {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .g-tag.red {
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .g-desc {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            line-height: 1.4;
+        }
+
+        /* Library */
+        .library-section {
+            margin-top: 40px;
+        }
+
+        .lib-title {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .lib-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .lib-card {
+            background: #fff;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s;
+        }
+
+        .lib-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .lib-kanji {
+            font-size: 1rem;
+            font-weight: 900;
+            margin-bottom: 4px;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .lib-name {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        .btn-restart {
+            display: block;
+            width: 100%;
+            margin: 40px auto 10px;
+            padding: 15px;
+            background: transparent;
+            color: var(--text-sub);
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .share-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .btn-share {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-x {
+            background: #000;
+        }
+
+        .btn-insta {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* Floating Return Button */
+        .floating-return-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-main);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            cursor: pointer;
+            border: none;
+            display: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .k-blue {
+            color: var(--primary);
+        }
+
+        .k-red {
+            color: var(--accent);
+        }
+
+        .previous-result-link {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+            display: inline-block;
+            padding: 5px;
         }
     </style>
 </head>
 
 <body>
+
     <header>
-        <div class="head-inner">
-            <p class="head-title">お笑い16タイプ診断(お笑いMBTI)</p>
+        <div class="header-inner">
+            <h1>お笑い16タイプ診断</h1>
             <nav class="head-links">
                 <a href="/owarai/analytics/">分布分析</a>
-                <a href="/owarai/privacy.html">プライバシーポリシー</a>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>あなたの笑いは、<br>16タイプのどこにいる？</h1>
-            <p>
-                16問の質問から、笑いのスタイルを4軸で分析。
-                「理/乱」「和/毒」「静/動」「衆/深」の組み合わせで、あなたのユーモアタイプを診断します。
-            </p>
-        </section>
-
-        <section class="panel">
-            <h2>はじめる</h2>
-            <div class="status-box" id="save-status">保存データを確認中...</div>
-
-            <div class="actions">
-                <button class="btn btn-primary" id="btn-start">新しく診断をはじめる
-                    <small>保存データをリセットしてQ1から開始</small>
-                </button>
-                <button class="btn btn-resume" id="btn-resume" style="display:none;">途中から再開する
-                    <small id="resume-detail">前回の続きから再開</small>
-                </button>
-                <button class="btn btn-result" id="btn-result" style="display:none;">前回の結果を見る
-                    <small>診断済みの結果画面を表示</small>
-                </button>
-                <button class="btn btn-sub" id="btn-analytics" type="button">タイプ分布分析を開く
-                    <small>3/28時点 2,484件の分布と軸傾向</small>
-                </button>
+    <div class="container" id="quiz-area">
+        <div class="q-card">
+            <div class="progress-container">
+                <div class="progress-fill" id="progress-bar-fill"></div>
             </div>
 
-            <p class="muted">診断状態はこの端末のブラウザにのみ保存されます。サーバーには保存されません。</p>
-        </section>
-    </main>
+            <div id="previous-result-container" class="hidden"
+                style="text-align:right; margin-bottom: 5px; margin-top:-10px;">
+                <span class="previous-result-link" onclick="returnToMyResult()">💡前回の結果を見る</span>
+            </div>
 
-    <footer>
-        <p>
-            <a href="https://dim7.jp">運営者情報 (dim7.jp)</a>
-        </p>
-        <p>&copy; 2026 1984dim7 dim7.jp</p>
-    </footer>
+            <div>
+                <span class="q-meta" id="q-progress">Q1 / 16</span>
+                <div class="q-text" id="q-text">質問文</div>
+
+                <div class="options-container">
+                    <span class="option-text option-left" id="opt-left">左</span>
+                    <span class="vs-label">vs</span>
+                    <span class="option-text option-right" id="opt-right">右</span>
+                </div>
+
+                <div class="gradient-track">
+                    <div class="center-mark"></div>
+                    <button class="scale-btn" onclick="select(this, -3)" data-val="-3"></button>
+                    <button class="scale-btn" onclick="select(this, -2)" data-val="-2"></button>
+                    <button class="scale-btn" onclick="select(this, -1)" data-val="-1"></button>
+                    <div style="width: 20px"></div>
+                    <button class="scale-btn" onclick="select(this, 1)" data-val="1"></button>
+                    <button class="scale-btn" onclick="select(this, 2)" data-val="2"></button>
+                    <button class="scale-btn" onclick="select(this, 3)" data-val="3"></button>
+                </div>
+            </div>
+
+            <div class="nav-area">
+                <button class="nav-btn btn-back" id="btn-back" onclick="prevQuestion()">戻る</button>
+                <button class="nav-btn btn-next" id="btn-next" onclick="nextQuestion()" disabled>次へ</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="result-area">
+
+        <div class="result-header-compact">
+            <div class="result-sub-label">あなたのユーモアタイプ</div>
+            <div class="result-kanji-box" id="res-kanji">
+                <span class="kanji-char">理</span><span class="kanji-char">和</span><span class="kanji-char">動</span><span
+                    class="kanji-char">衆</span>
+            </div>
+            <div class="result-code-sub" id="res-code">LHDM</div>
+            <div class="type-title" id="res-title">「王道エンターテイナー」</div>
+        </div>
+
+        <div class="result-content">
+            <div class="mbti-chart-container" id="mbti-chart">
+                <div class="chart-row">
+                    <div class="chart-labels">
+                        <span class="lbl-left" id="lbl-L">Logic (理)</span>
+                        <span class="lbl-right" id="lbl-A">Absurd (乱)</span>
+                    </div>
+                    <div class="chart-bar-bg">
+                        <div class="chart-center-line"></div>
+                        <div class="chart-fill" id="fill-LA"></div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-labels">
+                        <span class="lbl-left" id="lbl-H">Harmony (和)</span>
+                        <span class="lbl-right" id="lbl-P">Poison (毒)</span>
+                    </div>
+                    <div class="chart-bar-bg">
+                        <div class="chart-center-line"></div>
+                        <div class="chart-fill" id="fill-HP"></div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-labels">
+                        <span class="lbl-left" id="lbl-S">Static (静)</span>
+                        <span class="lbl-right" id="lbl-D">Dynamic (動)</span>
+                    </div>
+                    <div class="chart-bar-bg">
+                        <div class="chart-center-line"></div>
+                        <div class="chart-fill" id="fill-SD"></div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-labels">
+                        <span class="lbl-left" id="lbl-M">Mass (衆)</span>
+                        <span class="lbl-right" id="lbl-C">Core (深)</span>
+                    </div>
+                    <div class="chart-bar-bg">
+                        <div class="chart-center-line"></div>
+                        <div class="chart-fill" id="fill-MC"></div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 0.7rem; color: #94a3b8; margin-top: -15px; margin-bottom: 25px;">
+                ※スコアが拮抗（Balance）した場合は、左側（青）の属性として判定されます。
+            </p>
+
+            <div class="desc-section">
+                <span class="desc-label">特徴</span>
+                <div class="desc-text" id="res-overview"></div>
+            </div>
+            <div class="desc-section">
+                <span class="desc-label">集団での役割</span>
+                <div class="desc-text" id="res-role"></div>
+            </div>
+            <div class="desc-section">
+                <span class="desc-label">キーワード</span>
+                <div id="res-tags"></div>
+            </div>
+            <div class="desc-section">
+                <span class="desc-label">類似するスタイル</span>
+                <div class="desc-text" id="res-ref" style="font-style: italic; color:#666;"></div>
+            </div>
+        </div>
+
+        <!-- admax -->
+        <script src="https://adm.shinobi.jp/s/e0384b154740c1643a1bc48c6737f1d7"></script>
+        <!-- admax -->
+
+        <div class="glossary-section">
+            <div class="glossary-title">パラメータ解説</div>
+            <div class="glossary-item">
+                <div class="g-head"><span class="g-tag blue">Logic (理)</span> vs <span class="g-tag red">Absurd
+                        (乱)</span></div>
+                <div class="g-desc">
+                    <strong>理：</strong>伏線回収や構成美、あるあるネタなど、筋の通った笑い。<br><strong>乱：</strong>意味不明な展開、ナンセンス、予測不能なカオスを楽しむ笑い。
+                </div>
+            </div>
+            <div class="glossary-item">
+                <div class="g-head"><span class="g-tag blue">Harmony (和)</span> vs <span class="g-tag red">Poison
+                        (毒)</span></div>
+                <div class="g-desc">
+                    <strong>和：</strong>誰も傷つけない、共感性の高い平和な笑い。自虐（ドジ）も含む。<br><strong>毒：</strong>皮肉、風刺、ブラックジョーク。対象を批判・攻撃する笑い。
+                </div>
+            </div>
+            <div class="glossary-item">
+                <div class="g-head"><span class="g-tag blue">Static (静)</span> vs <span class="g-tag red">Dynamic
+                        (動)</span></div>
+                <div class="g-desc">
+                    <strong>静：</strong>言葉のチョイス、間（ま）、無表情な演技で魅せる知的な笑い。<br><strong>動：</strong>大声、顔芸、リズム、激しい動きで圧倒するフィジカルな笑い。
+                </div>
+            </div>
+            <div class="glossary-item">
+                <div class="g-head"><span class="g-tag blue">Mass (衆)</span> vs <span class="g-tag red">Core (深)</span>
+                </div>
+                <div class="g-desc">
+                    <strong>衆：</strong>老若男女誰にでも伝わる、テレビ的で王道な分かりやすい笑い。<br><strong>深：</strong>文脈や元ネタを知らないと笑えない、アングラでマニアックな笑い。
+                </div>
+            </div>
+        </div>
+
+        <div class="share-area">
+            <button class="btn-share btn-x" onclick="shareX()">
+                <span style="font-size:1.2rem">𝕏</span> 結果をポスト
+            </button>
+            <button class="btn-share btn-insta" onclick="shareInsta()">
+                <span style="font-size:1.2rem">📸</span> ストーリーズで共有
+            </button>
+        </div>
+
+        <div class="library-section">
+            <div class="lib-title">タイプ図鑑（全16種）</div>
+            <div class="lib-grid" id="lib-grid"></div>
+        </div>
+
+        <button class="btn-restart" onclick="restartDiagnosis()">最初から再診断する</button>
+
+        <div style="text-align: center; margin-top:20px;">
+            <p style="font-size:0.8rem; color:#888;"><a href="/owarai/privacy.html" style="color:#888;">プライバシーポリシー</a>
+            </p>
+        </div>
+        <button class="floating-return-btn" id="btn-return" onclick="returnToMyResult()">自分の結果に戻る</button>
+    </div>
 
     <script>
+        // --- Configuration ---
+        const kanjiMap = {
+            "L": { char: "理", color: "k-blue" }, "A": { char: "乱", color: "k-red" },
+            "H": { char: "和", color: "k-blue" }, "P": { char: "毒", color: "k-red" },
+            "S": { char: "静", color: "k-blue" }, "D": { char: "動", color: "k-red" },
+            "M": { char: "衆", color: "k-blue" }, "C": { char: "深", color: "k-red" }
+        };
+
+        const questions = [
+            { axis: "LA", text: "より惹かれる言葉遊びは？", left: "巧みなダジャレ・“うまい”こと", right: "謎の造語・語感・勢い" },
+            { axis: "HP", text: "友人との会話で盛り上がるのは？", left: "「あるある！」と共感できる話", right: "偏見に満ちた毒舌・悪口" },
+            { axis: "SD", text: "顔芸や身体を張ったリアクションについて", left: "ややわざとらしく感じることもある", right: "理屈抜きで笑えるので好き" },
+            { axis: "MC", text: "好きなネタのターゲット層", left: "老若男女だれでも笑える", right: "分かる奴だけ笑えばいい" },
+            { axis: "LA", text: "話の「オチ」について", left: "納得感のある結末が好き", right: "投げっぱなしの結末が好き" },
+            { axis: "HP", text: "ブラックジョークや不謹慎ネタ", left: "人が傷つくなら笑えない", right: "タブーを突くブラックユーモアに惹かれる" },
+            { axis: "SD", text: "気まずい沈黙が流れたとき", left: "沈黙を静観して楽しむ", right: "喋り倒して埋めようとする" },
+            { axis: "MC", text: "コンテンツの選び方", left: "流行りの話題を共有したい", right: "知る人ぞ知る深淵を覗きたい" },
+            { axis: "LA", text: "笑いの好みとして、どちらがより重要？", left: "「なるほど！」と感心する構成の上手さ", right: "「なんだそれ！」と笑える予測不能さ" },
+            { axis: "HP", text: "自分の失敗談を話すなら", left: "「ドジな自分」で場を和ませる", right: "「遭遇した不条理」を笑いにする" },
+            { axis: "SD", text: "好きなトークのリズム", left: "忘れた頃にボソッと言う一言", right: "畳み掛けるマシンガントーク" },
+            { axis: "MC", text: "王道やベタな展開", left: "安心感があってやっぱり最高", right: "予測できて退屈。裏切ってほしい" },
+            { axis: "LA", text: "不可解な現象への反応", left: "「なんでだよ！」と理由をツッコむ", right: "理由より勢いを楽しむ" },
+            { axis: "HP", text: "仲の良い相手へのイジりは", left: "愛があっても慎重になる", right: "信頼関係があればキツめのイジりも成立すると思う" },
+            { axis: "SD", text: "より面白い人のスタイルといえば", left: "言葉と間（ま）で魅せる", right: "動きや顔芸で圧倒する" },
+            { axis: "MC", text: "メディアの好みは", left: "ゴールデンタイムのテレビ番組", right: "深夜ラジオやアングラな配信" }
+        ];
+
+        const typesDB = {
+            "LHDM": { title: "「王道エンターテイナー」", overview: "「理・和・動・衆」。あなたは明快さ、優しさ、勢いを兼ね備えた、テレビのゴールデンタイムのような存在です。誰も傷つけず、誰にでも伝わるネタを、圧倒的な熱量で提供します。", role: "場のMC、盛り上げ役", tags: ["MC気質", "リアクション芸", "人気者"], ref: "明石家さんま、ザキヤマ、NON STYLE" },
+            "LHDC": { title: "「熱血オタク解説者」", overview: "「理・和・動・深」。特定ジャンルへの深い愛を、論理的かつハイテンションに語り尽くすプレゼンの天才。興味のない人さえもその熱量で笑わせてしまいます。", role: "愛すべきマニア、伝道師", tags: ["早口", "推し語り", "知識量"], ref: "さかなクン、カズレーザー、令和ロマン" },
+            "LHSM": { title: "「癒やしの観察者」", overview: "「理・和・静・衆」。日常の「あるある」を穏やかなトーンで丁寧に切り取るスタイル。爆笑よりも「共感」と「安心」を生み出すバランサーです。", role: "ニコニコ見守る保護者", tags: ["エッセイスト", "平和主義", "共感"], ref: "博多華丸・大吉、阿佐ヶ谷姉妹、ずん（やす）" },
+            "LHSC": { title: "「書斎の賢者」", overview: "「理・和・静・深」。豊富な知識と教養を背景に、静かにウィットに富んだジョークを飛ばすタイプ。大声ではなく、知的な「気づき」でニヤリとさせます。", role: "一瞬で場をさらうスナイパー", tags: ["言葉遊び", "教養", "含蓄"], ref: "バカリズム、又吉直樹、小林賢太郎" },
+            "LPDM": { title: "「マシンガン毒舌」", overview: "「理・毒・動・衆」。正論を武器に、世の中の不満を大声で代弁するタイプ。その攻撃性は、大衆が言いたくても言えないことを言うカタルシスとして機能します。", role: "会議の切り込み隊長", tags: ["論破", "ツッコミ", "代弁者"], ref: "上田晋也、フット後藤、霜降り明星せいや" },
+            "LPDC": { title: "「反骨の扇動者」", overview: "「理・毒・動・深」。マニアックな敵や社会構造を、激しい勢いで批判するカリスマ。一般人には理解不能な文脈で怒りを表現するため、信者から熱狂的に支持されます。", role: "革命家のようなリーダー", tags: ["教祖", "反骨精神", "ラジオ"], ref: "太田光、さらば青春の光（森田）、鬼越トマホーク" },
+            "LPSM": { title: "「冷徹なご意見番」", overview: "「理・毒・静・衆」。一歩引いた視点から、世間の浮かれ気分をボソッと論理的に刺すスタイル。無表情で放たれる毒は切れ味が鋭く、周囲を凍りつかせつつ笑わせます。", role: "冷静にさせるお目付け役", tags: ["皮肉屋", "デッドパン", "スカした態度"], ref: "マツコ・デラックス、オードリー若林、有吉弘行" },
+            "LPSC": { title: "「地下の批評家」", overview: "「理・毒・静・深」。深すぎる知識と冷笑的な視点で、サブカルチャーや社会の暗部を解剖する孤高の存在。分かりやすさを拒絶するスタンスを貫きます。", role: "裏のご意見番", tags: ["批評家", "ひねくれ者", "サブカル"], ref: "東野幸治、とろサーモン久保田、ナンシー関" },
+            "AHDM": { title: "「天真爛漫な天然」", overview: "「乱・和・動・衆」。計算のない予測不能な行動が、万人の笑顔を誘うタイプ。論理を超えた純粋なエネルギー体で、本人は真面目なのに周囲が勝手に笑ってしまいます。", role: "愛されるマスコット", tags: ["天然ボケ", "愛嬌", "奇跡"], ref: "ジミー大西、狩野英孝、みやぞん" },
+            "AHDC": { title: "「カオスな配信者」", overview: "「乱・和・動・深」。ネットミームや内輪ネタを乱用し、意味不明なハイテンションで暴れ回るお祭り人間。文脈を知る仲間内では爆発的な盛り上がりを見せます。", role: "飲み会のトリックスター", tags: ["悪ノリ", "奇行", "ミーム"], ref: "粗品、トム・ブラウン、真空ジェシカ" },
+            "AHSM": { title: "「不思議な隣人」", overview: "「乱・和・静・衆」。独特の間と、意味のつながらない会話。「意味はわからないけど、なんか悪い人じゃない」という、無害でシュールな空気感を作り出します。", role: "緊張を解除する緩衝材", tags: ["脱力系", "宇宙人", "マイペース"], ref: "飯尾和樹、ロバート秋山、研ナオコ" },
+            "AHSC": { title: "「前衛的な詩人」", overview: "「乱・和・静・深」。難解で静かな不条理劇。分かる人だけが分かる「空気感」や「間」のアートを追求する孤高の存在です。", role: "孤高のクリエイター", tags: ["シュルレアリスム", "世界観"], ref: "板尾創路、天竺鼠川原、ヨネダ2000" },
+            "APDM": { title: "「暴走リアクション」", overview: "「乱・毒・動・衆」。叫び、暴れ、常識を破壊する。その過激なエネルギー自体が、意味を超えて大衆の感情を揺さぶる「インパクト重視」のスタイルです。", role: "停滞を打破する特攻隊長", tags: ["裸芸", "放送事故", "バイタリティ"], ref: "江頭2:50、ザコシショウ、なかやまきんに君" },
+            "APDC": { title: "「伝説のアングラ」", overview: "「乱・毒・動・深」。放送禁止レベルの毒と不条理を撒き散らす、制御不能のモンスター。人間の本性を暴き出すジョーカーのような存在です。", role: "人間の本性を暴くジョーカー", tags: ["狂気", "タブー", "カルト"], ref: "野性爆弾くっきー！、ZAZY、金属バット" },
+            "APSM": { title: "「不気味なコント師」", overview: "「乱・毒・静・衆」。静かに、しかし確実に狂っている。日常設定の中に潜むサイコパス的な違和感を演出し、恐怖と笑いの狭間に落とします。", role: "心地よい不安を与える", tags: ["サイコホラー", "演技派"], ref: "シソンヌ、空気階段、かが屋" },
+            "APSC": { title: "「深淵を覗く者」", overview: "「乱・毒・静・深」。文脈を意図的に外すアンチ・ユーモア。笑いという概念そのものを解体するような、極北のスタイルです。", role: "価値観の破壊神", tags: ["虚無", "アンチユーモア", "哲学"], ref: "ランジャタイ、コウメ太夫、チャンス大城" }
+        };
+
         const STORAGE_KEY = "owarai_diagnosis_v1";
-        const QUIZ_URL = "/owarai/quiz.html";
+        const STORAGE_VERSION = 1;
+
+        let currentIdx = 0;
+        let userAnswers = Array(16).fill(null);
+        let myResultData = null;
+
+        function saveState(status = "in_progress") {
+            const payload = {
+                version: STORAGE_VERSION,
+                status,
+                currentIdx,
+                userAnswers,
+                myResultData,
+                updatedAt: Date.now()
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+        }
 
         function loadState() {
             const raw = localStorage.getItem(STORAGE_KEY);
             if (!raw) return null;
-
             try {
-                const parsed = JSON.parse(raw);
-                if (!parsed || parsed.version !== 1) return null;
-                return parsed;
-            } catch (_e) {
-                return null;
+                const saved = JSON.parse(raw);
+                if (!saved || saved.version !== STORAGE_VERSION) return null;
+                return saved;
+            } catch (_e) { return null; }
+        }
+
+        function clearState() {
+            localStorage.removeItem(STORAGE_KEY);
+        }
+
+        function restoreStateIfAny() {
+            const saved = loadState();
+            if (!saved) return false;
+
+            if (Array.isArray(saved.userAnswers) && saved.userAnswers.length === questions.length) {
+                userAnswers = saved.userAnswers;
             }
+
+            if (saved.status === "completed") {
+                return false;
+            }
+
+            if (Number.isInteger(saved.currentIdx) && saved.currentIdx >= 0 && saved.currentIdx < questions.length) {
+                currentIdx = saved.currentIdx;
+                renderQuestion();
+                return true;
+            }
+            return false;
         }
 
-        function formatDate(ts) {
-            if (!ts) return "不明";
-            const d = new Date(ts);
-            const yy = d.getFullYear();
-            const mm = String(d.getMonth() + 1).padStart(2, "0");
-            const dd = String(d.getDate()).padStart(2, "0");
-            const hh = String(d.getHours()).padStart(2, "0");
-            const mi = String(d.getMinutes()).padStart(2, "0");
-            return `${yy}/${mm}/${dd} ${hh}:${mi}`;
-        }
-
-        function jumpToQuiz() {
-            window.location.href = QUIZ_URL;
+        function restartDiagnosis() {
+            clearState();
+            location.search = '';
         }
 
         function init() {
-            const statusEl = document.getElementById("save-status");
-            const resumeBtn = document.getElementById("btn-resume");
-            const resultBtn = document.getElementById("btn-result");
-            const resumeDetail = document.getElementById("resume-detail");
+            const urlParams = new URLSearchParams(window.location.search);
+            const typeParam = urlParams.get('type');
 
             const saved = loadState();
-
-            if (!saved) {
-                statusEl.innerHTML = "<strong>保存データなし</strong><br>新規診断を開始できます。";
-            } else if (saved.status === "completed" && saved.myResultData && saved.myResultData.typeKey) {
-                statusEl.innerHTML = `<strong>前回の結果が保存されています</strong><br>タイプ: ${saved.myResultData.typeKey} / 更新: ${formatDate(saved.updatedAt)}`;
-                resultBtn.style.display = "block";
-            } else {
-                const qNum = Number.isInteger(saved.currentIdx) ? saved.currentIdx + 1 : 1;
-                statusEl.innerHTML = `<strong>途中データが保存されています</strong><br>Q${qNum} から再開できます（更新: ${formatDate(saved.updatedAt)}）`;
-                resumeBtn.style.display = "block";
-                resumeDetail.textContent = `前回は Q${qNum} まで回答済み`;
+            if (saved && saved.myResultData && saved.myResultData.typeKey) {
+                myResultData = saved.myResultData;
             }
 
-            document.getElementById("btn-start").addEventListener("click", () => {
-                localStorage.removeItem(STORAGE_KEY);
-                jumpToQuiz();
+            if (typeParam && typesDB[typeParam]) {
+                renderResults(typeParam, null, true);
+                const restartBtn = document.getElementById('btn-return');
+                restartBtn.style.display = 'block';
+                if (myResultData) {
+                    restartBtn.innerText = '自分の結果に戻る';
+                    restartBtn.onclick = returnToMyResult;
+                } else {
+                    restartBtn.innerText = '自分も診断してみる';
+                    restartBtn.onclick = restartDiagnosis;
+                }
+                return;
+            }
+
+            currentIdx = 0;
+            userAnswers = Array(16).fill(null);
+            generateLibrary();
+
+            const restored = restoreStateIfAny();
+
+            if (myResultData && saved && saved.status === "completed") {
+                document.getElementById('previous-result-container').classList.remove('hidden');
+            }
+
+            if (!restored) {
+                renderQuestion();
+                saveState("in_progress");
+            }
+        }
+
+        function renderQuestion() {
+            const q = questions[currentIdx];
+
+            document.getElementById('q-progress').innerText = `Q${currentIdx + 1} / ${questions.length}`;
+            const pct = ((currentIdx + 1) / questions.length) * 100;
+            document.getElementById('progress-bar-fill').style.width = `${pct}%`;
+
+            document.getElementById('q-text').innerText = q.text;
+            document.getElementById('opt-left').innerText = q.left;
+            document.getElementById('opt-right').innerText = q.right;
+
+            document.querySelectorAll('.scale-btn').forEach(btn => {
+                btn.className = 'scale-btn';
+                if (userAnswers[currentIdx] !== null && parseInt(btn.dataset.val) === userAnswers[currentIdx]) {
+                    const val = userAnswers[currentIdx];
+                    btn.classList.add(val < 0 ? 'selected-left' : 'selected-right');
+                }
             });
 
-            resumeBtn.addEventListener("click", jumpToQuiz);
-            resultBtn.addEventListener("click", jumpToQuiz);
+            document.getElementById('btn-back').style.visibility = currentIdx === 0 ? 'hidden' : 'visible';
+            document.getElementById('btn-next').disabled = userAnswers[currentIdx] === null;
+        }
 
-            document.getElementById("btn-analytics").addEventListener("click", () => {
-                window.location.href = "/owarai/analytics/";
+        function select(btn, val) {
+            document.querySelectorAll('.scale-btn').forEach(b => b.className = 'scale-btn');
+            btn.classList.add(val < 0 ? 'selected-left' : 'selected-right');
+            userAnswers[currentIdx] = val;
+            document.getElementById('btn-next').disabled = false;
+            saveState("in_progress");
+        }
+
+        function nextQuestion() {
+            if (currentIdx < questions.length - 1) {
+                currentIdx++;
+                renderQuestion();
+                saveState("in_progress");
+            } else {
+                calcAndShowResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIdx > 0) {
+                currentIdx--;
+                renderQuestion();
+                saveState("in_progress");
+            }
+        }
+
+        function calcAndShowResults() {
+            let scores = { LA: 0, HP: 0, SD: 0, MC: 0 };
+            questions.forEach((q, i) => {
+                const val = userAnswers[i];
+                if (val !== null) scores[q.axis] += val;
             });
+
+            const t1 = scores.LA <= 0 ? "L" : "A";
+            const t2 = scores.HP <= 0 ? "H" : "P";
+            const t3 = scores.SD <= 0 ? "S" : "D";
+            const t4 = scores.MC <= 0 ? "M" : "C";
+            const typeKey = t1 + t2 + t3 + t4;
+
+            myResultData = { typeKey: typeKey, scores: scores };
+            saveState("completed");
+
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'diagnosis_complete', {
+                    'event_category': 'humor_type',
+                    'event_label': typeKey,
+                    'value': 1
+                });
+            }
+
+            renderResults(typeKey, scores, false);
+        }
+
+        function renderResults(typeKey, scores, isLibrary) {
+            const data = typesDB[typeKey];
+
+            document.getElementById('quiz-area').classList.add('hidden');
+            document.getElementById('result-area').style.display = 'block';
+            window.scrollTo(0, 0);
+
+            const kanjiBox = document.getElementById('res-kanji');
+            kanjiBox.innerHTML = '';
+            typeKey.split('').forEach(char => {
+                const k = kanjiMap[char];
+                kanjiBox.innerHTML += `<span class="kanji-char ${k.color}">${k.char}</span>`;
+            });
+
+            document.getElementById('res-code').innerText = typeKey;
+            document.getElementById('res-title').innerText = data.title;
+            document.getElementById('res-overview').innerText = data.overview;
+            document.getElementById('res-role').innerText = data.role;
+            document.getElementById('res-ref').innerText = data.ref;
+            document.getElementById('res-tags').innerHTML = data.tags.map(t => `<span class="tag">#${t}</span>`).join('');
+
+            updateBar('LA', scores ? scores.LA : 0, 'Logic (理)', 'Absurd (乱)', typeKey[0], isLibrary);
+            updateBar('HP', scores ? scores.HP : 0, 'Harmony (和)', 'Poison (毒)', typeKey[1], isLibrary);
+            updateBar('SD', scores ? scores.SD : 0, 'Static (静)', 'Dynamic (動)', typeKey[2], isLibrary);
+            updateBar('MC', scores ? scores.MC : 0, 'Mass (衆)', 'Core (深)', typeKey[3], isLibrary);
+
+            const btnReturn = document.getElementById('btn-return');
+            if (isLibrary && myResultData) {
+                btnReturn.style.display = 'block';
+            } else if (!isLibrary) {
+                btnReturn.style.display = 'none';
+                saveState("completed");
+            }
+        }
+
+        function updateBar(axis, score, labelLeft, labelRight, typeChar, isLibrary) {
+            const maxScore = questions.filter(q => q.axis === axis).length * 3;
+            let percentage = Math.round((Math.abs(score) / maxScore) * 100);
+            if (percentage > 100) percentage = 100;
+
+            const lblL = document.getElementById(`lbl-${axis[0]}`);
+            const lblR = document.getElementById(`lbl-${axis[1]}`);
+            const fill = document.getElementById(`fill-${axis}`);
+
+            fill.className = 'chart-fill';
+            lblL.className = 'lbl-left';
+            lblR.className = 'lbl-right';
+
+            let displayPercentage = percentage + "%";
+            if (percentage === 0) displayPercentage = "Balance";
+
+            let isLeftDominant = isLibrary ? (typeChar === axis[0]) : (score <= 0);
+
+            if (isLeftDominant) {
+                lblL.classList.add('lbl-active');
+                lblR.classList.add('lbl-passive');
+                fill.classList.add('fill-left');
+                if (isLibrary) {
+                    lblL.innerText = labelLeft;
+                    lblR.innerText = labelRight;
+                    fill.style.width = '70%';
+                } else {
+                    lblL.innerText = `${labelLeft} ${displayPercentage}`;
+                    lblR.innerText = labelRight;
+                    fill.style.width = (percentage / 2) + '%';
+                }
+            } else {
+                lblL.classList.add('lbl-passive');
+                lblR.classList.add('lbl-active');
+                fill.classList.add('fill-right');
+                if (isLibrary) {
+                    lblL.innerText = labelLeft;
+                    lblR.innerText = labelRight;
+                    fill.style.width = '70%';
+                } else {
+                    lblL.innerText = labelLeft;
+                    lblR.innerText = `${displayPercentage} ${labelRight}`;
+                    fill.style.width = (percentage / 2) + '%';
+                }
+            }
+        }
+
+        function returnToMyResult() {
+            if (myResultData) {
+                const btnReturn = document.getElementById('btn-return');
+                btnReturn.style.display = 'none';
+                renderResults(myResultData.typeKey, myResultData.scores, false);
+            }
+        }
+
+        function generateLibrary() {
+            const grid = document.getElementById('lib-grid');
+            grid.innerHTML = '';
+
+            const keys = Object.keys(typesDB).sort((a, b) => getBinaryScore(a) - getBinaryScore(b));
+
+            keys.forEach(key => {
+                const item = typesDB[key];
+                const div = document.createElement('div');
+                div.className = 'lib-card';
+
+                let kanjiHTML = '';
+                key.split('').forEach(char => {
+                    const k = kanjiMap[char];
+                    kanjiHTML += `<span style="color:var(--${k.color === 'k-blue' ? 'primary' : 'accent'})">${k.char}</span>`;
+                });
+
+                const redCount = (key.match(/[APDC]/g) || []).length;
+                let borderColorVar;
+                switch (redCount) {
+                    case 0: borderColorVar = 'var(--primary-light)'; break;
+                    case 1: borderColorVar = 'var(--grad-1)'; break;
+                    case 2: borderColorVar = 'var(--grad-2)'; break;
+                    case 3: borderColorVar = 'var(--grad-3)'; break;
+                    case 4: borderColorVar = 'var(--accent-light)'; break;
+                }
+                div.style.borderColor = borderColorVar;
+
+                div.innerHTML = `<span class="lib-kanji">${kanjiHTML}</span><span class="lib-name">${item.title}</span>`;
+                div.onclick = () => { renderResults(key, null, true); };
+                grid.appendChild(div);
+            });
+        }
+
+        function getBinaryScore(key) {
+            let score = 0;
+            if (key[0] === 'A') score += 8;
+            if (key[1] === 'P') score += 4;
+            if (key[2] === 'D') score += 2;
+            if (key[3] === 'C') score += 1;
+            return score;
+        }
+
+        function shareX() {
+            const title = document.getElementById('res-title').innerText;
+            const typeKey = document.getElementById('res-code').innerText;
+            // Point to the static share page for OGP rendering
+            const shareUrl = `https://dim7.jp/owarai/share/${typeKey}.html`;
+            const text = `私のお笑い16タイプは${title}でした！\n#お笑い16タイプ診断`;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`, '_blank', 'noopener,noreferrer');
+        }
+
+        function shareInsta() {
+            const url = "https://dim7.jp/owarai/";
+            const openInstagram = () => { window.location.href = "instagram://story-camera"; };
+
+            if (!navigator.clipboard || !navigator.clipboard.writeText) {
+                prompt("このURLをコピーしてInstagramで共有してください", url);
+                openInstagram();
+                return;
+            }
+            navigator.clipboard.writeText(url)
+                .then(() => {
+                    alert("リンクをコピーしました！\n結果画面のスクショと同時に貼り付けてください！");
+                    openInstagram();
+                })
+                .catch(() => {
+                    prompt("コピーに失敗しました。URLを手動でコピーしてください", url);
+                    openInstagram();
+                });
         }
 
         init();
