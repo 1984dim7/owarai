@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="icon" href="/owarai/favicon.png" type="image/png">
+    <link rel="canonical" href="https://dim7.jp/owarai/about.html">
+    <meta name="robots" content="index, follow">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHGSRCJ4YG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-LHGSRCJ4YG');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>この診断について｜お笑い１６タイプ診断の理論と仕組み</title>
+    <meta name="description"
+        content="お笑い１６タイプ診断の理論的背景を解説。なぜ人は笑うのか？ユーモアはどのように分類できるのか？認知科学や心理学の研究に基づき、4つの軸で笑いを分析する仕組みを紹介します。">
+
+    <meta property="og:title" content="この診断について｜お笑い１６タイプ診断の理論と仕組み">
+    <meta property="og:description" content="ユーモア研究に基づく4軸分析の仕組みを解説。なぜ人は笑うのか、笑いはどう分類できるのかを紐解きます。">
+    <meta property="og:url" content="https://dim7.jp/owarai/about.html">
+    <meta property="og:image" content="https://dim7.jp/owarai/ogp_image.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="お笑い１６タイプ診断">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --primary: #3b82f6;
+            --primary-light: #dbeafe;
+            --accent: #ef4444;
+            --accent-light: #fee2e2;
+            --text-main: #1e293b;
+            --text-sub: #475569;
+            --passive-color: #64748b;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 40px 0 30px;
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            line-height: 1.4;
+            margin: 0 0 16px;
+        }
+
+        .hero-sub {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--text-main);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 900;
+            padding: 3px 10px;
+            border-radius: 4px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .section h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin: 0 0 16px;
+            line-height: 1.5;
+        }
+
+        .section p {
+            font-size: 0.92rem;
+            color: var(--text-sub);
+            margin: 0 0 16px;
+        }
+
+        /* Cards */
+        .theory-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .theory-card-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theory-card-body {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+
+        .theory-card-limit {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: var(--accent-light);
+            border-radius: 8px;
+        }
+
+        /* Axis cards */
+        .axis-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .axis-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border-left: 4px solid var(--primary);
+        }
+
+        .axis-card:nth-child(2) {
+            border-left-color: #8b5cf6;
+        }
+
+        .axis-card:nth-child(3) {
+            border-left-color: #f59e0b;
+        }
+
+        .axis-card:nth-child(4) {
+            border-left-color: #10b981;
+        }
+
+        .axis-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .axis-card-num {
+            font-size: 0.7rem;
+            font-weight: 900;
+            color: #fff;
+            background: var(--primary);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .axis-card:nth-child(2) .axis-card-num {
+            background: #8b5cf6;
+        }
+
+        .axis-card:nth-child(3) .axis-card-num {
+            background: #f59e0b;
+        }
+
+        .axis-card:nth-child(4) .axis-card-num {
+            background: #10b981;
+        }
+
+        .axis-card-title {
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .axis-poles {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+
+        .pole-tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .pole-blue {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .pole-red {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .axis-desc {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+
+        /* Quadrant diagram */
+        .quadrant-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .quad-cell {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .quad-cell-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .quad-cell-body {
+            font-size: 0.78rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+
+        /* Highlight */
+        .highlight-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #fef3c7 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* BVT diagram */
+        .bvt-diagram {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin: 16px 0;
+            text-align: center;
+        }
+
+        .bvt-cell {
+            padding: 14px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .bvt-violation {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .bvt-benign {
+            background: #e2e8f0;
+            color: #64748b;
+        }
+
+        .bvt-humor {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        /* Quote */
+        .quote-block {
+            border-left: 3px solid var(--primary);
+            padding: 12px 16px;
+            margin: 16px 0;
+            background: #f8fafc;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote-block p {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--text-sub);
+            margin: 0;
+        }
+
+        /* Refs */
+        .refs {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .refs h3 {
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .refs ol {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .refs li {
+            font-size: 0.72rem;
+            color: var(--passive-color);
+            margin-bottom: 4px;
+            line-height: 1.5;
+            word-break: break-all;
+        }
+
+        .refs a {
+            color: var(--passive-color);
+        }
+
+        /* Back button */
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin: 30px auto 0;
+            padding: 14px 28px;
+            background: var(--text-main);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 40px 0;
+        }
+
+        /* Flow */
+        .flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 20px 0;
+        }
+
+        .flow-step {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .flow-line {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .flow-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--text-main);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .flow-connector {
+            width: 2px;
+            height: 30px;
+            background: #cbd5e1;
+        }
+
+        .flow-content {
+            padding-bottom: 20px;
+        }
+
+        .flow-content h4 {
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin: 2px 0 6px;
+        }
+
+        .flow-content p {
+            font-size: 0.82rem;
+            color: var(--text-sub);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Matrix image */
+        .matrix-figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .matrix-figure img {
+            width: 100%;
+            max-width: 560px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .matrix-caption {
+            font-size: 0.75rem;
+            color: var(--passive-color);
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="hero">
+            <div class="hero-label">About This Diagnosis</div>
+            <h1>なぜ人は笑うのか？<br>笑いは分類できるのか？</h1>
+            <p class="hero-sub">
+                お笑い16タイプ診断は、認知科学・心理学のユーモア研究を基盤に、<br>
+                「笑い」を4つの軸で分析する診断です。<br>
+                このページでは、その理論的背景と仕組みを解説します。
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 1: 問い -->
+        <div class="section">
+            <span class="section-number">01</span>
+            <h2>はじまりの問い</h2>
+            <p>
+                「何をもって"面白い"という感情は生じるのか？」——この素朴な疑問が、この診断の出発点でした。
+            </p>
+            <p>
+                お笑いに「シュール」「勢い」「毒舌」「天然」といったジャンル分けがあることは直感的に知られています。
+                しかし、それらを<strong>体系的に分類する枠組み</strong>は、意外なほど存在しませんでした。
+            </p>
+            <p>
+                そこで、西洋のユーモア理論から日本のお笑い文化、認知科学の論文まで、
+                さまざまな文献を横断的に調査し、「笑い」の構造を解き明かすことを試みました。
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 2: 古典理論 -->
+        <div class="section">
+            <span class="section-number">02</span>
+            <h2>笑いの三大理論</h2>
+            <p>
+                「なぜ笑うのか」については、古代ギリシャの時代から議論されてきました。
+                まずは、現代まで受け継がれている3つの古典的理論を整理します。
+            </p>
+
+            <div class="theory-card">
+                <div class="theory-card-title">🎯 不一致理論（カント、ショーペンハウアー）</div>
+                <div class="theory-card-body">
+                    笑いは<strong>「予想と現実のズレ」</strong>から生まれるとする理論。フリで期待を作り、オチでそれを裏切る。
+                    この「予測の裏切り→別の解釈の発見」のプロセスが快感を生むと考えます。
+                </div>
+                <div class="theory-card-limit">
+                    ⚠️ 限界：「解決」を前提としているため、解決不能な「シュール」な笑いを説明しきれない。
+                </div>
+            </div>
+
+            <div class="theory-card">
+                <div class="theory-card-title">👑 優越理論（プラトン、ホッブズ）</div>
+                <div class="theory-card-body">
+                    笑いは<strong>「他者の失敗に対する優越感」</strong>から生まれるとする理論。
+                    バナナの皮で滑る人を見て笑うのは、自分が転んでいないという安全な立場からの優越感によるもの。
+                </div>
+                <div class="theory-card-limit">
+                    ⚠️ 限界：ダジャレや言葉遊びのような、誰も失敗していない笑いを説明できない。
+                </div>
+            </div>
+
+            <div class="theory-card">
+                <div class="theory-card-title">💨 放出理論（フロイト、スペンサー）</div>
+                <div class="theory-card-body">
+                    笑いは<strong>「溜まった緊張やエネルギーの解放」</strong>であるとする理論。
+                    下ネタやブラックジョークなど、社会的タブーに触れるジョークが爆発的な笑いを生むメカニズムを説明します。
+                </div>
+                <div class="theory-card-limit">
+                    ⚠️ 限界：「緊張が溜まって放出される」という水力学的モデルは、現代の神経科学では否定的。
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 3: BVT -->
+        <div class="section">
+            <span class="section-number">03</span>
+            <h2>良性の違反理論（BVT）</h2>
+            <p>
+                古典理論の限界を統合し、現代心理学の主流となりつつあるのが、
+                マクグロウとウォーレンによる<strong>「良性の違反理論（Benign Violation Theory）」</strong>です。
+            </p>
+            <p>
+                この理論は、笑いが起きるためには3つの条件が<strong>同時に</strong>満たされる必要があるとします。
+            </p>
+
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <div class="flow-line">
+                        <div class="flow-dot">1</div>
+                        <div class="flow-connector"></div>
+                    </div>
+                    <div class="flow-content">
+                        <h4>違反（Violation）</h4>
+                        <p>社会規範・論理・道徳など「あるべき姿」が脅かされる</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-line">
+                        <div class="flow-dot">2</div>
+                        <div class="flow-connector"></div>
+                    </div>
+                    <div class="flow-content">
+                        <h4>良性（Benign）</h4>
+                        <p>その違反が「安全」「遊びの枠組み内」であると評価される</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-line">
+                        <div class="flow-dot">3</div>
+                    </div>
+                    <div class="flow-content">
+                        <h4>同時性（Simultaneity）</h4>
+                        <p>違反と良性の両方の解釈が、同時に脳内で活性化する</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bvt-diagram">
+                <div class="bvt-cell bvt-violation">違反のみ<br><small>→ 恐怖・侮辱</small></div>
+                <div class="bvt-cell bvt-humor">違反 + 良性<br><small>→ <strong>ユーモア</strong></small></div>
+                <div class="bvt-cell bvt-benign">良性のみ<br><small>→ 退屈・日常</small></div>
+            </div>
+
+            <div class="quote-block">
+                <p>「くすぐり」は身体的な攻撃（違反）だが、信頼できる人物によるもの（良性）であるため笑いが生じる。
+                    知らない人間にくすぐられれば、それは単なる攻撃となる。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 4: 日本文化特有 -->
+        <div class="section">
+            <span class="section-number">04</span>
+            <h2>西洋理論では捉えきれない<br>「シュール」と「勢い」</h2>
+            <p>
+                既存のユーモア研究は、西洋の言語的な「ジョーク」の分析に偏りがちです。
+                日本のお笑い文化で重視される<strong>「シュール」や「勢い」</strong>を分析するには、別のアプローチが必要でした。
+            </p>
+
+            <div class="theory-card">
+                <div class="theory-card-title">🌀 シュール ＝ 解決の拒絶</div>
+                <div class="theory-card-body">
+                    通常のジョークでは「ボケ→ツッコミ」で論理的な解決が与えられます。
+                    しかしシュールは、<strong>不一致を解決せずに放置</strong>します。
+                    脳は答えを探して空転し、「笑っていいのかわからない」という宙吊り状態が生まれます。
+                    <br><br>
+                    <strong>ベタ：</strong> Aだと思ったらBだった（なぜならCだからだ）→ 納得<br>
+                    <strong>シュール：</strong> Aだと思ったら「魚」だった → ……なぜ？
+                </div>
+            </div>
+
+            <div class="theory-card">
+                <div class="theory-card-title">⚡ 勢い ＝ 論理の凌駕</div>
+                <div class="theory-card-body">
+                    ハイテンポな漫才やリズムネタでは、情報が高速で流れ込み、
+                    脳の<strong>論理的処理能力が飽和</strong>します。
+                    論理が追いつかないまま、リズムや大声といった原始的な刺激が直接感情に作用し、
+                    一種のトランス状態のように笑いが誘発されます。
+                    <br><br>
+                    つまり、「勢い」は<strong>ネタの内容とは独立したパラメータ</strong>として機能しています。
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 5: 3次元マトリクス -->
+        <div class="section">
+            <span class="section-number">05</span>
+            <h2>ユーモアを分類し、視覚的に図式化する</h2>
+            <p>
+                これらの分析を統合し、あらゆるユーモアをマッピングできる<strong>3次元の座標系</strong>を構築しました。
+            </p>
+
+            <div class="axis-grid">
+                <div class="theory-card">
+                    <div class="theory-card-title">X軸：認知的解決度</div>
+                    <div class="theory-card-body">
+                        不条理でシュール ⇔ 論理的で意味が通じる
+                    </div>
+                </div>
+                <div class="theory-card">
+                    <div class="theory-card-title">Y軸：社会的・感情的意図</div>
+                    <div class="theory-card-body">
+                        親和的で安全 ⇔ 批判や誰かを笑うこと
+                    </div>
+                </div>
+                <div class="theory-card">
+                    <div class="theory-card-title">Z軸：エネルギー・ダイナミクス</div>
+                    <div class="theory-card-body">
+                        活発で身体的 ⇔ 静的で間がある
+                    </div>
+                </div>
+            </div>
+
+            <div class="matrix-figure">
+                <img src="/owarai/マトリックス.jpg" alt="ユーモアの3次元マトリクス図">
+                <div class="matrix-caption">ユーモアの3次元統合マトリクス（Z軸は色合いの濃淡で表現）</div>
+            </div>
+
+            <p>
+                X軸とY軸で4つの象限——「知的な遊び」「鋭利な批判者」「無垢な道化」「混沌の破壊者」——を形成し、
+                Z軸（エネルギー）は図中の<strong>色合いの濃淡</strong>で表現しています。
+                同じ象限でも、静的か動的かでスタイルが大きく変わります。
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 6: 4軸の設計 -->
+        <div class="section">
+            <span class="section-number">06</span>
+            <h2>4つの軸の設計</h2>
+            <p>
+                以上の研究を統合し、あらゆる「笑い」のスタイルをマッピングできる座標系として、
+                <strong>4つの独立した軸</strong>を設計しました。
+                元の研究では3軸（3次元マトリクス）でしたが、「誰に向けた笑いか」という受容層の違いも
+                スタイルを大きく左右する重要な要素であるため、第4の軸として追加しました。
+            </p>
+
+            <div class="axis-grid">
+                <div class="axis-card">
+                    <div class="axis-card-header">
+                        <div class="axis-card-num">1</div>
+                        <div class="axis-card-title">Logic（理）⇔ Absurd（乱）</div>
+                    </div>
+                    <div class="axis-poles">
+                        <span class="pole-tag pole-blue">理</span>
+                        <span style="color:var(--passive-color)">←→</span>
+                        <span class="pole-tag pole-red">乱</span>
+                    </div>
+                    <div class="axis-desc">
+                        <strong>認知的解決度</strong>の軸。笑いが「筋が通っている」か「意味不明」か。
+                        伏線回収やあるあるネタは「理」、ナンセンスやシュールは「乱」に位置します。
+                        不一致理論をベースに、解決型と未解決型を連続的に配置しました。
+                    </div>
+                </div>
+
+                <div class="axis-card">
+                    <div class="axis-card-header">
+                        <div class="axis-card-num">2</div>
+                        <div class="axis-card-title">Harmony（和）⇔ Poison（毒）</div>
+                    </div>
+                    <div class="axis-poles">
+                        <span class="pole-tag pole-blue">和</span>
+                        <span style="color:var(--passive-color)">←→</span>
+                        <span class="pole-tag pole-red">毒</span>
+                    </div>
+                    <div class="axis-desc">
+                        <strong>社会的意図</strong>の軸。笑いが「誰かと一緒に笑う」ものか「誰かを笑う」ものか。
+                        HSQ（ユーモアスタイル質問紙）の親和/攻撃の分類と、BVTの良性/違反の概念を統合しました。
+                    </div>
+                </div>
+
+                <div class="axis-card">
+                    <div class="axis-card-header">
+                        <div class="axis-card-num">3</div>
+                        <div class="axis-card-title">Static（静）⇔ Dynamic（動）</div>
+                    </div>
+                    <div class="axis-poles">
+                        <span class="pole-tag pole-blue">静</span>
+                        <span style="color:var(--passive-color)">←→</span>
+                        <span class="pole-tag pole-red">動</span>
+                    </div>
+                    <div class="axis-desc">
+                        <strong>エネルギーの軸</strong>。既存のユーモア理論が見落としがちな「勢い」を捉えるために導入しました。
+                        間や沈黙で笑わせる静的なスタイルと、テンポ・声量・身体性で圧倒する動的なスタイルを区別します。
+                    </div>
+                </div>
+
+                <div class="axis-card">
+                    <div class="axis-card-header">
+                        <div class="axis-card-num">4</div>
+                        <div class="axis-card-title">Mass（衆）⇔ Core（深）</div>
+                    </div>
+                    <div class="axis-poles">
+                        <span class="pole-tag pole-blue">衆</span>
+                        <span style="color:var(--passive-color)">←→</span>
+                        <span class="pole-tag pole-red">深</span>
+                    </div>
+                    <div class="axis-desc">
+                        <strong>受容層の軸</strong>。笑いが「誰にでも伝わる」か「文脈を共有する人だけに刺さる」か。
+                        テレビ的な王道の笑いと、深夜ラジオやアングラ的なマニアックな笑いの違いを表します。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 7: 16タイプへ -->
+        <div class="section">
+            <span class="section-number">07</span>
+            <h2>4軸 × 2極 ＝ 16タイプ</h2>
+            <p>
+                4つの軸それぞれに2つの極があるため、理論上 <strong>2⁴ = 16通り</strong>のユーモアタイプが生まれます。
+            </p>
+            <p>
+                たとえば「理・和・動・衆」（LHDM）なら——論理的で、温かく、勢いがあり、誰にでも伝わる笑い。
+                これはまさに「王道エンターテイナー」のスタイルです。
+            </p>
+            <p>
+                逆に「乱・毒・静・深」（APSC）なら——意味不明で、批判的で、静かで、マニアックな笑い。
+                これは笑いの概念自体を解体するような「深淵を覗く者」のスタイルになります。
+            </p>
+
+            <div class="highlight-box">
+                <p style="margin:0; font-size:0.9rem;">
+                    💡 本診断の16問は、各軸に対して4問ずつ（各問5段階）を割り当て、
+                    合計スコアによって各軸のどちら寄りかを判定しています。
+                    MBTIの形式を参考にしつつ、<strong>ユーモアに特化した独自の軸設計</strong>を行いました。
+                </p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 8: 免責 -->
+        <div class="section">
+            <span class="section-number">08</span>
+            <h2>最後に</h2>
+            <p>
+                この診断は、学術的なユーモア研究に基づいて設計していますが、
+                心理検査としての妥当性や信頼性の検証を経たものではありません。
+                あくまで<strong>エンターテインメント</strong>として、自分の笑いの傾向を知るきっかけとして楽しんでいただければ幸いです。
+            </p>
+            <p>
+                笑いとは、論理と不条理、攻撃と親和、静寂と喧騒の間に張り巡らされた、<br>
+                人間性の複雑な綱渡りなのかもしれません。
+            </p>
+        </div>
+
+        <a href="/owarai/" class="back-btn">🎭 診断してみる</a>
+
+        <!-- References -->
+        <div class="refs">
+            <h3>参考文献・引用</h3>
+            <ol>
+                <li>Theories of humor - Wikipedia <a href="https://en.wikipedia.org/wiki/Theories_of_humor"
+                        target="_blank">Link</a></li>
+                <li>Philosophy of Humor - Stanford Encyclopedia <a href="https://plato.stanford.edu/entries/humor/"
+                        target="_blank">Link</a></li>
+                <li>To Resolve or Not To Resolve: Dual-Path Model of Incongruity Resolution - Frontiers in Psychology
+                    <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2017.00498/full"
+                        target="_blank">Link</a>
+                </li>
+                <li>Play-mirth theory: a cognitive appraisal theory of humor - PMC <a
+                        href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11659645/" target="_blank">Link</a></li>
+                <li>Humor Styles Questionnaire (HSQ) - PsyToolkit <a
+                        href="https://www.psytoolkit.org/survey-library/humor-hsq.html" target="_blank">Link</a></li>
+                <li>Time to Renovate the Humor Styles Questionnaire? - PMC <a
+                        href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7697079/" target="_blank">Link</a></li>
+                <li>Defense Mechanisms - StatPearls (NIH) <a href="https://www.ncbi.nlm.nih.gov/books/NBK559106/"
+                        target="_blank">Link</a></li>
+                <li>Humor as Weapon, Shield, and Psychological Salve - Psych Central <a
+                        href="https://psychcentral.com/lib/humor-as-weapon-shield-and-psychological-salve"
+                        target="_blank">Link</a></li>
+                <li>「いじり」行為のもたらす感情経験 - researchmap <a href="https://researchmap.jp/sawaumi/published_papers/42439348"
+                        target="_blank">Link</a></li>
+                <li>M-1 2024 過剰分析 〜なぜ令和ロマンが優勝したのか？〜 <a href="https://note.com/shokosaka/n/ne958878eb887"
+                        target="_blank">Link</a></li>
+                <li>The Dark Side of Humor: DSM-5 Pathological Personality Traits and Humor Styles - PMC <a
+                        href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4991045/" target="_blank">Link</a></li>
+                <li>【シュール】お笑い用語解説 - 3PEACE <a href="https://www.3peace-inc.com/toranomaki/owaraiyougosyuru/"
+                        target="_blank">Link</a></li>
+            </ol>
+        </div>
+
+        <div style="text-align: center; margin-top:30px;">
+            <p style="font-size:0.8rem; color:#888;"><a href="/owarai/privacy.html" style="color:#888;">プライバシーポリシー</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
