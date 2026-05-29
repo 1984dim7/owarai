@@ -237,6 +237,136 @@ function generateHTML(typeCode, typeName) {
     `;
 }
 
+function generateTopHTML() {
+    // 代表的なイラストを Base64 で読み込んで配置する
+    const illustKeys = ["LHDM", "LHSC", "LPSM", "AHDM", "AHSC", "AHSM"];
+    const imgUrls = illustKeys.map(key => {
+        const file = illustrationMap[key];
+        const absPath = path.resolve(__dirname, 'images', 'illustrations', file);
+        const base64 = fs.readFileSync(absPath, { encoding: 'base64' });
+        return `data:image/png;base64,${base64}`;
+    });
+
+    return `
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Zen+Maru+Gothic:wght@700;900&display=swap');
+            body {
+                width: 1200px;
+                height: 630px;
+                margin: 0;
+                background: #bae6fd;
+                background-image: 
+                    linear-gradient(rgba(56, 189, 248, 0.22) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(56, 189, 248, 0.22) 1px, transparent 1px);
+                background-size: 24px 24px;
+                font-family: 'Zen Maru Gothic', sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: #1e1b4b;
+                overflow: hidden;
+                position: relative;
+            }
+            .title-box {
+                background: #ffffff;
+                padding: 40px 60px;
+                border-radius: 40px;
+                border: 5px solid #1e1b4b;
+                box-shadow: 12px 12px 0px #1e1b4b;
+                text-align: center;
+                z-index: 10;
+            }
+            .site-subtitle {
+                font-size: 24px;
+                font-weight: 900;
+                color: #64748b;
+                letter-spacing: 2px;
+                margin-bottom: 10px;
+            }
+            .site-title {
+                font-family: 'Outfit', 'Zen Maru Gothic', sans-serif;
+                font-size: 64px;
+                font-weight: 900;
+                color: #0284c7;
+                line-height: 1.1;
+                margin: 0;
+                text-shadow: 2px 2px 0px #ffffff, -2px -2px 0px #ffffff, 2px -2px 0px #ffffff, -2px 2px 0px #ffffff, 4px 4px 0px #1e1b4b;
+            }
+            .site-title span {
+                color: #ef4444;
+            }
+            .sub-desc {
+                font-size: 20px;
+                font-weight: 900;
+                color: #1e1b4b;
+                margin-top: 15px;
+            }
+            /* Floating Illustrations */
+            .sticker {
+                position: absolute;
+                border: 4px solid #1e1b4b;
+                border-radius: 28px;
+                box-shadow: 6px 6px 0px #1e1b4b;
+                background: #ffffff;
+                overflow: hidden;
+                width: 170px;
+                height: 170px;
+                z-index: 5;
+            }
+            .sticker img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .s1 { top: 60px; left: 80px; transform: rotate(-12deg); }
+            .s2 { bottom: 60px; left: 100px; transform: rotate(8deg); }
+            .s3 { top: 70px; right: 90px; transform: rotate(15deg); }
+            .s4 { bottom: 70px; right: 110px; transform: rotate(-8deg); }
+            .s5 { top: 220px; left: 240px; transform: rotate(5deg); width: 140px; height: 140px; }
+            .s6 { top: 210px; right: 260px; transform: rotate(-10deg); width: 140px; height: 140px; }
+            
+            /* Floating Deco */
+            .floating-deco {
+                position: absolute;
+                font-size: 3rem;
+                user-select: none;
+                pointer-events: none;
+                z-index: 2;
+            }
+            .deco-flower { top: 8%; left: 45%; color: #38bdf8; }
+            .deco-heart { bottom: 8%; left: 35%; color: #f43f5e; }
+            .deco-star { bottom: 12%; right: 40%; color: #eab308; }
+        </style>
+    </head>
+    <body>
+        <!-- 浮遊デコレーション -->
+        <div class="floating-deco deco-flower">✿</div>
+        <div class="floating-deco deco-heart">♥</div>
+        <div class="floating-deco deco-star">★</div>
+
+        <!-- イラストステッカー群 -->
+        <div class="sticker s1"><img src="${imgUrls[0]}" alt=""></div>
+        <div class="sticker s2"><img src="${imgUrls[1]}" alt=""></div>
+        <div class="sticker s3"><img src="${imgUrls[2]}" alt=""></div>
+        <div class="sticker s4"><img src="${imgUrls[3]}" alt=""></div>
+        <div class="sticker s5"><img src="${imgUrls[4]}" alt=""></div>
+        <div class="sticker s6"><img src="${imgUrls[5]}" alt=""></div>
+
+        <div class="title-box">
+            <div class="site-subtitle">お笑いMBTIで笑いのツボを精密分析！</div>
+            <h1 class="site-title">お笑い16タイプ<span>診断</span></h1>
+            <div class="sub-desc">老若男女だれでも・分かれば面白い！あなたのタイプは？</div>
+        </div>
+    </body>
+    </html>
+    `;
+}
+
 async function main() {
     console.log("Launching Puppeteer...");
     const browser = await puppeteer.launch();
@@ -254,8 +384,17 @@ async function main() {
         console.log(`Generated: ${typeCode}.png`);
     }
 
+    console.log("Generating Top Page OGP (ogp_image.png)...");
+    const topHtml = generateTopHTML();
+    await page.setContent(topHtml, { waitUntil: 'load' });
+    await new Promise(r => setTimeout(r, 800)); // コラージュ読み込みのため少し長めに待つ
+    
+    const topOutPath = path.join(__dirname, 'ogp_image.png');
+    await page.screenshot({ path: topOutPath });
+    console.log("Generated Top OGP image: ogp_image.png");
+
     await browser.close();
-    console.log("All 16 OGP images generated successfully!");
+    console.log("All OGP images (including Top OGP) generated successfully!");
 }
 
 main().catch(console.error);

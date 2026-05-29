@@ -809,10 +809,14 @@
         }
 
         .btn-share {
-            padding: 12px 6px;
-            font-size: 0.85rem;
+            padding: 10px 4px;
+            font-size: 0.8rem;
             font-weight: 900;
             box-shadow: 4px 4px 0px var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
         .btn-x {
@@ -1339,13 +1343,16 @@
 
         <div class="share-area">
             <button class="btn-share btn-x" onclick="shareX()">
-                <span style="font-size:1.2rem">𝕏</span> ポスト
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="flex-shrink:0;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                ポスト
             </button>
             <button class="btn-share btn-line" onclick="shareLine()">
-                <span style="font-size:1.2rem">💬</span> LINE
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="flex-shrink:0;"><path d="M22 10.158C22 5.653 17.514 2 12 2S2 5.653 2 10.158c0 4.032 3.54 7.42 8.318 8.077.324.07.766.214.877.553.11.336.073.86.036 1.2l-.158 1.026c-.048.3-.23.118.064.249 3.013-1.815 5.568-3.666 7.574-5.385C20.697 14.542 22 12.463 22 10.158z"/></svg>
+                LINE
             </button>
             <button class="btn-share btn-insta" onclick="shareInsta()">
-                <span style="font-size:1.2rem">📸</span> ストーリー
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                ストーリーズ
             </button>
         </div>
         <div id="share-toast" class="share-toast">
