@@ -43,7 +43,10 @@ if (!fs.existsSync(ogpDir)) {
 function generateHTML(typeCode, typeName) {
     const illustrationFile = illustrationMap[typeCode];
     const absPath = path.resolve(__dirname, 'images', 'illustrations', illustrationFile);
-    const imgUrl = `file://${absPath}`;
+    
+    // Convert to Base64 to ensure Puppeteer can load the local image reliably
+    const imgBase64 = fs.readFileSync(absPath, { encoding: 'base64' });
+    const imgUrl = `data:image/png;base64,${imgBase64}`;
 
     const barsHTML = [
         { axis: "LA", val: typeCode[0] },
@@ -111,17 +114,17 @@ function generateHTML(typeCode, typeName) {
                 align-items: center;
             }
             .left-col {
+                width: 360px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .right-col {
                 flex: 1;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 width: 540px;
-            }
-            .right-col {
-                width: 360px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
             }
             .header {
                 text-align: left;
@@ -212,6 +215,9 @@ function generateHTML(typeCode, typeName) {
     <body>
         <div class="card">
             <div class="left-col">
+                <img class="illustration" src="${imgUrl}" alt="illustration">
+            </div>
+            <div class="right-col">
                 <div class="header">
                     <div class="site-title">お笑い16タイプ診断</div>
                     <div class="type-code">${typeCode}</div>
@@ -220,9 +226,6 @@ function generateHTML(typeCode, typeName) {
                 <div class="charts">
                     ${barsHTML}
                 </div>
-            </div>
-            <div class="right-col">
-                <img class="illustration" src="${imgUrl}" alt="illustration">
             </div>
         </div>
     </body>
