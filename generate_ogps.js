@@ -59,15 +59,15 @@ function generateHTML(typeCode, typeName) {
         const lblRight = labels[item.axis][1];
 
         // Highlight colors
-        const activeColorLeft = '#3b82f6';
-        const activeColorRight = '#ef4444';
+        const activeColorLeft = '#2563eb';
+        const activeColorRight = '#dc2626';
         const passiveColor = '#94a3b8';
 
         return `
         <div class="row">
             <div class="labels">
-                <span style="color: ${isLeft ? activeColorLeft : passiveColor}; font-weight: ${isLeft ? '800' : '400'}; font-size: 20px;">${lblLeft}</span>
-                <span style="color: ${!isLeft ? activeColorRight : passiveColor}; font-weight: ${!isLeft ? '800' : '400'}; font-size: 20px;">${lblRight}</span>
+                <span style="color: ${isLeft ? activeColorLeft : passiveColor}; font-weight: 900; font-size: 20px;">${lblLeft}</span>
+                <span style="color: ${!isLeft ? activeColorRight : passiveColor}; font-weight: 900; font-size: 20px;">${lblRight}</span>
             </div>
             <div class="bar-bg">
                 <div class="center-line"></div>
@@ -86,31 +86,35 @@ function generateHTML(typeCode, typeName) {
     <head>
         <meta charset="UTF-8">
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap');
             body {
                 width: 1200px;
                 height: 630px;
                 margin: 0;
-                background: radial-gradient(circle at top left, #f8fafc, #e2e8f0);
-                font-family: 'Zen Kaku Gothic New', sans-serif;
+                background: #bae6fd;
+                background-image: 
+                    linear-gradient(rgba(56, 189, 248, 0.22) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(56, 189, 248, 0.22) 1px, transparent 1px);
+                background-size: 24px 24px;
+                font-family: 'Zen Maru Gothic', sans-serif;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                color: #1e293b;
+                color: #1e1b4b;
             }
             .card {
                 background: #ffffff;
                 width: 1080px;
                 height: 560px;
                 border-radius: 40px;
-                box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+                box-shadow: 12px 12px 0px #1e1b4b;
                 display: flex;
                 flex-direction: row;
-                padding: 40px 50px;
+                padding: 45px 50px;
                 box-sizing: border-box;
-                border: 2px solid #fff;
-                gap: 40px;
+                border: 4px solid #1e1b4b;
+                gap: 45px;
                 align-items: center;
             }
             .left-col {
@@ -128,32 +132,32 @@ function generateHTML(typeCode, typeName) {
             }
             .header {
                 text-align: left;
-                margin-bottom: 20px;
+                margin-bottom: 16px;
             }
             .site-title {
                 font-size: 18px;
                 color: #64748b;
-                font-weight: 700;
+                font-weight: 900;
                 letter-spacing: 2px;
                 margin-bottom: 5px;
             }
             .type-code {
-                font-size: 28px;
+                font-size: 26px;
                 letter-spacing: 8px;
                 color: #94a3b8;
                 font-weight: 900;
                 margin-bottom: 0px;
             }
             .type-title {
-                font-size: 42px;
+                font-size: 44px;
                 font-weight: 900;
-                color: #1e293b;
+                color: #1e1b4b;
                 line-height: 1.2;
             }
             .charts {
                 display: flex;
                 flex-direction: column;
-                gap: 15px;
+                gap: 12px;
             }
             .row {
                 width: 100%;
@@ -166,18 +170,20 @@ function generateHTML(typeCode, typeName) {
             }
             .bar-bg {
                 width: 100%;
-                height: 16px;
+                height: 18px;
                 background: #e2e8f0;
-                border-radius: 8px;
+                border: 3px solid #1e1b4b;
+                border-radius: 9999px;
                 position: relative;
+                overflow: hidden;
             }
             .center-line {
                 position: absolute;
                 left: 50%;
                 top: 0;
                 bottom: 0;
-                width: 4px;
-                background: #fff;
+                width: 3px;
+                background: #1e1b4b;
                 transform: translateX(-50%);
                 z-index: 2;
             }
@@ -187,8 +193,7 @@ function generateHTML(typeCode, typeName) {
                 top: 0;
                 bottom: 0;
                 width: 35%;
-                background: linear-gradient(90deg, #60a5fa, #3b82f6);
-                border-radius: 8px 0 0 8px;
+                background: #3b82f6;
                 z-index: 1;
             }
             .fill-right {
@@ -197,17 +202,16 @@ function generateHTML(typeCode, typeName) {
                 top: 0;
                 bottom: 0;
                 width: 35%;
-                background: linear-gradient(90deg, #ef4444, #f87171);
-                border-radius: 0 8px 8px 0;
+                background: #ef4444;
                 z-index: 1;
             }
             .illustration {
                 width: 340px;
                 height: 340px;
                 object-fit: cover;
-                border-radius: 24px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-                border: 6px solid #ffffff;
+                border-radius: 28px;
+                box-shadow: 6px 6px 0px #1e1b4b;
+                border: 4px solid #1e1b4b;
                 background: #ffffff;
             }
         </style>
