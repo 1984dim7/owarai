@@ -21,6 +21,13 @@ const typesDB = {
     "APSC": "深淵を覗く者"
 };
 
+const illustrationMap = {
+    "LHDM": "lhdm.png", "LHDC": "lhdc.png", "LHSM": "lhsm.png", "LHSC": "lhsc.png",
+    "LPDM": "lpdm.png", "LPDC": "lpdc.png", "LPSM": "lpsm.png", "LPSC": "lpsc.png",
+    "AHDM": "ahdm.png", "AHDC": "ahdc.png", "AHSM": "ahsm.png", "AHSC": "ahsc.png",
+    "APDM": "lpdm.png", "APDC": "lpsc.png", "APSM": "lpsm.png", "APSC": "ahsm.png"
+};
+
 const labels = {
     "LA": ["Logic (理)", "Absurd (乱)"],
     "HP": ["Harmony (和)", "Poison (毒)"],
@@ -34,6 +41,10 @@ if (!fs.existsSync(ogpDir)) {
 }
 
 function generateHTML(typeCode, typeName) {
+    const illustrationFile = illustrationMap[typeCode];
+    const absPath = path.resolve(__dirname, 'images', 'illustrations', illustrationFile);
+    const imgUrl = `file://${absPath}`;
+
     const barsHTML = [
         { axis: "LA", val: typeCode[0] },
         { axis: "HP", val: typeCode[1] },
@@ -52,8 +63,8 @@ function generateHTML(typeCode, typeName) {
         return `
         <div class="row">
             <div class="labels">
-                <span style="color: ${isLeft ? activeColorLeft : passiveColor}; font-weight: ${isLeft ? '800' : '400'}; font-size: 24px;">${lblLeft}</span>
-                <span style="color: ${!isLeft ? activeColorRight : passiveColor}; font-weight: ${!isLeft ? '800' : '400'}; font-size: 24px;">${lblRight}</span>
+                <span style="color: ${isLeft ? activeColorLeft : passiveColor}; font-weight: ${isLeft ? '800' : '400'}; font-size: 20px;">${lblLeft}</span>
+                <span style="color: ${!isLeft ? activeColorRight : passiveColor}; font-weight: ${!isLeft ? '800' : '400'}; font-size: 20px;">${lblRight}</span>
             </div>
             <div class="bar-bg">
                 <div class="center-line"></div>
@@ -87,36 +98,51 @@ function generateHTML(typeCode, typeName) {
             }
             .card {
                 background: #ffffff;
-                width: 1000px;
-                height: 540px;
+                width: 1080px;
+                height: 560px;
                 border-radius: 40px;
                 box-shadow: 0 20px 50px rgba(0,0,0,0.08);
                 display: flex;
-                flex-direction: column;
-                padding: 40px 60px;
+                flex-direction: row;
+                padding: 40px 50px;
                 box-sizing: border-box;
                 border: 2px solid #fff;
+                gap: 40px;
+                align-items: center;
+            }
+            .left-col {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 540px;
+            }
+            .right-col {
+                width: 360px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             .header {
-                text-align: center;
-                margin-bottom: 25px;
+                text-align: left;
+                margin-bottom: 20px;
             }
             .site-title {
-                font-size: 20px;
+                font-size: 18px;
                 color: #64748b;
                 font-weight: 700;
                 letter-spacing: 2px;
                 margin-bottom: 5px;
             }
             .type-code {
-                font-size: 32px;
+                font-size: 28px;
                 letter-spacing: 8px;
                 color: #94a3b8;
                 font-weight: 900;
                 margin-bottom: 0px;
             }
             .type-title {
-                font-size: 56px;
+                font-size: 42px;
                 font-weight: 900;
                 color: #1e293b;
                 line-height: 1.2;
@@ -124,7 +150,7 @@ function generateHTML(typeCode, typeName) {
             .charts {
                 display: flex;
                 flex-direction: column;
-                gap: 18px;
+                gap: 15px;
             }
             .row {
                 width: 100%;
@@ -132,14 +158,14 @@ function generateHTML(typeCode, typeName) {
             .labels {
                 display: flex;
                 justify-content: space-between;
-                margin-bottom: 6px;
+                margin-bottom: 4px;
                 align-items: flex-end;
             }
             .bar-bg {
                 width: 100%;
-                height: 20px;
+                height: 16px;
                 background: #e2e8f0;
-                border-radius: 10px;
+                border-radius: 8px;
                 position: relative;
             }
             .center-line {
@@ -159,7 +185,7 @@ function generateHTML(typeCode, typeName) {
                 bottom: 0;
                 width: 35%;
                 background: linear-gradient(90deg, #60a5fa, #3b82f6);
-                border-radius: 10px 0 0 10px;
+                border-radius: 8px 0 0 8px;
                 z-index: 1;
             }
             .fill-right {
@@ -169,20 +195,34 @@ function generateHTML(typeCode, typeName) {
                 bottom: 0;
                 width: 35%;
                 background: linear-gradient(90deg, #ef4444, #f87171);
-                border-radius: 0 10px 10px 0;
+                border-radius: 0 8px 8px 0;
                 z-index: 1;
+            }
+            .illustration {
+                width: 340px;
+                height: 340px;
+                object-fit: cover;
+                border-radius: 24px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+                border: 6px solid #ffffff;
+                background: #ffffff;
             }
         </style>
     </head>
     <body>
         <div class="card">
-            <div class="header">
-                <div class="site-title">お笑い16タイプ診断</div>
-                <div class="type-code">${typeCode}</div>
-                <div class="type-title">「${typeName}」</div>
+            <div class="left-col">
+                <div class="header">
+                    <div class="site-title">お笑い16タイプ診断</div>
+                    <div class="type-code">${typeCode}</div>
+                    <div class="type-title">「${typeName}」</div>
+                </div>
+                <div class="charts">
+                    ${barsHTML}
+                </div>
             </div>
-            <div class="charts">
-                ${barsHTML}
+            <div class="right-col">
+                <img class="illustration" src="${imgUrl}" alt="illustration">
             </div>
         </div>
     </body>

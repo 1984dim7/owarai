@@ -349,6 +349,29 @@
             padding-bottom: 80px;
         }
 
+        .result-illustration-container {
+            text-align: center;
+            margin: 15px auto 25px;
+            max-width: 320px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .result-illustration {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            border: 6px solid #ffffff;
+            background: #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .result-illustration:hover {
+            transform: scale(1.02);
+        }
+
         .result-header-compact {
             text-align: center;
             margin-top: 15px;
@@ -610,6 +633,18 @@
 
         .lib-card:hover {
             transform: translateY(-2px);
+        }
+
+        .lib-illustration {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 8px auto;
+            display: block;
+            background: #f8fafc;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
         }
 
         .lib-kanji {
@@ -1042,6 +1077,9 @@
             <div id="res-rarity"
                 style="text-align: center; font-size: 0.95rem; color: #64748b; font-weight: bold; margin-bottom: 25px; margin-top: -10px;">
             </div>
+            <div class="result-illustration-container">
+                <img class="result-illustration" id="res-illustration" src="" alt="タイプイラスト">
+            </div>
         </div>
 
         <div class="result-content">
@@ -1222,6 +1260,13 @@
             "H": { char: "和", color: "k-blue" }, "P": { char: "毒", color: "k-red" },
             "S": { char: "静", color: "k-blue" }, "D": { char: "動", color: "k-red" },
             "M": { char: "衆", color: "k-blue" }, "C": { char: "深", color: "k-red" }
+        };
+
+        const illustrationMap = {
+            "LHDM": "lhdm.png", "LHDC": "lhdc.png", "LHSM": "lhsm.png", "LHSC": "lhsc.png",
+            "LPDM": "lpdm.png", "LPDC": "lpdc.png", "LPSM": "lpsm.png", "LPSC": "lpsc.png",
+            "AHDM": "ahdm.png", "AHDC": "ahdc.png", "AHSM": "ahsm.png", "AHSC": "ahsc.png",
+            "APDM": "lpdm.png", "APDC": "lpsc.png", "APSM": "lpsm.png", "APSC": "ahsm.png"
         };
 
         const questions = [
@@ -1505,6 +1550,12 @@
             document.getElementById('res-ref').innerText = data.ref;
             document.getElementById('res-tags').innerHTML = data.tags.map(t => `<span class="tag">#${t}</span>`).join('');
 
+            // Set Illustration
+            const illustrationEl = document.getElementById('res-illustration');
+            if (illustrationEl && illustrationMap[typeKey]) {
+                illustrationEl.src = `/owarai/images/illustrations/${illustrationMap[typeKey]}`;
+            }
+
             // Compatibility
             const compatSection = document.getElementById('compat-section');
             const compatLogicSection = document.getElementById('compat-logic-section');
@@ -1653,7 +1704,7 @@
                 }
                 div.style.borderColor = borderColorVar;
 
-                div.innerHTML = `<span class="lib-kanji">${kanjiHTML}</span><span class="lib-name">${item.title}</span>`;
+                div.innerHTML = `<span class="lib-kanji">${kanjiHTML}</span><img class="lib-illustration" src="/owarai/images/illustrations/${illustrationMap[key]}" alt="${item.title}"><span class="lib-name">${item.title}</span>`;
                 div.onclick = () => { renderResults(key, null, true); };
                 grid.appendChild(div);
             });
